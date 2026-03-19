@@ -107,7 +107,8 @@ function discoverProjects() {
         testCommand: raw.control?.testCommand || null,
         runCommand: raw.control?.runCommand || null,
         stopCommand: raw.control?.stopCommand || null,
-        processMatch: raw.control?.processMatch || null
+        processMatch: raw.control?.processMatch || null,
+        startupProbe: raw.control?.startupProbe || null
       },
       paths: raw.paths || {},
       timeline: Array.isArray(raw.timeline) ? raw.timeline : [],
@@ -201,6 +202,67 @@ function probeUrl(url) {
   });
 }
 
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function waitForHealth(url, startupProbe) {
+  const probe = startupProbe || {};
+  const initialDelayMs = Number(probe.initialDelayMs) > 0 ? Number(probe.initialDelayMs) : 3000;
+  const attempts = Number(probe.attempts) > 0 ? Number(probe.attempts) : 1;
+  const intervalMs = Number(probe.intervalMs) > 0 ? Number(probe.intervalMs) : 3000;
+
+  await wait(initialDelayMs);
+
+  for (let index = 0; index < attempts; index += 1) {
+    const running = await probeUrl(url);
+    if (running) {
+      return true;
+    }
+
+    if (index < attempts - 1) {
+      await wait(intervalMs);
+    }
+  }
+
+  return false;
+}
+
+async function waitForHealthOrExit(url, startupProbe, exitPromise) {
+  const probe = startupProbe || {};
+  const initialDelayMs = Number(probe.initialDelayMs) > 0 ? Number(probe.initialDelayMs) : 3000;
+  const attempts = Number(probe.attempts) > 0 ? Number(probe.attempts) : 1;
+  const intervalMs = Number(probe.intervalMs) > 0 ? Number(probe.intervalMs) : 3000;
+
+  const waitOrExit = async (delayMs) => {
+    return Promise.race([
+      wait(delayMs).then(() => ({ exited: false, code: null })),
+      exitPromise.then((code) => ({ exited: true, code }))
+    ]);
+  };
+
+  const firstWait = await waitOrExit(initialDelayMs);
+  if (firstWait.exited) {
+    return { running: false, exitCode: firstWait.code };
+  }
+
+  for (let index = 0; index < attempts; index += 1) {
+    const running = await probeUrl(url);
+    if (running) {
+      return { running: true, exitCode: null };
+    }
+
+    if (index < attempts - 1) {
+      const nextWait = await waitOrExit(intervalMs);
+      if (nextWait.exited) {
+        return { running: false, exitCode: nextWait.code };
+      }
+    }
+  }
+
+  return { running: false, exitCode: null };
+}
+
 async function getProjectRuntimeState(project) {
   const state = getState(project.id);
 
@@ -287,6 +349,9 @@ async function runProject(project, mode) {
     cwd: project.cwd,
     windowsHide: true
   });
+  const exitPromise = new Promise((resolve) => {
+    child.on("exit", (code) => resolve(code));
+  });
 
   state.running = true;
   state.pid = child.pid;
@@ -312,21 +377,19 @@ async function runProject(project, mode) {
   child.on("exit", (code) => {
     state.lastExitCode = code;
     state.finishedAt = new Date().toISOString();
-
-    if (project.health && mode === "run") {
-      return;
-    }
-
     state.running = false;
     state.pid = null;
   });
 
   if (project.health && mode === "run") {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-    const running = await probeUrl(project.health);
-    state.running = running;
+    const startup = await waitForHealthOrExit(
+      project.health,
+      project.control.startupProbe,
+      exitPromise
+    );
+    state.running = startup.running;
 
-    if (!running) {
+    if (!startup.running) {
       state.pid = null;
       return {
         ok: false,
