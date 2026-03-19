@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 项目总台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --panel: #ffffff;
+      --panel-soft: #fbfcfd;
+      --line: #e7ebf0;
+      --line-strong: #d6dde6;
+      --text: #101828;
+      --muted: #667085;
+      --accent: #155eef;
+      --accent-soft: #eef4ff;
+      --running: #067647;
+      --running-soft: #ecfdf3;
+      --warning: #b54708;
+      --warning-soft: #fff4ed;
+      --stopped: #475467;
+      --stopped-soft: #f2f4f7;
+      --draft: #6941c6;
+      --draft-soft: #f4f0ff;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --shadow: 0 8px 24px rgba(16, 24, 40, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans SC", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(21, 94, 239, 0.04), transparent 24%),
+        linear-gradient(180deg, #fafbfc 0%, #f4f6f8 100%);
+    }
+
+    .app {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    .shell { display: grid; gap: 18px; }
+    .topbar, .metrics, .board {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar { padding: 24px 26px 18px; }
+    .topbar-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow, .mono { font-family: "IBM Plex Mono", monospace; }
+    .eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .title {
+      margin: 6px 0 0;
+      font-size: clamp(28px, 4vw, 38px);
+      letter-spacing: -0.03em;
+    }
+
+    .copy, .muted, .row-summary {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .topbar-note {
+      min-width: 220px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .tabs { display: flex; flex-wrap: wrap; gap: 10px; }
+    .filter-button {
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font: inherit;
+      cursor: pointer;
+      transition: 140ms ease;
+    }
+    .filter-button.active,
+    .filter-button:hover {
+      border-color: #c8d7ff;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .metrics { padding: 14px; }
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .metric {
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background: var(--panel-soft);
+      border: 1px solid var(--line);
+    }
+    .metric b {
+      display: block;
+      margin: 10px 0 4px;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .board { overflow: hidden; }
+    .board-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .board-head h2 {
+      margin: 4px 0 0;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .table-head, .project-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.8fr) 120px 120px 150px;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 22px;
+    }
+    .table-head {
+      background: #fafbfc;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .project-row {
+      cursor: pointer;
+      border-bottom: 1px solid var(--line);
+      transition: 140ms ease;
+    }
+    .project-row:last-child { border-bottom: 0; }
+    .project-row:hover { background: #fcfdff; }
+
+    .row-title strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .status-badge, .category-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .category-tag {
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .status-badge.running { color: var(--running); background: var(--running-soft); }
+    .status-badge.warning { color: var(--warning); background: var(--warning-soft); }
+    .status-badge.stopped { color: var(--stopped); background: var(--stopped-soft); }
+    .status-badge.draft { color: var(--draft); background: var(--draft-soft); }
+
+    .cell-label { display: none; }
+    .empty, .error {
+      padding: 22px;
+      border-radius: var(--radius-md);
+      margin: 16px 22px 22px;
+      text-align: center;
+    }
+    .empty {
+      border: 1px dashed var(--line-strong);
+      background: var(--panel-soft);
+      color: var(--muted);
+    }
+    .error {
+      border: 1px solid #fecdca;
+      background: #fef3f2;
+      color: #b42318;
+    }
+
+    @media (max-width: 900px) {
+      .metric-row { grid-template-columns: 1fr 1fr; }
+      .table-head { display: none; }
+      .project-row { grid-template-columns: 1fr; }
+      .cell-label {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 4px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .app { padding: 14px; }
+      .topbar { padding: 18px; }
+      .board-head, .project-row { padding: 16px; }
+      .topbar-head { flex-direction: column; }
+      .metric-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="shell">
+      <section class="topbar">
+        <div class="topbar-head">
+          <div>
+            <div class="eyebrow">AI Project Dashboard</div>
+            <h1 class="title">AI 项目总台</h1>
+            <p class="copy">这里只展示真实项目，不再混入假的演示卡片。你先看整体，再点进单个项目做配置和控制。</p>
+          </div>
+          <div class="topbar-note">
+            根目录：<span class="mono" id="workspaceRoot">E:/Project/codex</span><br>
+            启动入口：<span class="mono">start-dashboard.cmd</span>
+          </div>
+        </div>
+
+        <div class="tabs" id="categoryFilters"></div>
+      </section>
+
+      <section class="metrics">
+        <div class="metric-row" id="metrics"></div>
+      </section>
+
+      <section class="board">
+        <div class="board-head">
+          <div>
+            <div class="eyebrow">Project List</div>
+            <h2>真实项目列表</h2>
+          </div>
+          <div class="muted" id="listSummary">正在读取真实项目...</div>
+        </div>
+
+        <div class="table-head">
+          <div>项目</div>
+          <div>分类</div>
+          <div>状态</div>
+          <div>最近运行</div>
+        </div>
+
+        <div id="projectList"></div>
+      </section>
+    </div>
+  </div>
+
+  <script src="./projects.js"></script>
+  <script>
+    const config = window.DASHBOARD_CONFIG || {};
+    const API_BASE_URL = config.apiBaseUrl || "http://127.0.0.1:4321";
+    const stateLabels = {
+      running: "运行中",
+      warning: "需关注",
+      stopped: "已停止",
+      draft: "开发中"
+    };
+
+    const elements = {
+      filters: document.getElementById("categoryFilters"),
+      metrics: document.getElementById("metrics"),
+      list: document.getElementById("projectList"),
+      listSummary: document.getElementById("listSummary"),
+      root: document.getElementById("workspaceRoot")
+    };
+
+    const appState = {
+      activeCategory: "全部项目",
+      projects: []
+    };
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function getCategories() {
+      return ["全部项目", ...new Set(appState.projects.map((project) => project.category))];
+    }
+
+    function getFilteredProjects() {
+      if (appState.activeCategory === "全部项目") {
+        return appState.projects;
+      }
+      return appState.projects.filter((project) => project.category === appState.activeCategory);
+    }
+
+    function countByStatus(status) {
+      return appState.projects.filter((project) => project.status === status).length;
+    }
+
+    function renderMetrics() {
+      const cards = [
+        { label: "项目总数", value: appState.projects.length, note: "已接入真实项目" },
+        { label: "运行中", value: countByStatus("running"), note: "当前可直接使用" },
+        { label: "需关注", value: countByStatus("warning"), note: "还有历史问题待处理" },
+        { label: "开发中", value: countByStatus("draft"), note: "已登记但未接控制" }
+      ];
+
+      elements.metrics.innerHTML = cards.map((card) => `
+        <div class="metric">
+          <span class="eyebrow">${escapeHtml(card.label)}</span>
+          <b>${escapeHtml(card.value)}</b>
+          <span>${escapeHtml(card.note)}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderFilters() {
+      const categories = getCategories();
+      elements.filters.innerHTML = categories.map((category) => {
+        const count = category === "全部项目"
+          ? appState.projects.length
+          : appState.projects.filter((project) => project.category === category).length;
+
+        const isActive = category === appState.activeCategory ? "active" : "";
+        return `
+          <button class="filter-button ${isActive}" data-category="${escapeHtml(category)}">
+            ${escapeHtml(category)} (${escapeHtml(count)})
+          </button>
+        `;
+      }).join("");
+
+      elements.filters.querySelectorAll("[data-category]").forEach((button) => {
+        button.addEventListener("click", () => {
+          appState.activeCategory = button.dataset.category;
+          renderFilters();
+          renderList();
+        });
+      });
+    }
+
+    function renderList() {
+      const filteredProjects = getFilteredProjects();
+      elements.listSummary.textContent = filteredProjects.length
+        ? `当前显示 ${filteredProjects.length} 个真实项目`
+        : "当前分类下还没有项目";
+
+      if (!filteredProjects.length) {
+        elements.list.innerHTML = '<div class="empty">这个分类下面暂时没有项目。</div>';
+        return;
+      }
+
+      elements.list.innerHTML = filteredProjects.map((project) => {
+        const lastRunAt = project.runtime?.startedAt || project.lastRunAt || "还没有记录";
+        const detailHref = `./project.html?id=${encodeURIComponent(project.id)}`;
+
+        return `
+          <article class="project-row" data-project-href="${escapeHtml(detailHref)}">
+            <div class="row-title">
+              <strong>${escapeHtml(project.name)}</strong>
+              <div class="row-summary">${escapeHtml(project.summary)}</div>
+            </div>
+            <div>
+              <div class="cell-label">分类</div>
+              <span class="category-tag">${escapeHtml(project.category)}</span>
+            </div>
+            <div>
+              <div class="cell-label">状态</div>
+              <span class="status-badge ${escapeHtml(project.status)}">${escapeHtml(stateLabels[project.status] || project.status)}</span>
+            </div>
+            <div>
+              <div class="cell-label">最近运行</div>
+              <span class="mono">${escapeHtml(lastRunAt)}</span>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      elements.list.querySelectorAll("[data-project-href]").forEach((card) => {
+        card.addEventListener("click", () => {
+          window.location.href = card.dataset.projectHref;
+        });
+      });
+    }
+
+    async function loadProjects() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/projects`, { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const payload = await response.json();
+        appState.projects = Array.isArray(payload.projects) ? payload.projects : [];
+        elements.root.textContent = payload.workspaceRoot || config.workspaceRoot || "E:/Project/codex";
+        renderMetrics();
+        renderFilters();
+        renderList();
+      } catch (error) {
+        elements.root.textContent = config.workspaceRoot || "E:/Project/codex";
+        elements.metrics.innerHTML = "";
+        elements.filters.innerHTML = "";
+        elements.listSummary.textContent = "读取失败";
+        elements.list.innerHTML = `
+          <div class="error">
+            现在还没连上控制服务。请先双击 <span class="mono">E:/Project/codex/dashboard/start-dashboard.cmd</span>。
+          </div>
+        `;
+      }
+    }
+
+    loadProjects();
+  </script>
+</body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>项目详情</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --panel: #ffffff;
+      --panel-soft: #fbfcfd;
+      --line: #e7ebf0;
+      --text: #101828;
+      --muted: #667085;
+      --accent: #155eef;
+      --accent-soft: #eef4ff;
+      --running: #067647;
+      --running-soft: #ecfdf3;
+      --warning: #b54708;
+      --warning-soft: #fff4ed;
+      --stopped: #475467;
+      --stopped-soft: #f2f4f7;
+      --draft: #6941c6;
+      --draft-soft: #f4f0ff;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --shadow: 0 8px 24px rgba(16, 24, 40, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans SC", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(21, 94, 239, 0.04), transparent 24%),
+        linear-gradient(180deg, #fafbfc 0%, #f4f6f8 100%);
+    }
+
+    .app {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel, .meta-card, .rules-card, .timeline-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar, .detail, .timeline-card, .rules-card { padding: 22px; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .eyebrow, .mono { font-family: "IBM Plex Mono", monospace; }
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .title, .detail h1 {
+      margin: 6px 0 0;
+      letter-spacing: -0.03em;
+    }
+    .title { font-size: 22px; }
+
+    .back-link {
+      text-decoration: none;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .detail-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+
+    .detail h1 { font-size: clamp(28px, 4vw, 40px); }
+    .detail-summary, .muted {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .status-badge.running { color: var(--running); background: var(--running-soft); }
+    .status-badge.warning { color: var(--warning); background: var(--warning-soft); }
+    .status-badge.stopped { color: var(--stopped); background: var(--stopped-soft); }
+    .status-badge.draft { color: var(--draft); background: var(--draft-soft); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .control-btn {
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font: inherit;
+      cursor: pointer;
+    }
+    .control-btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+    .control-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .meta-card { padding: 18px; }
+    .meta-card strong, .rules-card strong, .timeline-card strong {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .detail-row:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+    .detail-row b {
+      color: var(--text);
+      text-align: right;
+      max-width: 58%;
+      word-break: break-word;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 10px;
+    }
+    .timeline-item {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+    }
+    .timeline-item time {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .timeline-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .empty, .error {
+      padding: 22px;
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+    .empty {
+      border: 1px dashed var(--line);
+      background: var(--panel-soft);
+      color: var(--muted);
+    }
+    .error {
+      border: 1px solid #fecdca;
+      background: #fef3f2;
+      color: #b42318;
+    }
+
+    @media (max-width: 780px) {
+      .app { padding: 14px; }
+      .topbar, .detail, .timeline-card, .rules-card { padding: 18px; }
+      .topbar, .detail-top { flex-direction: column; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <section class="topbar panel">
+      <div>
+        <div class="eyebrow">Project Detail</div>
+        <div class="title">项目详情页</div>
+      </div>
+      <a class="back-link" href="./index.html">返回主面板</a>
+    </section>
+
+    <section class="detail panel">
+      <div class="detail-top">
+        <div>
+          <div class="eyebrow">Selected Project</div>
+          <h1 id="projectName">正在加载</h1>
+          <p class="detail-summary" id="projectSummary">正在读取项目信息。</p>
+          <div class="controls" id="controlArea" hidden>
+            <button class="control-btn" id="testRunBtn" type="button" hidden>测试运行</button>
+            <button class="control-btn primary" id="realRunBtn" type="button" hidden>真实运行</button>
+            <button class="control-btn" id="stopRunBtn" type="button" hidden>停止当前运行</button>
+            <span class="muted" id="controlHint">控制服务未连接</span>
+          </div>
+        </div>
+        <span class="status-badge draft" id="projectStatus">开发中</span>
+      </div>
+
+      <div class="grid">
+        <div class="meta-card">
+          <strong>基础信息</strong>
+          <div id="detailMeta"></div>
+        </div>
+
+        <div class="rules-card">
+          <strong>接入规则</strong>
+          <div class="muted">1. 新项目要放在 <span class="mono">E:/Project/codex</span> 下面</div>
+          <div class="muted">2. 每个项目都带 <span class="mono">project.config.json</span></div>
+          <div class="muted">3. 先接展示，再接控制，再做统一视觉和日志</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="timeline-card panel">
+      <strong>最近动态</strong>
+      <div class="timeline" id="detailTimeline"></div>
+    </section>
+  </div>
+
+  <script src="./projects.js"></script>
+  <script>
+    const config = window.DASHBOARD_CONFIG || {};
+    const API_BASE_URL = config.apiBaseUrl || "http://127.0.0.1:4321";
+    const CONTROL_START_HINT = "控制服务还没启动，请先双击 E:/Project/codex/dashboard/start-dashboard.cmd";
+    const stateLabels = {
+      running: "运行中",
+      warning: "需关注",
+      stopped: "已停止",
+      draft: "开发中"
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const projectId = params.get("id");
+
+    const nameEl = document.getElementById("projectName");
+    const summaryEl = document.getElementById("projectSummary");
+    const statusEl = document.getElementById("projectStatus");
+    const metaEl = document.getElementById("detailMeta");
+    const timelineEl = document.getElementById("detailTimeline");
+    const controlAreaEl = document.getElementById("controlArea");
+    const controlHintEl = document.getElementById("controlHint");
+    const testRunBtn = document.getElementById("testRunBtn");
+    const realRunBtn = document.getElementById("realRunBtn");
+    const stopRunBtn = document.getElementById("stopRunBtn");
+
+    let currentProject = null;
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function setButtonsDisabled(disabled) {
+      [testRunBtn, realRunBtn, stopRunBtn].forEach((button) => {
+        if (!button.hidden) {
+          button.disabled = disabled;
+        }
+      });
+    }
+
+    function applyActionVisibility(project) {
+      const actions = project?.control?.actions || [];
+      const enabled = Boolean(project?.control?.enabled);
+      controlAreaEl.hidden = !enabled;
+      testRunBtn.hidden = !actions.includes("test");
+      realRunBtn.hidden = !actions.includes("run");
+      stopRunBtn.hidden = !actions.includes("stop");
+    }
+
+    async function fetchControlStatus() {
+      if (!currentProject || !currentProject.control?.enabled) {
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/status?id=${encodeURIComponent(currentProject.id)}`, {
+          cache: "no-store"
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const payload = await response.json();
+        if (!payload.ok) {
+          controlHintEl.textContent = payload.error || "控制服务异常";
+          setButtonsDisabled(true);
+          return;
+        }
+
+        const state = payload.state;
+        setButtonsDisabled(false);
+
+        if (state.running) {
+          controlHintEl.textContent = `正在运行：${state.mode === "run" ? "真实运行" : "测试运行"}（PID ${state.pid || "未知"}）`;
+        } else if (state.lastExitCode === 0) {
+          controlHintEl.textContent = "上一次执行成功";
+        } else if (state.lastExitCode !== null) {
+          controlHintEl.textContent = `上一次执行失败，退出码 ${state.lastExitCode}`;
+        } else {
+          controlHintEl.textContent = "控制服务已连接";
+        }
+      } catch (error) {
+        setButtonsDisabled(true);
+        controlHintEl.textContent = CONTROL_START_HINT;
+      }
+    }
+
+    async function callControlApi(action) {
+      if (!currentProject) {
+        return;
+      }
+
+      try {
+        setButtonsDisabled(true);
+        controlHintEl.textContent = "正在发送命令...";
+        const response = await fetch(`${API_BASE_URL}/api/${action}?id=${encodeURIComponent(currentProject.id)}`, {
+          method: "POST"
+        });
+        const payload = await response.json();
+        controlHintEl.textContent = payload.ok
+          ? action === "stop"
+            ? "已经发送停止命令"
+            : "命令已发送，正在执行"
+          : payload.error || "执行失败";
+      } catch (error) {
+        controlHintEl.textContent = error.message === "Failed to fetch"
+          ? CONTROL_START_HINT
+          : `调用失败：${error.message}`;
+      } finally {
+        fetchControlStatus();
+      }
+    }
+
+    function renderProject(project) {
+      currentProject = project;
+      document.title = `${project.name} - 项目详情`;
+      nameEl.textContent = project.name;
+      summaryEl.textContent = project.description || project.summary;
+      statusEl.className = `status-badge ${project.status}`;
+      statusEl.textContent = stateLabels[project.status] || project.status;
+
+      const lastRunAt = project.runtime?.startedAt || project.lastRunAt || "还没有记录";
+      const details = [
+        ["分类", project.category],
+        ["状态", stateLabels[project.status] || project.status],
+        ["项目路径", project.path],
+        ["入口地址", project.entry || "暂时没有"],
+        ["最近运行", lastRunAt],
+        ["接入方式", project.integration || "project-config"]
+      ];
+
+      metaEl.innerHTML = details.map(([label, value]) => `
+        <div class="detail-row">
+          <span>${escapeHtml(label)}</span>
+          <b>${escapeHtml(value)}</b>
+        </div>
+      `).join("");
+
+      const timeline = Array.isArray(project.timeline) ? project.timeline : [];
+      timelineEl.innerHTML = timeline.length
+        ? timeline.map((item) => `
+          <div class="timeline-item">
+            <time class="mono">${escapeHtml(item.time)}</time>
+            <strong>${escapeHtml(item.title)}</strong>
+            <div class="muted">${escapeHtml(item.note)}</div>
+          </div>
+        `).join("")
+        : '<div class="empty">这个项目还没有动态记录。</div>';
+
+      applyActionVisibility(project);
+      if (project.control?.enabled) {
+        setButtonsDisabled(true);
+        fetchControlStatus();
+      }
+    }
+
+    async function loadProject() {
+      if (!projectId) {
+        nameEl.textContent = "缺少项目 id";
+        summaryEl.textContent = "你是直接打开了详情页，但没有告诉系统要看哪个项目。";
+        metaEl.innerHTML = '<div class="empty">请返回首页，重新选择一个项目。</div>';
+        timelineEl.innerHTML = '<div class="empty">没有可显示的动态。</div>';
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/project?id=${encodeURIComponent(projectId)}`, {
+          cache: "no-store"
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const payload = await response.json();
+        if (!payload.ok || !payload.project) {
+          throw new Error(payload.error || "没有找到这个项目");
+        }
+
+        renderProject(payload.project);
+      } catch (error) {
+        nameEl.textContent = "没有找到这个项目";
+        summaryEl.textContent = error.message === "Failed to fetch"
+          ? CONTROL_START_HINT
+          : `读取失败：${error.message}`;
+        metaEl.innerHTML = '<div class="error">现在还没法读取真实项目详情。请先启动控制服务。</div>';
+        timelineEl.innerHTML = '<div class="empty">没有可显示的动态。</div>';
+      }
+    }
+
+    testRunBtn.addEventListener("click", () => callControlApi("test"));
+    realRunBtn.addEventListener("click", () => callControlApi("run"));
+    stopRunBtn.addEventListener("click", () => callControlApi("stop"));
+
+    loadProject();
+    window.addEventListener("focus", fetchControlStatus);
+    window.setInterval(fetchControlStatus, 5000);
+  </script>
+</body>
+</html>

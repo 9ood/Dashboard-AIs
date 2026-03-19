@@ -1,0 +1,30 @@
+{
+  "id": "project-id",
+  "name": "项目名字",
+  "category": "工具类",
+  "type": "service",
+  "status": "draft",
+  "summary": "一句话说明这个项目是干什么的。",
+  "description": "这里写更完整一点的说明，让 dashboard 详情页能看懂这个项目的用途。",
+  "path": "E:/Project/codex/project-id",
+  "entry": "",
+  "health": "",
+  "integration": "project-config",
+  "control": {
+    "enabled": false,
+    "type": "service",
+    "actions": []
+  },
+  "paths": {
+    "logs": "",
+    "output": "",
+    "uploads": ""
+  },
+  "timeline": [
+    {
+      "time": "今天",
+      "title": "刚接入系统",
+      "note": "这是一个最小模板，后面可以继续补控制命令和健康检查。"
+    }
+  ]
+}
