@@ -1,0 +1,23 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: Project Detail
+      - generic [ref=e6]: 项目操作页
+    - link "返回总台" [ref=e7] [cursor=pointer]:
+      - /url: ./index.html
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: Selected Project
+        - heading "正在加载" [level=1] [ref=e12]
+        - paragraph [ref=e13]: 正在读取项目信息。
+      - generic [ref=e14]: 开发中
+    - generic [ref=e15]: 控制服务还没连接，请先双击 E:/Project/codex/dashboard/start-dashboard.cmd
+  - generic [ref=e16]:
+    - generic [ref=e17]:
+      - strong [ref=e19]: 怎么用
+      - strong [ref=e21]: 这次动作发生了什么
+      - strong [ref=e23]: 最近动态
+    - generic [ref=e24]:
+      - strong [ref=e26]: 当前状态
+      - strong [ref=e28]: 下一步建议

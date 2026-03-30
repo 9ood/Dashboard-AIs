@@ -1,0 +1,95 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: Project Detail
+      - generic [ref=e6]: 项目操作页
+    - link "返回总台" [ref=e7] [cursor=pointer]:
+      - /url: ./index.html
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: Selected Project
+        - heading "小红书自动发布" [level=1] [ref=e12]
+        - paragraph [ref=e13]: 这是一个队列发布项目。现在已经接入 dashboard，可以做环境检查、真实运行和停止。第一次使用前，如果还没登录小红书，会自动拉起登录流程。
+      - generic [ref=e14]: 开发中
+    - generic [ref=e15]: 系统已连接。第一次使用时，建议先点“先检查”。
+    - generic [ref=e16]:
+      - button "先检查" [ref=e17] [cursor=pointer]
+      - button "启动系统" [ref=e18] [cursor=pointer]
+      - button "停止" [ref=e19] [cursor=pointer]
+      - link "打开发布工作台" [ref=e20] [cursor=pointer]:
+        - /url: ./redbookauto.html?id=redbook-auto
+  - generic [ref=e21]:
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - strong [ref=e24]: 怎么用
+        - generic [ref=e25]:
+          - strong [ref=e27]:
+            - generic [ref=e28]: "1"
+            - text: 先点“先检查”，看现在能不能发。
+          - strong [ref=e30]:
+            - generic [ref=e31]: "2"
+            - text: 如果提示需要登录，先完成登录，再回来继续。
+          - strong [ref=e33]:
+            - generic [ref=e34]: "3"
+            - text: 再点“开始处理”，让它从待发布队列里取内容。
+          - strong [ref=e36]:
+            - generic [ref=e37]: "4"
+            - text: 如果失败，看下面的动作结果，先弄清楚卡在哪一步。
+      - generic [ref=e38]:
+        - strong [ref=e39]: 这次动作发生了什么
+        - generic [ref=e41]:
+          - strong [ref=e42]: 你还没开始操作
+          - generic [ref=e43]: 先看“怎么用”，再按顺序点按钮。
+          - generic [ref=e44]: 下一步：如果这是第一次使用，先点“先检查”。
+      - generic [ref=e45]:
+        - strong [ref=e46]: 最近动态
+        - generic [ref=e48]:
+          - generic [ref=e49]: 今天
+          - strong [ref=e50]: 接入真实控制层
+          - generic [ref=e51]: dashboard 现在可以检查环境、尝试发布和停止当前运行。
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - strong [ref=e54]: 当前状态
+        - generic [ref=e55]:
+          - generic [ref=e56]:
+            - generic [ref=e57]: 项目分类
+            - generic [ref=e58]: 内容类
+          - generic [ref=e59]:
+            - generic [ref=e60]: 当前状态
+            - generic [ref=e61]: 开发中
+          - generic [ref=e62]:
+            - generic [ref=e63]: 入口地址
+            - generic [ref=e64]: 这个项目没有网页入口
+          - generic [ref=e65]:
+            - generic [ref=e66]: 项目路径
+            - generic [ref=e67]: E:/Project/codex/RedbookAuto
+          - generic [ref=e68]:
+            - generic [ref=e69]: 开始时间
+            - generic [ref=e70]: 还没有记录
+          - generic [ref=e71]:
+            - generic [ref=e72]: 结束时间
+            - generic [ref=e73]: 还没有记录
+          - generic [ref=e74]:
+            - generic [ref=e75]: 最后退出码
+            - generic [ref=e76]: 还没有记录
+          - generic [ref=e77]:
+            - generic [ref=e78]: 当前进程
+            - generic [ref=e79]: 没有运行中的进程
+      - generic [ref=e80]:
+        - strong [ref=e81]: 下一步建议
+        - generic [ref=e82]:
+          - generic [ref=e83]: 这个项目没有网页入口，重点是看执行结果和输出。
+          - generic [ref=e84]: 这个项目第一次使用时，很可能会先卡在登录。
+          - generic [ref=e85]: 它不是网页服务，所以重点是检查结果，不是打开入口。
+  - generic [ref=e86]:
+    - generic [ref=e87]:
+      - generic [ref=e88]:
+        - strong [ref=e89]: 项目内预览
+        - paragraph [ref=e90]: 这里会直接显示项目页面，不再新开网页。
+      - generic [ref=e91]:
+        - link "新窗口打开":
+          - /url: "#"
+        - button "重新加载" [disabled]
+    - iframe [ref=e92]:
+      

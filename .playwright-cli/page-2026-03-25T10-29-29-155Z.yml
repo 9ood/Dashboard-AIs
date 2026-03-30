@@ -1,0 +1,12 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]: TransPaper
+    - heading "论文翻译系统" [level=1] [ref=e6]
+    - paragraph [ref=e7]: 只留上传和预览，其他内容收进设置里，页面会简单很多。
+  - main [ref=e8]:
+    - generic [ref=e25]:
+      - generic [ref=e27]:
+        - button "开始翻译" [ref=e28] [cursor=pointer]
+        - button "停止" [ref=e29] [cursor=pointer]
+        - button "设置" [ref=e30] [cursor=pointer]
+      - text: +

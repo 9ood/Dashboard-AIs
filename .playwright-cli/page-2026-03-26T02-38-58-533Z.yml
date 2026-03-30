@@ -1,0 +1,36 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]: TransPaper
+    - heading "论文翻译系统" [level=1] [ref=e6]
+    - paragraph [ref=e7]: 只留上传和预览，其他内容收进设置里，页面会简单很多。
+  - main [ref=e8]:
+    - generic [ref=e25]:
+      - text: + - + +
+      - generic [ref=e27]:
+        - heading "上传附件" [level=2] [ref=e28]
+        - group [ref=e29]:
+          - generic [ref=e30]: Type
+          - generic [ref=e31]:
+            - generic [ref=e32] [cursor=pointer]:
+              - radio "File(s)" [checked] [ref=e33]
+              - generic [ref=e34]: File(s)
+            - generic [ref=e35] [cursor=pointer]:
+              - radio "Link" [ref=e36]
+              - generic [ref=e37]: Link
+        - generic [ref=e38]:
+          - generic:
+            - generic:
+              - img
+            - text: File(s)
+          - button "Click to upload or drop files" [ref=e39] [cursor=pointer]:
+            - generic [ref=e40]:
+              - img [ref=e42]
+              - text: 将文件拖放到此处
+              - generic [ref=e45]: "- 或 -"
+              - text: 点击上传
+      - generic [ref=e46]:
+        - button "开始翻译" [ref=e47] [cursor=pointer]
+        - button "停止" [ref=e48] [cursor=pointer]
+        - button "设置" [ref=e49] [cursor=pointer]
+      - heading "结果预览" [level=2] [ref=e51]
+      - text: + - + +

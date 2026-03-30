@@ -1,0 +1,59 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]: AdVideoSystem
+        - heading "AI 视频翻拍系统" [level=1] [ref=e7]
+        - paragraph [ref=e8]: 把视频上传进来，系统会自动拆镜头、分析画面、生成脚本，并打包导出可下载结果。
+      - generic [ref=e9]:
+        - generic [ref=e10]: 网页服务
+        - link "查看 Token 用量" [ref=e11] [cursor=pointer]:
+          - /url: /token_usage_page
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - strong [ref=e15]:
+            - generic [ref=e16]: "1"
+            - text: 选择视频文件
+          - generic [ref=e17]: 支持 MP4、MOV、AVI、MKV。选中文件后会自动开始上传。
+        - generic [ref=e18]:
+          - strong [ref=e19]:
+            - generic [ref=e20]: "2"
+            - text: 等待系统处理
+          - generic [ref=e21]: 系统会自动做镜头检测、关键帧提取、AI 分析和脚本生成。
+        - generic [ref=e22]:
+          - strong [ref=e23]:
+            - generic [ref=e24]: "3"
+            - text: 下载结果包
+          - generic [ref=e25]: 处理完成后可以下载完整包，也可以只下载纯脚本 Excel。
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - strong [ref=e28]: 你会得到什么
+          - generic [ref=e29]: 关键帧图片、分镜脚本、完整 Excel、可直接下载的结果包。
+        - generic [ref=e30]:
+          - strong [ref=e31]: 适合什么时候用
+          - generic [ref=e32]: 你已经有成品视频，想快速拆解镜头结构、脚本和画面提示词的时候。
+        - generic [ref=e33]:
+          - strong [ref=e34]: 现在最重要的提示
+          - generic [ref=e35]: 这个页面会自动开始处理，不需要再点第二个“开始”按钮。
+  - generic [ref=e37]:
+    - generic [ref=e40]:
+      - generic [ref=e41]: 视
+      - heading "上传视频" [level=2] [ref=e42]
+      - paragraph [ref=e43]: 先选一个视频文件，系统会立刻开始上传和处理。
+      - button "选择视频文件" [ref=e45] [cursor=pointer]
+      - paragraph [ref=e46]
+      - generic [ref=e47]: 小提醒：上传后页面会自动切到“处理中”，这是正常的，不用重复点按钮。
+    - complementary [ref=e48]:
+      - strong [ref=e49]: 这页怎么读
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - strong [ref=e52]: 左边是操作区
+          - generic [ref=e53]: 你选文件、看进度、下载结果，都在左边完成。
+        - generic [ref=e54]:
+          - strong [ref=e55]: 处理时只要等待
+          - generic [ref=e56]: 不用刷新，也不用再点其他按钮，系统会自己往下走。
+        - generic [ref=e57]:
+          - strong [ref=e58]: 失败时先看原因
+          - generic [ref=e59]: 如果报错，先看红色提示，再决定是换文件还是重新尝试。
+  - generic [ref=e60]: Powered by OpenRouter + Gemini 3 Flash

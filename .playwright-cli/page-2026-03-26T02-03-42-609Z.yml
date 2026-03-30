@@ -1,0 +1,49 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: RedbookAuto Workbench
+      - generic [ref=e6]: 小红书发布工作台
+    - generic [ref=e7]:
+      - link "返回项目页" [ref=e8] [cursor=pointer]:
+        - /url: ./project.html?id=redbook-auto
+      - link "返回总台" [ref=e9] [cursor=pointer]:
+        - /url: ./index.html
+  - generic [ref=e10]:
+    - generic [ref=e12]:
+      - generic [ref=e13]: Content Publish
+      - heading "小红书自动发布" [level=1] [ref=e14]
+      - paragraph [ref=e15]: 这是一个队列发布项目。现在已经接入 dashboard，可以做环境检查、真实运行和停止。第一次使用前，如果还没登录小红书，会自动拉起登录流程。
+    - generic [ref=e16]:
+      - button "刷新状态" [disabled]
+      - button "环境检查" [disabled]
+      - button "登录小红书" [disabled]
+      - button "发布下一条" [disabled]
+      - button "停止" [disabled]
+    - generic [ref=e17]: 正在读取当前状态。
+  - generic [ref=e18]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - strong [ref=e22]: 待发布队列
+        - generic [ref=e23]: 先点一条，再看右边预览。
+      - generic [ref=e24]: 0 条
+    - generic [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e28]:
+          - strong [ref=e29]: 内容预览
+          - generic [ref=e30]: 这里只预览，不会改你真实内容。
+        - generic [ref=e31]: 先在左边选一条内容。
+      - generic [ref=e32]:
+        - generic [ref=e34]:
+          - strong [ref=e35]: 最近结果
+          - generic [ref=e36]: 看最近发成功了什么，哪里失败了。
+        - generic [ref=e37]:
+          - generic [ref=e39]: 最近已发布
+          - generic [ref=e41]: 最近失败
+      - generic [ref=e42]:
+        - generic [ref=e44]:
+          - strong [ref=e45]: 这次操作
+          - generic [ref=e46]: 每次点按钮，结果都会写在这里。
+        - generic [ref=e48]:
+          - strong [ref=e49]: 你还没开始操作
+          - generic [ref=e50]: 先看左边队列，再决定是检查、登录，还是发布。
+          - generic [ref=e51]: 下一步：第一次使用时，推荐先点“环境检查”。

@@ -1,0 +1,84 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: Project Detail
+      - generic [ref=e6]: 项目操作页
+    - link "返回总台" [ref=e7] [cursor=pointer]:
+      - /url: ./index.html
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: Selected Project
+        - heading "AI 视频翻拍系统" [level=1] [ref=e29]
+        - paragraph [ref=e13]: 这是一个网页服务项目。它负责视频镜头检测、关键帧提取、AI 提示词生成和结果导出。
+      - generic [ref=e14]: 运行中
+    - generic [ref=e15]: 系统正在运行，进程号 29076。
+    - generic [ref=e30]:
+      - button "先检查" [ref=e31] [cursor=pointer]
+      - button "启动系统" [ref=e32] [cursor=pointer]
+      - button "停止" [ref=e33] [cursor=pointer]
+      - link "打开系统" [active] [ref=e34] [cursor=pointer]:
+        - /url: http://127.0.0.1:8080/
+  - generic [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - strong [ref=e19]: 怎么用
+        - generic [ref=e35]:
+          - strong [ref=e37]:
+            - generic [ref=e38]: "1"
+            - text: 先点“启动系统”，等中控台告诉你服务已经起来。
+          - strong [ref=e40]:
+            - generic [ref=e41]: "2"
+            - text: 点“打开系统”，进入真正的翻拍页面。
+          - strong [ref=e43]:
+            - generic [ref=e44]: "3"
+            - text: 在翻拍页面上传视频，等它处理完。
+          - strong [ref=e46]:
+            - generic [ref=e47]: "4"
+            - text: 处理结束后，到项目页面里下载结果包和 Excel。
+      - generic [ref=e20]:
+        - strong [ref=e21]: 这次动作发生了什么
+        - generic [ref=e49]:
+          - strong [ref=e50]: 你还没开始操作
+          - generic [ref=e51]: 先看“怎么用”，再按顺序点按钮。
+          - generic [ref=e52]: 下一步：如果这是第一次使用，先点“先检查”。
+      - generic [ref=e22]:
+        - strong [ref=e23]: 最近动态
+        - generic [ref=e54]:
+          - generic [ref=e55]: 今天
+          - strong [ref=e56]: 完成真实接入
+          - generic [ref=e57]: 已经跑通真实视频处理、Excel 生成和结果包下载。
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - strong [ref=e26]: 当前状态
+        - generic [ref=e58]:
+          - generic [ref=e111]:
+            - generic [ref=e112]: 项目分类
+            - generic [ref=e113]: 工具类
+          - generic [ref=e114]:
+            - generic [ref=e115]: 当前状态
+            - generic [ref=e116]: 运行中
+          - generic [ref=e117]:
+            - generic [ref=e118]: 入口地址
+            - generic [ref=e119]: http://127.0.0.1:8080/
+          - generic [ref=e120]:
+            - generic [ref=e121]: 项目路径
+            - generic [ref=e122]: E:/Project/codex/AdVideoSystem
+          - generic [ref=e123]:
+            - generic [ref=e124]: 开始时间
+            - generic [ref=e125]: 还没有记录
+          - generic [ref=e126]:
+            - generic [ref=e127]: 结束时间
+            - generic [ref=e128]: 还没有记录
+          - generic [ref=e129]:
+            - generic [ref=e130]: 最后退出码
+            - generic [ref=e131]: 还没有记录
+          - generic [ref=e132]:
+            - generic [ref=e133]: 当前进程
+            - generic [ref=e134]: "29076"
+      - generic [ref=e27]:
+        - strong [ref=e28]: 下一步建议
+        - generic [ref=e83]:
+          - generic [ref=e84]: 系统现在已经在运行，你可以直接点“打开系统”。
+          - generic [ref=e85]: 如果你只想先看看能不能跑，先点“先检查”。
+          - generic [ref=e86]: 启动成功后，应该直接去真正的翻拍页面，不要只停在这里。

@@ -1,0 +1,2 @@
+[      10ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://127.0.0.1:4322/projects.js:0
+[    2972ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://127.0.0.1:4322/favicon.ico:0

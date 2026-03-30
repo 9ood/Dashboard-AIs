@@ -1,0 +1,99 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: RedbookAuto Workbench
+      - generic [ref=e6]: 小红书发布工作台
+    - generic [ref=e7]:
+      - link "返回项目页" [ref=e8] [cursor=pointer]:
+        - /url: ./project.html?id=redbook-auto
+      - link "返回总台" [ref=e9] [cursor=pointer]:
+        - /url: ./index.html
+  - generic [ref=e10]:
+    - generic [ref=e12]:
+      - generic [ref=e13]: Content Publish
+      - heading "小红书自动发布" [level=1] [ref=e14]
+      - paragraph [ref=e15]: 这是一个队列发布项目。现在已经接入 dashboard，可以做环境检查、真实运行和停止。第一次使用前，如果还没登录小红书，会自动拉起登录流程。
+    - generic [ref=e52]:
+      - generic [ref=e157]:
+        - generic [ref=e158]: 登录状态
+        - strong [ref=e159]: 未登录
+        - generic [ref=e160]: 需要登录
+      - generic [ref=e161]:
+        - generic [ref=e162]: 待发布
+        - strong [ref=e163]: 1 条
+        - generic [ref=e164]: 左边队列里的内容
+      - generic [ref=e165]:
+        - generic [ref=e166]: 最近结果
+        - strong [ref=e167]: 成功 1 / 失败 0
+        - generic [ref=e168]: 这里只显示最近几条
+      - generic [ref=e169]:
+        - generic [ref=e170]: 运行状态
+        - strong [ref=e171]: 发布中
+        - generic [ref=e172]: 进程号 37844
+    - generic [ref=e16]:
+      - button "刷新状态" [ref=e69] [cursor=pointer]
+      - button "环境检查" [ref=e70] [cursor=pointer]
+      - button "登录小红书" [ref=e71] [cursor=pointer]
+      - button "发布下一条" [ref=e72] [cursor=pointer]
+      - button "停止" [ref=e73] [cursor=pointer]
+    - generic [ref=e17]: 系统正在发布内容。现在最重要的事是等它跑完，不要连续重复点“发布下一条”。
+  - generic [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - strong [ref=e22]: 待发布队列
+          - generic [ref=e23]: 先点一条，再看右边预览。
+        - generic [ref=e24]: 1 条
+      - button "分享钢琴谱：哈农 经典练习曲 钢琴谱《哈农》 。 1 张图 2 个标签 2026/3/19 13:31:17" [ref=e173] [cursor=pointer]:
+        - strong [ref=e174]: 分享钢琴谱：哈农
+        - generic [ref=e175]: 经典练习曲 钢琴谱《哈农》 。
+        - generic [ref=e176]:
+          - generic [ref=e177]: 1 张图
+          - generic [ref=e178]: 2 个标签
+          - generic [ref=e179]: 2026/3/19 13:31:17
+    - generic [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e28]:
+          - strong [ref=e29]: 内容预览
+          - generic [ref=e30]: 这里只预览，不会改你真实内容。
+        - generic [ref=e180]:
+          - generic [ref=e181]:
+            - generic [ref=e182]: 标题
+            - generic [ref=e183]: 分享钢琴谱：哈农
+          - generic [ref=e184]:
+            - generic [ref=e185]: 正文
+            - generic [ref=e186]: 经典练习曲 钢琴谱《哈农》 。
+          - generic [ref=e187]:
+            - generic [ref=e188]: 标签
+            - generic [ref=e189]:
+              - generic [ref=e190]: 钢琴谱
+              - generic [ref=e191]: 西西魔法钢琴
+          - generic [ref=e192]:
+            - generic [ref=e193]: 图片
+            - generic [ref=e195]:
+              - img "预览图片" [ref=e196]
+              - generic [ref=e197]: 1.png
+      - generic [ref=e32]:
+        - generic [ref=e34]:
+          - strong [ref=e35]: 最近结果
+          - generic [ref=e36]: 看最近发成功了什么，哪里失败了。
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e39]: 最近已发布
+            - generic [ref=e198]:
+              - strong [ref=e199]: 分享钢琴谱：《大鱼海棠》
+              - generic [ref=e200]: 2026/3/19 13:31:17
+              - generic [ref=e201]:
+                - generic [ref=e202]: sample_001
+                - generic [ref=e203]: 2 张图
+          - generic [ref=e40]:
+            - generic [ref=e41]: 最近失败
+            - generic [ref=e204]: 最近还没有失败记录。
+      - generic [ref=e42]:
+        - generic [ref=e44]:
+          - strong [ref=e45]: 这次操作
+          - generic [ref=e46]: 每次点按钮，结果都会写在这里。
+        - generic [ref=e205]:
+          - strong [ref=e206]: 环境检查已完成
+          - generic [ref=e207]: 这次动作已经执行成功。
+          - generic [ref=e208]: 时间：2026/3/26 10:04:30 | 下一步：如果结果里说需要登录，就先登录。否则可以发布。

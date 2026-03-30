@@ -17,10 +17,12 @@
       --muted: #667085;
       --accent: #155eef;
       --accent-soft: #eef4ff;
-      --running: #067647;
-      --running-soft: #ecfdf3;
+      --success: #067647;
+      --success-soft: #ecfdf3;
       --warning: #b54708;
       --warning-soft: #fff4ed;
+      --danger: #b42318;
+      --danger-soft: #fef3f2;
       --stopped: #475467;
       --stopped-soft: #f2f4f7;
       --draft: #6941c6;
@@ -42,22 +44,27 @@
         linear-gradient(180deg, #fafbfc 0%, #f4f6f8 100%);
     }
 
+    a { color: inherit; }
+
     .app {
-      max-width: 1160px;
+      max-width: 1180px;
       margin: 0 auto;
       padding: 28px;
       display: grid;
       gap: 18px;
     }
 
-    .panel, .meta-card, .rules-card, .timeline-card {
+    .panel {
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: var(--radius-xl);
       box-shadow: var(--shadow);
     }
 
-    .topbar, .detail, .timeline-card, .rules-card { padding: 22px; }
+    .topbar, .hero, .panel-body {
+      padding: 22px;
+    }
+
     .topbar {
       display: flex;
       align-items: center;
@@ -65,7 +72,10 @@
       gap: 16px;
     }
 
-    .eyebrow, .mono { font-family: "IBM Plex Mono", monospace; }
+    .eyebrow, .mono {
+      font-family: "IBM Plex Mono", monospace;
+    }
+
     .eyebrow {
       font-size: 11px;
       letter-spacing: 0.08em;
@@ -73,11 +83,13 @@
       color: var(--muted);
     }
 
-    .title, .detail h1 {
+    .title {
       margin: 6px 0 0;
       letter-spacing: -0.03em;
     }
-    .title { font-size: 22px; }
+
+    .title.small { font-size: 22px; }
+    .title.large { font-size: clamp(28px, 4vw, 40px); }
 
     .back-link {
       text-decoration: none;
@@ -86,24 +98,21 @@
       font-weight: 500;
     }
 
-    .detail-top {
+    .hero-top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       gap: 16px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
-    .detail h1 { font-size: clamp(28px, 4vw, 40px); }
-    .detail-summary, .muted {
+    .hero-summary, .muted {
       color: var(--muted);
-      line-height: 1.8;
       font-size: 14px;
+      line-height: 1.8;
     }
 
-    .status-badge {
+    .badge {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -113,22 +122,28 @@
       font-weight: 500;
       white-space: nowrap;
     }
-    .status-badge.running { color: var(--running); background: var(--running-soft); }
-    .status-badge.warning { color: var(--warning); background: var(--warning-soft); }
-    .status-badge.stopped { color: var(--stopped); background: var(--stopped-soft); }
-    .status-badge.draft { color: var(--draft); background: var(--draft-soft); }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 18px;
+    .badge.running { color: var(--success); background: var(--success-soft); }
+    .badge.warning { color: var(--warning); background: var(--warning-soft); }
+    .badge.stopped { color: var(--stopped); background: var(--stopped-soft); }
+    .badge.draft { color: var(--draft); background: var(--draft-soft); }
+
+    .hero-hint {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 16px;
     }
 
     .controls {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 16px;
+      align-items: center;
     }
 
     .control-btn {
@@ -139,64 +154,194 @@
       padding: 10px 14px;
       font: inherit;
       cursor: pointer;
+      text-decoration: none;
+      transition: 140ms ease;
     }
+
     .control-btn.primary {
       background: var(--accent);
       border-color: var(--accent);
       color: #ffffff;
     }
-    .control-btn:disabled {
+
+    .control-btn.secondary {
+      background: #ffffff;
+      color: var(--accent);
+      border-color: #c8d7ff;
+    }
+
+    .control-btn:disabled,
+    .control-btn.disabled {
       opacity: 0.5;
       cursor: not-allowed;
+      pointer-events: none;
     }
 
-    .meta-card { padding: 18px; }
-    .meta-card strong, .rules-card strong, .timeline-card strong {
+    .layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .section-title {
       display: block;
       margin-bottom: 12px;
-      font-size: 15px;
+      font-size: 16px;
     }
 
-    .detail-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 10px 0;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .detail-row:first-child {
-      border-top: 0;
-      padding-top: 0;
-    }
-    .detail-row b {
-      color: var(--text);
-      text-align: right;
-      max-width: 58%;
-      word-break: break-word;
-    }
-
-    .timeline {
+    .steps {
       display: grid;
       gap: 10px;
     }
-    .timeline-item {
-      padding: 14px 16px;
-      border-radius: var(--radius-md);
+
+    .step-item,
+    .result-row,
+    .timeline-item,
+    .info-row {
       border: 1px solid var(--line);
       background: var(--panel-soft);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
     }
-    .timeline-item time {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .timeline-item strong {
+
+    .step-item strong,
+    .timeline-item strong,
+    .result-row strong {
       display: block;
       margin-bottom: 6px;
       font-size: 15px;
+    }
+
+    .step-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .info-row span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .info-row b {
+      display: block;
+      font-size: 14px;
+      line-height: 1.7;
+      word-break: break-word;
+    }
+
+    .result-box {
+      display: grid;
+      gap: 12px;
+    }
+
+    .result-row.success {
+      border-color: #abefc6;
+      background: var(--success-soft);
+    }
+
+    .result-row.warning {
+      border-color: #fedf89;
+      background: var(--warning-soft);
+    }
+
+    .result-row.danger {
+      border-color: #fecdca;
+      background: var(--danger-soft);
+    }
+
+    .output-box {
+      margin-top: 8px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      background: #101828;
+      color: #f8fafc;
+      font-size: 12px;
+      line-height: 1.7;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .report-item {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .report-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px 16px;
+    }
+
+    .report-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .report-item[open] summary {
+      border-bottom: 1px solid var(--line);
+      background: #ffffff;
+    }
+
+    .report-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .report-body {
+      padding: 14px 16px 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .report-body > .info-row:not(:first-child) {
+      display: none;
+    }
+
+    .preview-frame {
+      width: 100%;
+      min-height: 420px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: #ffffff;
+    }
+
+    .link-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .report-link {
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-word;
+    }
+
+    .report-link:hover {
+      text-decoration: underline;
     }
 
     .empty, .error {
@@ -204,22 +349,59 @@
       border-radius: var(--radius-md);
       text-align: center;
     }
+
+    .embed-panel {
+      display: grid;
+      gap: 14px;
+    }
+
+    .embed-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .embed-toolbar .muted {
+      margin: 0;
+    }
+
+    .embed-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .embed-frame {
+      width: 100%;
+      min-height: 780px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: #ffffff;
+    }
+
     .empty {
       border: 1px dashed var(--line);
       background: var(--panel-soft);
       color: var(--muted);
     }
+
     .error {
       border: 1px solid #fecdca;
       background: #fef3f2;
-      color: #b42318;
+      color: var(--danger);
     }
 
-    @media (max-width: 780px) {
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
       .app { padding: 14px; }
-      .topbar, .detail, .timeline-card, .rules-card { padding: 18px; }
-      .topbar, .detail-top { flex-direction: column; }
-      .grid { grid-template-columns: 1fr; }
+      .topbar, .hero, .panel-body { padding: 18px; }
+      .topbar, .hero-top { flex-direction: column; }
     }
   </style>
 </head>
@@ -228,45 +410,82 @@
     <section class="topbar panel">
       <div>
         <div class="eyebrow">Project Detail</div>
-        <div class="title">项目详情页</div>
+        <div class="title small">项目操作页</div>
       </div>
-      <a class="back-link" href="./index.html">返回主面板</a>
+      <a class="back-link" href="./index.html">返回总台</a>
     </section>
 
-    <section class="detail panel">
-      <div class="detail-top">
+    <section class="hero panel">
+      <div class="hero-top">
         <div>
           <div class="eyebrow">Selected Project</div>
-          <h1 id="projectName">正在加载</h1>
-          <p class="detail-summary" id="projectSummary">正在读取项目信息。</p>
-          <div class="controls" id="controlArea" hidden>
-            <button class="control-btn" id="testRunBtn" type="button" hidden>测试运行</button>
-            <button class="control-btn primary" id="realRunBtn" type="button" hidden>真实运行</button>
-            <button class="control-btn" id="stopRunBtn" type="button" hidden>停止当前运行</button>
-            <span class="muted" id="controlHint">控制服务未连接</span>
-          </div>
+          <h1 class="title large" id="projectName">正在加载</h1>
+          <p class="hero-summary" id="projectSummary">正在读取项目信息。</p>
         </div>
-        <span class="status-badge draft" id="projectStatus">开发中</span>
+        <span class="badge draft" id="projectStatus">开发中</span>
       </div>
 
-      <div class="grid">
-        <div class="meta-card">
-          <strong>基础信息</strong>
-          <div id="detailMeta"></div>
-        </div>
+      <div class="hero-hint" id="controlHint">
+        控制服务还没连接，请先双击 E:/Project/codex/dashboard/start-dashboard.cmd
+      </div>
 
-        <div class="rules-card">
-          <strong>接入规则</strong>
-          <div class="muted">1. 新项目要放在 <span class="mono">E:/Project/codex</span> 下面</div>
-          <div class="muted">2. 每个项目都带 <span class="mono">project.config.json</span></div>
-          <div class="muted">3. 先接展示，再接控制，再做统一视觉和日志</div>
-        </div>
+      <div class="controls" id="controlArea" hidden>
+        <button class="control-btn" id="testRunBtn" type="button" hidden>先检查</button>
+        <button class="control-btn primary" id="realRunBtn" type="button" hidden>启动系统</button>
+        <button class="control-btn" id="stopRunBtn" type="button" hidden>停止</button>
+        <a class="control-btn secondary disabled" id="openEntryBtn" href="#" target="_blank" rel="noopener noreferrer" hidden>打开系统</a>
+        <a class="control-btn secondary" id="workbenchBtn" href="#" hidden>打开发布工作台</a>
       </div>
     </section>
 
-    <section class="timeline-card panel">
-      <strong>最近动态</strong>
-      <div class="timeline" id="detailTimeline"></div>
+    <div class="layout">
+      <div class="stack">
+        <section class="panel panel-body">
+          <strong class="section-title">怎么用</strong>
+          <div class="steps" id="guideSteps"></div>
+        </section>
+
+        <section class="panel panel-body">
+          <strong class="section-title">这次动作发生了什么</strong>
+          <div class="result-box" id="actionResult"></div>
+        </section>
+
+        <section class="panel panel-body">
+          <strong class="section-title">最近动态</strong>
+          <div class="steps" id="detailTimeline"></div>
+        </section>
+
+        <section class="panel panel-body" id="reportSection" hidden>
+          <strong class="section-title" id="reportTitle">历史记录</strong>
+          <div class="steps" id="reportContent"></div>
+        </section>
+      </div>
+
+      <div class="stack">
+        <section class="panel panel-body">
+          <strong class="section-title">当前状态</strong>
+          <div class="grid-2" id="detailMeta"></div>
+        </section>
+
+        <section class="panel panel-body">
+          <strong class="section-title">下一步建议</strong>
+          <div class="steps" id="nextAdvice"></div>
+        </section>
+      </div>
+    </div>
+
+    <section class="panel panel-body embed-panel" id="embedSection" hidden>
+      <div class="embed-toolbar">
+        <div>
+          <strong class="section-title" style="margin-bottom:6px;">项目内预览</strong>
+          <p class="muted" id="embedHint">这里会直接显示项目页面，不再新开网页。</p>
+        </div>
+        <div class="embed-actions">
+          <a class="control-btn secondary" id="embedOpenNewBtn" href="#" target="_blank" rel="noopener noreferrer">新窗口打开</a>
+          <button class="control-btn" id="embedReloadBtn" type="button">重新加载</button>
+        </div>
+      </div>
+      <iframe class="embed-frame" id="embedFrame" title="项目内预览"></iframe>
     </section>
   </div>
 
@@ -290,13 +509,35 @@
     const statusEl = document.getElementById("projectStatus");
     const metaEl = document.getElementById("detailMeta");
     const timelineEl = document.getElementById("detailTimeline");
+    const reportSectionEl = document.getElementById("reportSection");
+    const reportTitleEl = document.getElementById("reportTitle");
+    const reportContentEl = document.getElementById("reportContent");
+    const guideStepsEl = document.getElementById("guideSteps");
+    const resultEl = document.getElementById("actionResult");
+    const nextAdviceEl = document.getElementById("nextAdvice");
     const controlAreaEl = document.getElementById("controlArea");
     const controlHintEl = document.getElementById("controlHint");
     const testRunBtn = document.getElementById("testRunBtn");
     const realRunBtn = document.getElementById("realRunBtn");
     const stopRunBtn = document.getElementById("stopRunBtn");
+    const openEntryBtn = document.getElementById("openEntryBtn");
+    const workbenchBtn = document.getElementById("workbenchBtn");
+    const embedSectionEl = document.getElementById("embedSection");
+    const embedHintEl = document.getElementById("embedHint");
+    const embedFrameEl = document.getElementById("embedFrame");
+    const embedReloadBtn = document.getElementById("embedReloadBtn");
+    const embedOpenNewBtn = document.getElementById("embedOpenNewBtn");
 
     let currentProject = null;
+    let embeddedEntryUrl = "";
+    let actionState = {
+      tone: "warning",
+      title: "你还没开始操作",
+      detail: "先看“怎么用”，再按顺序点按钮。",
+      output: "",
+      nextStep: "如果这是第一次使用，先点“先检查”。",
+      at: ""
+    };
 
     function escapeHtml(value) {
       return String(value ?? "")
@@ -305,6 +546,439 @@
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#39;");
+    }
+
+    function escapeAttribute(value) {
+      return escapeHtml(value).replaceAll("`", "&#96;");
+    }
+
+    function formatTime(value) {
+      if (!value) {
+        return "还没有记录";
+      }
+
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) {
+        return value;
+      }
+
+      return date.toLocaleString("zh-CN", { hour12: false });
+    }
+
+    function getStatusFromRuntime(project, runtime) {
+      if (runtime?.running) {
+        return "running";
+      }
+      if (runtime?.lastExitCode !== null && runtime?.lastExitCode !== 0) {
+        return "warning";
+      }
+      return project.status || "draft";
+    }
+
+    function getGuide(project) {
+      const guideMap = {
+        "ad-video-system": {
+          steps: [
+            "先点“启动系统”，等中控台告诉你服务已经起来。",
+            "点“打开系统”，进入真正的翻拍页面。",
+            "在翻拍页面上传视频，等它处理完。",
+            "处理结束后，到项目页面里下载结果包和 Excel。"
+          ],
+          advice: [
+            "如果你只想先看看能不能跑，先点“先检查”。",
+            "启动成功后，应该直接去真正的翻拍页面，不要只停在这里。"
+          ]
+        },
+        "trans-paper": {
+          steps: [
+            "先点“启动系统”，等翻译服务起来。",
+            "点“打开系统”，进入论文翻译网页。",
+            "上传 PDF，等它生成翻译后的文件。",
+            "如果失败，先看下面的动作结果。"
+          ],
+          advice: [
+            "这是网页服务，启动成功后最重要的下一步就是打开系统。",
+            "如果打开失败，先看入口地址和错误输出。"
+          ]
+        },
+        "daily-music-topic": {
+          steps: [
+            "先点“先检查”，确认环境和数据都正常。",
+            "再点“启动系统”，把每日音乐选题的后台守护程序挂到 Windows 里。",
+            "启动成功后，它会在后台一直守着，每天早上 9 点自动发送邮件。",
+            "以后回到这个页面时，你可以直接看这里是不是“运行中”。"
+          ],
+          advice: [
+            "这次它不再只是跑一次，而是会变成后台长期运行的生产模式。",
+            "如果检查失败，先看下面的动作结果，不要重复硬点。"
+          ]
+        },
+        "redbook-auto": {
+          steps: [
+            "先点“先检查”，看现在能不能发。",
+            "如果提示需要登录，先完成登录，再回来继续。",
+            "再点“开始处理”，让它从待发布队列里取内容。",
+            "如果失败，看下面的动作结果，先弄清楚卡在哪一步。"
+          ],
+          advice: [
+            "这个项目第一次使用时，很可能会先卡在登录。",
+            "它不是网页服务，所以重点是检查结果，不是打开入口。"
+          ]
+        }
+      };
+
+      const fallback = {
+        steps: [
+          "先点“先检查”，看看系统有没有准备好。",
+          "再点“启动系统”或“开始处理”。",
+          "如果有“打开系统”按钮，就点进去继续使用。",
+          "如果失败，就先看下面的动作结果。"
+        ],
+        advice: [
+          "第一次使用时，先按顺序来，不要连续乱点。",
+          "点完按钮后，先看结果，再决定下一步。"
+        ]
+      };
+
+      const fromMap = guideMap[project.id] || fallback;
+      const runtime = project.runtime || {};
+      const advice = [...fromMap.advice];
+
+      if (project.entry) {
+        advice.unshift(runtime.running ? "系统现在已经在运行，你可以直接点“打开系统”。" : "这个项目有网页入口，启动成功后记得点“打开系统”。");
+      } else {
+        advice.unshift("这个项目没有网页入口，重点是看执行结果和输出。");
+      }
+
+      return {
+        steps: fromMap.steps,
+        advice
+      };
+    }
+
+    function renderGuide(project) {
+      const guide = getGuide(project);
+      guideStepsEl.innerHTML = guide.steps.map((text, index) => `
+        <div class="step-item">
+          <strong><span class="step-index">${index + 1}</span>${escapeHtml(text)}</strong>
+        </div>
+      `).join("");
+
+      nextAdviceEl.innerHTML = guide.advice.map((text) => `
+        <div class="step-item">${escapeHtml(text)}</div>
+      `).join("");
+    }
+
+    function renderActionResult() {
+      const lines = [];
+      const timeText = actionState.at ? `时间：${actionState.at}` : "";
+      if (timeText) {
+        lines.push(timeText);
+      }
+      if (actionState.nextStep) {
+        lines.push(`下一步：${actionState.nextStep}`);
+      }
+
+      resultEl.innerHTML = `
+        <div class="result-row ${escapeHtml(actionState.tone)}">
+          <strong>${escapeHtml(actionState.title)}</strong>
+          <div class="muted">${escapeHtml(actionState.detail)}</div>
+          ${lines.length ? `<div class="muted" style="margin-top:8px;">${escapeHtml(lines.join(" | "))}</div>` : ""}
+          ${actionState.output ? `<div class="output-box">${escapeHtml(actionState.output)}</div>` : ""}
+        </div>
+      `;
+    }
+
+    function hideEmbeddedEntry() {
+      embeddedEntryUrl = "";
+      embedSectionEl.hidden = true;
+      embedFrameEl.removeAttribute("src");
+      embedFrameEl.dataset.loadedUrl = "";
+      embedHintEl.textContent = "这里会直接显示项目页面，不再新开网页。";
+      embedOpenNewBtn.href = "#";
+      embedOpenNewBtn.classList.add("disabled");
+      embedReloadBtn.disabled = true;
+    }
+
+    function showEmbeddedEntry(project, options = {}) {
+      if (!project?.entry) {
+        hideEmbeddedEntry();
+        return;
+      }
+
+      const { forceReload = false, scroll = true } = options;
+      embeddedEntryUrl = project.entry;
+      embedSectionEl.hidden = false;
+      embedOpenNewBtn.href = project.entry;
+      embedOpenNewBtn.classList.remove("disabled");
+      embedReloadBtn.disabled = false;
+
+      const runtime = project.runtime || {};
+      embedHintEl.textContent = runtime.running
+        ? "项目已经启动，页面正在当前详情页里显示。"
+        : "项目入口已经准备好。你可以直接在这里继续用。";
+
+      if (forceReload || embedFrameEl.dataset.loadedUrl !== project.entry) {
+        embedFrameEl.src = project.entry;
+        embedFrameEl.dataset.loadedUrl = project.entry;
+      }
+
+      if (scroll) {
+        embedSectionEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    function renderMeta(project) {
+      const runtime = project.runtime || {};
+      const status = getStatusFromRuntime(project, runtime);
+
+      const cards = [
+        ["项目分类", project.category],
+        ["当前状态", stateLabels[status] || status],
+        ["入口地址", project.entry || "这个项目没有网页入口"],
+        ["项目路径", project.path],
+        ["开始时间", formatTime(runtime.startedAt)],
+        ["结束时间", formatTime(runtime.finishedAt)],
+        ["最后退出码", runtime.lastExitCode === null ? "还没有记录" : runtime.lastExitCode],
+        ["当前进程", runtime.pid || "没有运行中的进程"]
+      ];
+
+      metaEl.innerHTML = cards.map(([label, value]) => `
+        <div class="info-row">
+          <span>${escapeHtml(label)}</span>
+          <b>${escapeHtml(value)}</b>
+        </div>
+      `).join("");
+    }
+
+    function renderTimeline(project) {
+      const timeline = Array.isArray(project.timeline) ? project.timeline : [];
+      timelineEl.innerHTML = timeline.length
+        ? timeline.map((item) => `
+          <div class="timeline-item">
+            <div class="eyebrow">${escapeHtml(item.time)}</div>
+            <strong>${escapeHtml(item.title)}</strong>
+            <div class="muted">${escapeHtml(item.note)}</div>
+          </div>
+        `).join("")
+        : '<div class="empty">这个项目还没有动态记录。</div>';
+    }
+
+    function getReportLabel(report) {
+      return report?.label || "历史记录";
+    }
+
+    function getMailHistoryStatusLabel(status) {
+      const map = {
+        success: "发送成功",
+        partial: "部分送达",
+        failed: "发送失败",
+        skipped: "本次跳过",
+        "dry-run": "测试预演"
+      };
+      return map[status] || status || "未知状态";
+    }
+
+    function getMailHistoryModeLabel(mode) {
+      return mode === "run" ? "真实运行" : "测试运行";
+    }
+
+    function formatRate(value) {
+      if (value === null || value === undefined || value === "") {
+        return "未发送";
+      }
+      return `${value}%`;
+    }
+
+    function renderMailHistory(entries) {
+      if (!Array.isArray(entries) || !entries.length) {
+        reportContentEl.innerHTML = '<div class="empty">还没有历史发送日志。</div>';
+        return;
+      }
+
+      reportContentEl.innerHTML = entries.map((entry) => {
+        const recipients = entry.recipients || {};
+        const content = entry.content || {};
+        const topStories = Array.isArray(content.topStories) ? content.topStories : [];
+        const recommended = Array.isArray(content.recommended) ? content.recommended : [];
+        const failures = Array.isArray(entry.failures) ? entry.failures : [];
+        const storyLines = topStories.length
+          ? topStories.map((item, index) => `${index + 1}. ${item.title || "未命名内容"}`).join("\n")
+          : "这次没有生成头条内容";
+        const recommendedLines = recommended.length
+          ? recommended.map((item, index) => `${index + 1}. ${item.title || "未命名推荐"}`).join("\n")
+          : "这次没有生成推荐内容";
+        const failureLines = failures.length
+          ? failures.map((item) => `- ${item.recipient || "未知收件人"}: ${item.error || "未知错误"}`).join("\n")
+          : "没有失败记录";
+
+        return `
+          <div class="timeline-item">
+            <div class="eyebrow">${escapeHtml(formatTime(entry.finishedAt || entry.startedAt))}</div>
+            <strong>${escapeHtml(getMailHistoryStatusLabel(entry.status))} | ${escapeHtml(getMailHistoryModeLabel(entry.runMode))}</strong>
+            <div class="muted">主题：${escapeHtml(entry.subject || "未生成主题")}</div>
+            <div class="muted">送达：${escapeHtml(recipients.success ?? 0)} / ${escapeHtml(recipients.total ?? 0)} | 送达率：${escapeHtml(formatRate(recipients.deliveryRate))}</div>
+            <div class="muted">来源新闻：${escapeHtml(entry.newsCount ?? 0)} 条 | 管理员收件人：${escapeHtml(recipients.adminCount ?? 0)} | 飞书订阅：${escapeHtml(recipients.feishuCount ?? 0)}</div>
+            ${entry.message ? `<div class="muted" style="margin-top:8px;">结果：${escapeHtml(entry.message)}</div>` : ""}
+            <div class="output-box">头条内容\n${escapeHtml(storyLines)}</div>
+            <div class="output-box">推荐阅读\n${escapeHtml(recommendedLines)}</div>
+            <div class="output-box">评论\n${escapeHtml(content.commentary || "这次没有生成评论")}</div>
+            <div class="output-box">失败记录\n${escapeHtml(failureLines)}</div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    async function loadProjectReport(project) {
+      const reports = project?.reports || {};
+      const reportEntries = Object.entries(reports);
+
+      if (!reportEntries.length) {
+        reportSectionEl.hidden = true;
+        reportContentEl.innerHTML = "";
+        return;
+      }
+
+      const mailHistoryPair = reportEntries.find(([, report]) => report?.type === "mail-history");
+      if (!mailHistoryPair) {
+        reportSectionEl.hidden = true;
+        reportContentEl.innerHTML = "";
+        return;
+      }
+
+      const [reportName, report] = mailHistoryPair;
+      reportSectionEl.hidden = false;
+      reportTitleEl.textContent = getReportLabel(report);
+      reportContentEl.innerHTML = '<div class="empty">正在读取历史日志...</div>';
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/report?id=${encodeURIComponent(project.id)}&name=${encodeURIComponent(reportName)}`, {
+          cache: "no-store"
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const payload = await response.json();
+        if (!payload.ok) {
+          throw new Error(payload.error || "读取日志失败");
+        }
+
+        renderMailHistory(payload.data);
+      } catch (error) {
+        reportContentEl.innerHTML = `<div class="error">${escapeHtml(error.message || "读取日志失败")}</div>`;
+      }
+    }
+
+    function getReportLabel(report) {
+      return report?.label || "历史记录";
+    }
+
+    function getReportStatusLabel(status) {
+      const map = {
+        success: "成功",
+        partial: "部分成功",
+        failed: "失败",
+        skipped: "已跳过",
+        "dry-run": "测试预演",
+        preview: "预览完成"
+      };
+      return map[status] || status || "未知状态";
+    }
+
+    function getReportModeLabel(mode) {
+      const map = {
+        run: "真实运行",
+        test: "测试运行",
+        preview: "预览模式"
+      };
+      return map[mode] || mode || "未标记";
+    }
+
+    function renderReportEntries(entries) {
+      if (!Array.isArray(entries) || !entries.length) {
+        reportContentEl.innerHTML = '<div class="empty">还没有可展示的运行日志。</div>';
+        return;
+      }
+
+      reportContentEl.innerHTML = entries.map((entry, index) => {
+        const metaItems = Array.isArray(entry.meta) ? entry.meta : [];
+        const links = Array.isArray(entry.links) ? entry.links : [];
+        const logBlocks = Array.isArray(entry.logBlocks) ? entry.logBlocks : [];
+        const metaText = metaItems.map((item) => `${item.label}: ${item.value}`).join(" | ");
+
+        return `
+          <details class="timeline-item report-item" ${index === 0 ? "open" : ""}>
+            <summary class="log-summary">
+              <div class="eyebrow">${escapeHtml(formatTime(entry.finishedAt))}</div>
+              <strong>${escapeHtml(entry.title || "未命名记录")}</strong>
+              <div class="report-meta">
+                <span class="mini-tag">${escapeHtml(getReportStatusLabel(entry.status))}</span>
+                <span class="mini-tag">${escapeHtml(getReportModeLabel(entry.mode))}</span>
+              </div>
+              ${metaText ? `<div class="muted">${escapeHtml(metaText)}</div>` : ""}
+            </summary>
+            <div class="report-body">
+              ${entry.emailHtml ? `
+                <div class="info-row">
+                  <span>当日发送内容</span>
+                  <iframe class="preview-frame" sandbox srcdoc="${escapeAttribute(entry.emailHtml)}"></iframe>
+                </div>
+              ` : ""}
+              ${links.length ? `
+                <div class="info-row">
+                  <span>原文链接</span>
+                  <div class="link-list">
+                    ${links.map((item) => `
+                      <a class="report-link" href="${escapeAttribute(item.url || "#")}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.label || item.url || "未命名链接")}</a>
+                    `).join("")}
+                  </div>
+                </div>
+              ` : ""}
+              ${logBlocks.map((block) => `
+                <div class="info-row">
+                  <span>${escapeHtml(block.label || "日志")}</span>
+                  <div class="output-box">${escapeHtml(block.text || "暂无内容")}</div>
+                </div>
+              `).join("")}
+            </div>
+          </details>
+        `;
+      }).join("");
+    }
+
+    async function loadProjectReport(project) {
+      const reports = project?.reports || {};
+      const reportEntries = Object.entries(reports);
+
+      if (!reportEntries.length) {
+        reportSectionEl.hidden = true;
+        reportContentEl.innerHTML = "";
+        return;
+      }
+
+      const [reportName, report] = reportEntries[0];
+      reportSectionEl.hidden = false;
+      reportTitleEl.textContent = getReportLabel(report);
+      reportContentEl.innerHTML = '<div class="empty">正在读取运行日志...</div>';
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/report?id=${encodeURIComponent(project.id)}&name=${encodeURIComponent(reportName)}`, {
+          cache: "no-store"
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const payload = await response.json();
+        if (!payload.ok) {
+          throw new Error(payload.error || "读取日志失败");
+        }
+
+        renderReportEntries(payload.data);
+      } catch (error) {
+        reportContentEl.innerHTML = `<div class="error">${escapeHtml(error.message || "读取日志失败")}</div>`;
+      }
     }
 
     function setButtonsDisabled(disabled) {
@@ -318,10 +992,86 @@
     function applyActionVisibility(project) {
       const actions = project?.control?.actions || [];
       const enabled = Boolean(project?.control?.enabled);
+
       controlAreaEl.hidden = !enabled;
       testRunBtn.hidden = !actions.includes("test");
       realRunBtn.hidden = !actions.includes("run");
       stopRunBtn.hidden = !actions.includes("stop");
+
+      openEntryBtn.hidden = !project.entry;
+      openEntryBtn.href = project.entry || "#";
+      openEntryBtn.textContent = "在本页打开";
+
+      const hasWorkbench = project.id === "redbook-auto";
+      workbenchBtn.hidden = !hasWorkbench;
+      workbenchBtn.href = `./redbookauto.html?id=${encodeURIComponent(project.id)}`;
+
+      if (!project.entry) {
+        hideEmbeddedEntry();
+      }
+    }
+
+    function syncOpenButton(project, runtime) {
+      if (!project.entry) {
+        openEntryBtn.classList.add("disabled");
+        hideEmbeddedEntry();
+        return;
+      }
+
+      if (runtime?.running) {
+        openEntryBtn.classList.remove("disabled");
+      } else {
+        openEntryBtn.classList.add("disabled");
+      }
+    }
+
+    async function renderProject(project) {
+      currentProject = project;
+      document.title = `${project.name} - 项目详情`;
+      nameEl.textContent = project.name;
+      summaryEl.textContent = project.description || project.summary || "这个项目还没有详细说明。";
+
+      const runtime = project.runtime || {};
+      const status = getStatusFromRuntime(project, runtime);
+      statusEl.className = `badge ${status}`;
+      statusEl.textContent = stateLabels[status] || status;
+
+      renderGuide(project);
+      renderMeta(project);
+      renderTimeline(project);
+      await loadProjectReport(project);
+      applyActionVisibility(project);
+      syncOpenButton(project, runtime);
+      renderActionResult();
+
+      if (project.entry && runtime.running && embedFrameEl.dataset.loadedUrl === project.entry) {
+        showEmbeddedEntry(project, { forceReload: false, scroll: false });
+      }
+
+      if (project.control?.enabled) {
+        setButtonsDisabled(true);
+        fetchControlStatus();
+      }
+    }
+
+    function setHintFromRuntime(runtime) {
+      if (runtime.running) {
+        const modeText = runtime.mode === "test" ? "检查中" : "系统正在运行";
+        controlHintEl.textContent = `${modeText}，进程号 ${runtime.pid || "未知"}。`;
+        return;
+      }
+
+      if (runtime.lastExitCode === 0) {
+        controlHintEl.textContent = "上一次动作已经完成。你可以看下面的结果区，决定下一步。";
+        return;
+      }
+
+      if (runtime.lastExitCode !== null) {
+        controlHintEl.textContent = `上一次动作失败了，退出码 ${runtime.lastExitCode}。先看下面的结果区。`;
+        return;
+      }
+
+      controlHintEl.textContent = "系统已连接。第一次使用时，建议先点“先检查”。";
     }
 
     async function fetchControlStatus() {
@@ -344,22 +1094,35 @@
           return;
         }
 
-        const state = payload.state;
+        currentProject.runtime = payload.state || {};
+        const status = getStatusFromRuntime(currentProject, currentProject.runtime);
+        statusEl.className = `badge ${status}`;
+        statusEl.textContent = stateLabels[status] || status;
+        syncOpenButton(currentProject, currentProject.runtime);
+        renderMeta(currentProject);
+        setHintFromRuntime(currentProject.runtime);
         setButtonsDisabled(false);
-
-        if (state.running) {
-          controlHintEl.textContent = `正在运行：${state.mode === "run" ? "真实运行" : "测试运行"}（PID ${state.pid || "未知"}）`;
-        } else if (state.lastExitCode === 0) {
-          controlHintEl.textContent = "上一次执行成功";
-        } else if (state.lastExitCode !== null) {
-          controlHintEl.textContent = `上一次执行失败，退出码 ${state.lastExitCode}`;
-        } else {
-          controlHintEl.textContent = "控制服务已连接";
-        }
       } catch (error) {
         setButtonsDisabled(true);
         controlHintEl.textContent = CONTROL_START_HINT;
       }
+    }
+
+    async function refreshProject() {
+      const response = await fetch(`${API_BASE_URL}/api/project?id=${encodeURIComponent(projectId)}`, {
+        cache: "no-store"
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const payload = await response.json();
+      if (!payload.ok || !payload.project) {
+        throw new Error(payload.error || "没有找到这个项目");
+      }
+
+      await renderProject(payload.project);
     }
 
     async function callControlApi(action) {
@@ -369,64 +1132,77 @@
 
       try {
         setButtonsDisabled(true);
-        controlHintEl.textContent = "正在发送命令...";
+        controlHintEl.textContent = "命令已经发出，正在等待结果...";
+
         const response = await fetch(`${API_BASE_URL}/api/${action}?id=${encodeURIComponent(currentProject.id)}`, {
           method: "POST"
         });
         const payload = await response.json();
-        controlHintEl.textContent = payload.ok
-          ? action === "stop"
-            ? "已经发送停止命令"
-            : "命令已发送，正在执行"
-          : payload.error || "执行失败";
+
+        if (payload.ok) {
+          const titleMap = {
+            test: "检查已经开始",
+            run: "系统已经启动",
+            stop: "停止命令已经发出"
+          };
+
+          const nextStepMap = {
+            test: "等检查完成后，再决定要不要正式开始。",
+            run: currentProject.entry
+              ? "现在可以点“打开系统”，去真正的页面继续。"
+              : (currentProject.id === "daily-music-topic"
+                ? "现在它已经进入 Windows 后台守护模式。你可以留着它运行，之后回来看状态。"
+                : "现在去看输出结果和日志。"),
+            stop: "如果你还要继续，再重新开始。"
+          };
+
+          actionState = {
+            tone: "success",
+            title: titleMap[action] || "命令执行成功",
+            detail: action === "run" && currentProject.entry
+              ? "服务已经准备好，接下来最重要的是进入真正的系统页面。"
+              : (payload.message || (currentProject.id === "daily-music-topic"
+                ? "后台守护程序已经上线，现在会在 Windows 后台守着每天的发送时间。"
+                : "动作已经发出，请看最新状态。")),
+            output: payload.output || "",
+            nextStep: nextStepMap[action] || "继续看当前状态。",
+            at: formatTime(new Date().toISOString())
+          };
+
+          renderActionResult();
+          await refreshProject();
+
+          if (action === "run" && currentProject.entry) {
+            controlHintEl.textContent = "系统已经启动，正在当前页面里为你打开项目。";
+            showEmbeddedEntry(currentProject, { forceReload: true, scroll: true });
+          }
+        } else {
+          actionState = {
+            tone: "danger",
+            title: "这次动作失败了",
+            detail: payload.error || "系统没有告诉我们具体原因。",
+            output: payload.output || "",
+            nextStep: action === "run"
+              ? "先看错误内容，再决定要不要重试。"
+              : "先解决问题，再重新尝试。",
+            at: formatTime(new Date().toISOString())
+          };
+
+          renderActionResult();
+          await fetchControlStatus();
+        }
       } catch (error) {
-        controlHintEl.textContent = error.message === "Failed to fetch"
-          ? CONTROL_START_HINT
-          : `调用失败：${error.message}`;
+        actionState = {
+          tone: "danger",
+          title: "调用失败",
+          detail: error.message === "Failed to fetch" ? CONTROL_START_HINT : `调用出错：${error.message}`,
+          output: "",
+          nextStep: "先确认 dashboard 控制服务已经启动。",
+          at: formatTime(new Date().toISOString())
+        };
+        renderActionResult();
+        controlHintEl.textContent = actionState.detail;
       } finally {
-        fetchControlStatus();
-      }
-    }
-
-    function renderProject(project) {
-      currentProject = project;
-      document.title = `${project.name} - 项目详情`;
-      nameEl.textContent = project.name;
-      summaryEl.textContent = project.description || project.summary;
-      statusEl.className = `status-badge ${project.status}`;
-      statusEl.textContent = stateLabels[project.status] || project.status;
-
-      const lastRunAt = project.runtime?.startedAt || project.lastRunAt || "还没有记录";
-      const details = [
-        ["分类", project.category],
-        ["状态", stateLabels[project.status] || project.status],
-        ["项目路径", project.path],
-        ["入口地址", project.entry || "暂时没有"],
-        ["最近运行", lastRunAt],
-        ["接入方式", project.integration || "project-config"]
-      ];
-
-      metaEl.innerHTML = details.map(([label, value]) => `
-        <div class="detail-row">
-          <span>${escapeHtml(label)}</span>
-          <b>${escapeHtml(value)}</b>
-        </div>
-      `).join("");
-
-      const timeline = Array.isArray(project.timeline) ? project.timeline : [];
-      timelineEl.innerHTML = timeline.length
-        ? timeline.map((item) => `
-          <div class="timeline-item">
-            <time class="mono">${escapeHtml(item.time)}</time>
-            <strong>${escapeHtml(item.title)}</strong>
-            <div class="muted">${escapeHtml(item.note)}</div>
-          </div>
-        `).join("")
-        : '<div class="empty">这个项目还没有动态记录。</div>';
-
-      applyActionVisibility(project);
-      if (project.control?.enabled) {
-        setButtonsDisabled(true);
         fetchControlStatus();
       }
     }
@@ -434,39 +1210,46 @@
     async function loadProject() {
       if (!projectId) {
         nameEl.textContent = "缺少项目 id";
-        summaryEl.textContent = "你是直接打开了详情页，但没有告诉系统要看哪个项目。";
-        metaEl.innerHTML = '<div class="empty">请返回首页，重新选择一个项目。</div>';
-        timelineEl.innerHTML = '<div class="empty">没有可显示的动态。</div>';
+        summaryEl.textContent = "你直接打开了这个页面，但系统不知道你要看哪个项目。";
+        guideStepsEl.innerHTML = '<div class="empty">请先回到总台，重新点一个项目。</div>';
+        resultEl.innerHTML = '<div class="empty">还没有动作结果。</div>';
+        metaEl.innerHTML = '<div class="empty">还没有项目信息。</div>';
+        timelineEl.innerHTML = '<div class="empty">还没有动态记录。</div>';
+        nextAdviceEl.innerHTML = '<div class="empty">先回到总台选择项目。</div>';
         return;
       }
 
       try {
-        const response = await fetch(`${API_BASE_URL}/api/project?id=${encodeURIComponent(projectId)}`, {
-          cache: "no-store"
-        });
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
-        }
-
-        const payload = await response.json();
-        if (!payload.ok || !payload.project) {
-          throw new Error(payload.error || "没有找到这个项目");
-        }
-
-        renderProject(payload.project);
+        await refreshProject();
       } catch (error) {
         nameEl.textContent = "没有找到这个项目";
         summaryEl.textContent = error.message === "Failed to fetch"
           ? CONTROL_START_HINT
           : `读取失败：${error.message}`;
-        metaEl.innerHTML = '<div class="error">现在还没法读取真实项目详情。请先启动控制服务。</div>';
-        timelineEl.innerHTML = '<div class="empty">没有可显示的动态。</div>';
+        guideStepsEl.innerHTML = '<div class="error">现在还没法读取项目说明，请先启动控制服务。</div>';
+        resultEl.innerHTML = '<div class="empty">还没有动作结果。</div>';
+        metaEl.innerHTML = '<div class="error">现在还没法读取真实项目详情。</div>';
+        timelineEl.innerHTML = '<div class="empty">还没有可显示的动态。</div>';
+        nextAdviceEl.innerHTML = '<div class="empty">先把控制服务启动起来。</div>';
       }
     }
 
     testRunBtn.addEventListener("click", () => callControlApi("test"));
     realRunBtn.addEventListener("click", () => callControlApi("run"));
     stopRunBtn.addEventListener("click", () => callControlApi("stop"));
+    openEntryBtn.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (openEntryBtn.classList.contains("disabled")) {
+        return;
+      }
+      showEmbeddedEntry(currentProject, { forceReload: true, scroll: true });
+    });
+    embedReloadBtn.addEventListener("click", () => {
+      if (!embeddedEntryUrl) {
+        return;
+      }
+      showEmbeddedEntry(currentProject, { forceReload: true, scroll: false });
+    });
 
     loadProject();
     window.addEventListener("focus", fetchControlStatus);

@@ -1,0 +1,14 @@
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]: AI Project Dashboard
+      - heading "AI 项目总台" [level=1] [ref=e8]
+      - paragraph [ref=e9]: 这里不只是项目名单，还会告诉你下一步该做什么。先看整体，再进入单个项目页开始操作。
+    - generic [ref=e10]:
+      - text: 根目录：E:/Project/codex
+      - text: 启动入口：start-dashboard.cmd
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e15]: Project List
+      - heading "真实项目列表" [level=2] [ref=e16]
+    - generic [ref=e17]: 正在读取真实项目...

@@ -1,0 +1,61 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]: TransPaper
+    - heading "论文翻译系统" [level=1] [ref=e6]
+    - paragraph [ref=e7]: 只留上传和预览，其他内容收进设置里，页面会简单很多。
+  - main [ref=e8]:
+    - generic [ref=e25]:
+      - generic [ref=e27]:
+        - heading "论文翻译系统" [level=1] [ref=e32]:
+          - link "论文翻译系统" [ref=e33] [cursor=pointer]:
+            - /url: https://pdf2zh-next.com
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - heading "上传附件" [level=2] [ref=e37]
+            - button "设置" [ref=e39] [cursor=pointer]
+            - generic [ref=e40]:
+              - heading "结果预览" [level=2] [ref=e41]
+              - heading "结果预览" [level=2] [ref=e43]
+            - text: + - + +
+          - generic [ref=e44]:
+            - heading "预览" [level=2] [ref=e49]
+            - generic [ref=e52]:
+              - generic [ref=e53]: Select File to Preview/Download
+              - generic [ref=e56]:
+                - listbox "Select File to Preview/Download" [ref=e57]
+                - generic:
+                  - img
+            - generic [ref=e58]:
+              - generic:
+                - generic:
+                  - img
+                - text: 文档预览
+              - generic "Empty value" [ref=e59]:
+                - img [ref=e61]
+      - generic [ref=e66]:
+        - heading "上传附件" [level=2] [ref=e67]
+        - group [ref=e68]:
+          - generic [ref=e69]: Type
+          - generic [ref=e70]:
+            - generic [ref=e71] [cursor=pointer]:
+              - radio "File(s)" [checked] [ref=e72]
+              - generic [ref=e73]: File(s)
+            - generic [ref=e74] [cursor=pointer]:
+              - radio "Link" [ref=e75]
+              - generic [ref=e76]: Link
+        - generic [ref=e77]:
+          - generic:
+            - generic:
+              - img
+            - text: File(s)
+          - button "Click to upload or drop files" [ref=e78] [cursor=pointer]:
+            - generic [ref=e79]:
+              - img [ref=e81]
+              - text: 将文件拖放到此处
+              - generic [ref=e84]: "- 或 -"
+              - text: 点击上传
+      - generic [ref=e85]:
+        - button "开始翻译" [ref=e86] [cursor=pointer]
+        - button "停止" [ref=e87] [cursor=pointer]
+        - button "设置" [ref=e88] [cursor=pointer]
+      - text: + - + +

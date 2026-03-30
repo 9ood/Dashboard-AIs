@@ -20,6 +20,13 @@
     "output": "",
     "uploads": ""
   },
+  "reports": {
+    "exampleReport": {
+      "label": "杩愯璁板綍",
+      "type": "mail-history",
+      "path": ""
+    }
+  },
   "timeline": [
     {
       "time": "今天",

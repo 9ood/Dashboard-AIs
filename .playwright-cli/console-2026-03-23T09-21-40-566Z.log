@@ -1,0 +1,2 @@
+[     136ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/ui-sans-serif/ui-sans-serif-Regular.woff2:0
+[     139ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/system-ui/system-ui-Regular.woff2:0

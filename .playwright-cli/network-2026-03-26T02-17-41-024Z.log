@@ -1,0 +1,23 @@
+[GET] http://127.0.0.1:7862/gradio_api/heartbeat/8uxl2cafgor => [200] OK
+[GET] http://127.0.0.1:7862/static/fonts/ui-sans-serif/ui-sans-serif-Regular.woff2 => [404] Not Found
+[GET] http://127.0.0.1:7862/static/fonts/ui-sans-serif/ui-sans-serif-Regular.woff2 => [404] Not Found
+[GET] http://127.0.0.1:7862/static/fonts/system-ui/system-ui-Regular.woff2 => [404] Not Found
+[GET] http://127.0.0.1:7862/static/fonts/system-ui/system-ui-Regular.woff2 => [404] Not Found
+[POST] http://127.0.0.1:7862/gradio_api/queue/join? => [200] OK
+[POST] http://127.0.0.1:7862/gradio_api/queue/join? => [200] OK
+[GET] http://127.0.0.1:7862/gradio_api/queue/data?session_hash=8uxl2cafgor => [200] OK
+[POST] http://127.0.0.1:7862/gradio_api/upload?upload_id=4wj4xfjaiw4 => [200] OK
+[GET] http://127.0.0.1:7862/gradio_api/upload_progress?upload_id=4wj4xfjaiw4 => [200] OK
+[POST] http://127.0.0.1:7862/gradio_api/queue/join? => [200] OK
+[GET] http://127.0.0.1:7862/gradio_api/queue/data?session_hash=8uxl2cafgor => [200] OK
+[GET] http://127.0.0.1:7862/gradio_api/queue/data?session_hash=8uxl2cafgor => [200] OK
+[POST] http://127.0.0.1:7862/gradio_api/queue/join? => [200] OK
+[GET] http://127.0.0.1:7862/gradio_api/queue/data?session_hash=8uxl2cafgor => [200] OK
+[GET] http://127.0.0.1:7862/gradio_api/queue/data?session_hash=8uxl2cafgor => [200] OK
+[GET] http://127.0.0.1:7862/gradio_api/file=C:/Users/Qin/AppData/Local/Temp/gradio/bb005641a409e1c8d34bf77560af4173cd3d35763038c713357c7b6244d19b21/2603.24591v1.pdf => [200] OK
+[GET] http://127.0.0.1:7862/gradio_api/file=C:/Users/Qin/AppData/Local/Temp/gradio/bb005641a409e1c8d34bf77560af4173cd3d35763038c713357c7b6244d19b21/2603.24591v1.pdf => [206] Partial Content
+[GET] http://127.0.0.1:7862/gradio_api/file=C:/Users/Qin/AppData/Local/Temp/gradio/bb005641a409e1c8d34bf77560af4173cd3d35763038c713357c7b6244d19b21/2603.24591v1.pdf => [206] Partial Content
+[GET] http://127.0.0.1:7862/gradio_api/file=C:/Users/Qin/AppData/Local/Temp/gradio/bb005641a409e1c8d34bf77560af4173cd3d35763038c713357c7b6244d19b21/2603.24591v1.pdf => [206] Partial Content
+[GET] http://127.0.0.1:7862/gradio_api/file=C:/Users/Qin/AppData/Local/Temp/gradio/bb005641a409e1c8d34bf77560af4173cd3d35763038c713357c7b6244d19b21/2603.24591v1.pdf => [206] Partial Content
+[POST] http://127.0.0.1:7862/gradio_api/queue/join? => [200] OK
+[GET] http://127.0.0.1:7862/gradio_api/queue/data?session_hash=8uxl2cafgor => [200] OK

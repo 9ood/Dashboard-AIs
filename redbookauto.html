@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小红书发布工作台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --panel-soft: #fbfcfd;
+      --line: #e4e7ec;
+      --text: #101828;
+      --muted: #667085;
+      --accent: #155eef;
+      --accent-soft: #eef4ff;
+      --success: #067647;
+      --success-soft: #ecfdf3;
+      --warning: #b54708;
+      --warning-soft: #fff4ed;
+      --danger: #b42318;
+      --danger-soft: #fef3f2;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --shadow: 0 8px 24px rgba(16, 24, 40, 0.05);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans SC", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(21, 94, 239, 0.06), transparent 24%),
+        linear-gradient(180deg, #fafbfc 0%, #f3f5f8 100%);
+    }
+
+    a { color: inherit; }
+
+    .app {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 28px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar,
+    .hero,
+    .panel-body {
+      padding: 22px;
+    }
+
+    .topbar,
+    .hero-top,
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .eyebrow,
+    .mono {
+      font-family: "IBM Plex Mono", monospace;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .title {
+      margin: 6px 0 0;
+      letter-spacing: -0.03em;
+    }
+
+    .title.small { font-size: 22px; }
+    .title.large { font-size: clamp(28px, 4vw, 40px); }
+
+    .hero-summary,
+    .muted {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .back-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat-card {
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .stat-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .status-note {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--panel-soft);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 140ms ease;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn.warning {
+      background: #ffffff;
+      color: var(--warning);
+      border-color: #f7b27a;
+    }
+
+    .btn:disabled,
+    .btn.disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 18px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .section-title {
+      display: block;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .queue-item,
+    .simple-card,
+    .action-card,
+    .preview-card {
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .queue-item {
+      cursor: pointer;
+      transition: 140ms ease;
+    }
+
+    .queue-item.selected {
+      border-color: #b2ccff;
+      background: #f6f9ff;
+      box-shadow: inset 0 0 0 1px rgba(21, 94, 239, 0.08);
+    }
+
+    .queue-item:hover {
+      border-color: #d0d5dd;
+    }
+
+    .queue-title,
+    .simple-card strong,
+    .action-card strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .queue-meta,
+    .simple-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .mini-tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 12px;
+      background: #f2f4f7;
+      color: var(--muted);
+    }
+
+    .preview-empty,
+    .empty,
+    .error-box {
+      border-radius: var(--radius-md);
+      padding: 18px;
+      text-align: center;
+    }
+
+    .preview-empty,
+    .empty {
+      border: 1px dashed var(--line);
+      background: var(--panel-soft);
+      color: var(--muted);
+    }
+
+    .error-box {
+      border: 1px solid #fecdca;
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .preview-block + .preview-block {
+      margin-top: 14px;
+    }
+
+    .preview-label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .preview-text {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .image-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .image-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: #f2f4f7;
+    }
+
+    .image-card span {
+      display: block;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: var(--muted);
+      word-break: break-word;
+    }
+
+    .two-up {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .action-card.success {
+      border-color: #abefc6;
+      background: var(--success-soft);
+    }
+
+    .action-card.warning {
+      border-color: #fedf89;
+      background: var(--warning-soft);
+    }
+
+    .action-card.danger {
+      border-color: #fecdca;
+      background: var(--danger-soft);
+    }
+
+    .output-box {
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      background: #101828;
+      color: #f8fafc;
+      font-size: 12px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 240px;
+      overflow: auto;
+    }
+
+    @media (max-width: 980px) {
+      .layout,
+      .status-grid,
+      .two-up,
+      .image-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .app { padding: 14px; }
+      .topbar,
+      .hero,
+      .panel-body {
+        padding: 18px;
+      }
+      .topbar,
+      .hero-top,
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <section class="topbar panel">
+      <div>
+        <div class="eyebrow">RedbookAuto Workbench</div>
+        <div class="title small">小红书发布工作台</div>
+      </div>
+      <div class="link-row">
+        <a class="back-link" id="projectLink" href="./project.html?id=redbook-auto">返回项目页</a>
+        <a class="back-link" href="./index.html">返回总台</a>
+      </div>
+    </section>
+
+    <section class="hero panel">
+      <div class="hero-top">
+        <div>
+          <div class="eyebrow">Content Publish</div>
+          <h1 class="title large" id="pageTitle">正在读取发布工作台</h1>
+          <p class="hero-summary" id="pageSummary">这里专门用来看队列、预览内容、登录和发布。</p>
+        </div>
+      </div>
+
+      <div class="status-grid" id="statusGrid"></div>
+
+      <div class="actions">
+        <button class="btn" id="refreshBtn" type="button">刷新状态</button>
+        <button class="btn" id="checkBtn" type="button">环境检查</button>
+        <button class="btn" id="loginBtn" type="button">登录小红书</button>
+        <button class="btn primary" id="publishBtn" type="button">发布下一条</button>
+        <button class="btn warning" id="stopBtn" type="button">停止</button>
+      </div>
+
+      <div class="status-note" id="statusNote">正在读取当前状态。</div>
+    </section>
+
+    <div class="layout">
+      <section class="panel panel-body">
+        <div class="section-head">
+          <div>
+            <strong class="section-title">待发布队列</strong>
+            <div class="section-subtitle">先点一条，再看右边预览。</div>
+          </div>
+          <div class="mono" id="pendingCountText">0 条</div>
+        </div>
+        <div class="list" id="pendingList"></div>
+      </section>
+
+      <div class="stack">
+        <section class="panel panel-body">
+          <div class="section-head">
+            <div>
+              <strong class="section-title">内容预览</strong>
+              <div class="section-subtitle">这里只预览，不会改你真实内容。</div>
+            </div>
+          </div>
+          <div id="previewPane" class="preview-empty">先在左边选一条内容。</div>
+        </section>
+
+        <section class="panel panel-body">
+          <div class="section-head">
+            <div>
+              <strong class="section-title">最近结果</strong>
+              <div class="section-subtitle">看最近发成功了什么，哪里失败了。</div>
+            </div>
+          </div>
+          <div class="two-up">
+            <div>
+              <div class="section-subtitle" style="margin-bottom:10px;">最近已发布</div>
+              <div class="list" id="publishedList"></div>
+            </div>
+            <div>
+              <div class="section-subtitle" style="margin-bottom:10px;">最近失败</div>
+              <div class="list" id="failedList"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel panel-body">
+          <div class="section-head">
+            <div>
+              <strong class="section-title">这次操作</strong>
+              <div class="section-subtitle">每次点按钮，结果都会写在这里。</div>
+            </div>
+          </div>
+          <div id="actionResult"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="./projects.js"></script>
+  <script>
+    const config = window.DASHBOARD_CONFIG || {};
+    const API_BASE_URL = config.apiBaseUrl || "http://127.0.0.1:4321";
+    const params = new URLSearchParams(window.location.search);
+    const projectId = params.get("id") || "redbook-auto";
+
+    const projectLinkEl = document.getElementById("projectLink");
+    const pageTitleEl = document.getElementById("pageTitle");
+    const pageSummaryEl = document.getElementById("pageSummary");
+    const statusGridEl = document.getElementById("statusGrid");
+    const statusNoteEl = document.getElementById("statusNote");
+    const pendingCountTextEl = document.getElementById("pendingCountText");
+    const pendingListEl = document.getElementById("pendingList");
+    const previewPaneEl = document.getElementById("previewPane");
+    const publishedListEl = document.getElementById("publishedList");
+    const failedListEl = document.getElementById("failedList");
+    const actionResultEl = document.getElementById("actionResult");
+
+    const refreshBtn = document.getElementById("refreshBtn");
+    const checkBtn = document.getElementById("checkBtn");
+    const loginBtn = document.getElementById("loginBtn");
+    const publishBtn = document.getElementById("publishBtn");
+    const stopBtn = document.getElementById("stopBtn");
+
+    let currentProject = null;
+    let currentOverview = null;
+    let selectedItemId = "";
+    let actionState = {
+      tone: "warning",
+      title: "你还没开始操作",
+      detail: "先看左边队列，再决定是检查、登录，还是发布。",
+      output: "",
+      nextStep: "第一次使用时，推荐先点“环境检查”。",
+      at: ""
+    };
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function formatTime(value) {
+      if (!value) {
+        return "还没有记录";
+      }
+
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) {
+        return value;
+      }
+
+      return date.toLocaleString("zh-CN", { hour12: false });
+    }
+
+    function shorten(text, maxLength = 88) {
+      const normalized = String(text || "").replace(/\s+/g, " ").trim();
+      if (normalized.length <= maxLength) {
+        return normalized || "没有内容";
+      }
+      return `${normalized.slice(0, maxLength)}...`;
+    }
+
+    function toImageUrl(filePath) {
+      if (!filePath) {
+        return "";
+      }
+
+      return `${API_BASE_URL}/api/redbookauto/image?id=${encodeURIComponent(projectId)}&path=${encodeURIComponent(filePath)}`;
+    }
+
+    function getSelectedItem() {
+      const pendingItems = currentOverview?.pendingItems || [];
+      return pendingItems.find((item) => item.id === selectedItemId) || null;
+    }
+
+    function setButtonsDisabled(disabled) {
+      [refreshBtn, checkBtn, loginBtn, publishBtn, stopBtn].forEach((button) => {
+        button.disabled = disabled;
+      });
+    }
+
+    function renderActionResult() {
+      const lines = [];
+      if (actionState.at) {
+        lines.push(`时间：${actionState.at}`);
+      }
+      if (actionState.nextStep) {
+        lines.push(`下一步：${actionState.nextStep}`);
+      }
+
+      actionResultEl.innerHTML = `
+        <div class="action-card ${escapeHtml(actionState.tone)}">
+          <strong>${escapeHtml(actionState.title)}</strong>
+          <div class="muted">${escapeHtml(actionState.detail)}</div>
+          ${lines.length ? `<div class="muted" style="margin-top:8px;">${escapeHtml(lines.join(" | "))}</div>` : ""}
+          ${actionState.output ? `<div class="output-box">${escapeHtml(actionState.output)}</div>` : ""}
+        </div>
+      `;
+    }
+
+    function renderStatusCards(overview) {
+      const login = overview?.login || {};
+      const runtime = overview?.runtime || {};
+      const counts = overview?.counts || {};
+      const cards = [
+        {
+          label: "登录状态",
+          value: login.loggedIn ? "已登录" : "未登录",
+          note: login.message || "还没有状态"
+        },
+        {
+          label: "待发布",
+          value: `${counts.pending ?? 0} 条`,
+          note: "左边队列里的内容"
+        },
+        {
+          label: "最近结果",
+          value: `成功 ${counts.published ?? 0} / 失败 ${counts.failed ?? 0}`,
+          note: "这里只显示最近几条"
+        },
+        {
+          label: "运行状态",
+          value: runtime.running ? "发布中" : "空闲",
+          note: runtime.running ? `进程号 ${runtime.pid || "未知"}` : "现在可以继续操作"
+        }
+      ];
+
+      statusGridEl.innerHTML = cards.map((card) => `
+        <div class="stat-card">
+          <span>${escapeHtml(card.label)}</span>
+          <strong>${escapeHtml(card.value)}</strong>
+          <div class="muted">${escapeHtml(card.note)}</div>
+        </div>
+      `).join("");
+    }
+
+    function renderStatusNote(overview) {
+      const login = overview?.login || {};
+      const runtime = overview?.runtime || {};
+      const counts = overview?.counts || {};
+
+      if (runtime.running) {
+        statusNoteEl.textContent = "系统正在发布内容。现在最重要的事是等它跑完，不要连续重复点“发布下一条”。";
+        return;
+      }
+
+      if (!login.loggedIn) {
+        statusNoteEl.textContent = "现在最大的阻塞是还没登录。先点“登录小红书”，扫码成功后再回来发。";
+        return;
+      }
+
+      if (!counts.pending) {
+        statusNoteEl.textContent = "待发布队列已经空了。你现在可以去准备新的内容。";
+        return;
+      }
+
+      statusNoteEl.textContent = "登录状态没问题，队列里也有内容。现在可以先预览，再点“发布下一条”。";
+    }
+
+    function renderPendingList(overview) {
+      const items = overview?.pendingItems || [];
+      pendingCountTextEl.textContent = `${overview?.counts?.pending ?? items.length} 条`;
+
+      if (!items.length) {
+        pendingListEl.innerHTML = '<div class="empty">现在没有待发布内容。</div>';
+        return;
+      }
+
+      pendingListEl.innerHTML = items.map((item) => `
+        <button class="queue-item ${item.id === selectedItemId ? "selected" : ""}" type="button" data-item-id="${escapeHtml(item.id)}">
+          <strong class="queue-title">${escapeHtml(item.title || item.id)}</strong>
+          <div class="muted">${escapeHtml(shorten(item.content, 70))}</div>
+          <div class="queue-meta">
+            <span class="mini-tag">${escapeHtml(`${item.imageCount || 0} 张图`)}</span>
+            <span class="mini-tag">${escapeHtml(`${(item.tags || []).length} 个标签`)}</span>
+            <span class="mini-tag">${escapeHtml(formatTime(item.updatedAt))}</span>
+          </div>
+        </button>
+      `).join("");
+
+      pendingListEl.querySelectorAll("[data-item-id]").forEach((button) => {
+        button.addEventListener("click", () => {
+          selectedItemId = button.dataset.itemId || "";
+          renderPendingList(currentOverview);
+          renderPreview();
+        });
+      });
+    }
+
+    function renderPreview() {
+      const item = getSelectedItem();
+      if (!item) {
+        previewPaneEl.className = "preview-empty";
+        previewPaneEl.innerHTML = "先在左边选一条内容。";
+        return;
+      }
+
+      const tags = Array.isArray(item.tags) ? item.tags : [];
+      const images = Array.isArray(item.images) ? item.images : [];
+
+      previewPaneEl.className = "";
+      previewPaneEl.innerHTML = `
+        <div class="preview-card">
+          <div class="preview-block">
+            <span class="preview-label">标题</span>
+            <div class="preview-text">${escapeHtml(item.title || "没有标题")}</div>
+          </div>
+          <div class="preview-block">
+            <span class="preview-label">正文</span>
+            <div class="preview-text">${escapeHtml(item.content || "没有正文")}</div>
+          </div>
+          <div class="preview-block">
+            <span class="preview-label">标签</span>
+            <div class="queue-meta">
+              ${tags.length ? tags.map((tag) => `<span class="mini-tag">${escapeHtml(tag)}</span>`).join("") : '<span class="mini-tag">没有标签</span>'}
+            </div>
+          </div>
+          <div class="preview-block">
+            <span class="preview-label">图片</span>
+            ${images.length ? `
+              <div class="image-grid">
+                ${images.map((imagePath) => `
+                  <div class="image-card">
+                    <img src="${escapeHtml(toImageUrl(imagePath))}" alt="预览图片">
+                    <span>${escapeHtml(imagePath.split("/").pop() || imagePath)}</span>
+                  </div>
+                `).join("")}
+              </div>
+            ` : '<div class="empty">这条内容没有找到图片。</div>'}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSimpleList(items, targetEl, emptyText, mode) {
+      if (!Array.isArray(items) || !items.length) {
+        targetEl.innerHTML = `<div class="empty">${escapeHtml(emptyText)}</div>`;
+        return;
+      }
+
+      targetEl.innerHTML = items.map((item) => `
+        <div class="simple-card">
+          <strong>${escapeHtml(item.title || item.id || "未命名内容")}</strong>
+          <div class="muted">${escapeHtml(mode === "failed" ? (item.error || "还没有失败说明") : formatTime(item.publishedAt || item.updatedAt))}</div>
+          <div class="simple-meta">
+            <span class="mini-tag">${escapeHtml(item.id || "-")}</span>
+            <span class="mini-tag">${escapeHtml(`${item.imageCount || 0} 张图`)}</span>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    async function fetchJson(url, options = {}) {
+      const response = await fetch(url, options);
+      const payload = await response.json().catch(() => ({ ok: false, error: `HTTP ${response.status}` }));
+
+      if (!response.ok || !payload.ok) {
+        throw new Error(payload.error || payload.message || `HTTP ${response.status}`);
+      }
+
+      return payload;
+    }
+
+    async function loadProjectInfo() {
+      const payload = await fetchJson(`${API_BASE_URL}/api/project?id=${encodeURIComponent(projectId)}`, {
+        cache: "no-store"
+      });
+
+      currentProject = payload.project;
+      document.title = `${currentProject.name || "小红书发布工作台"} - 工作台`;
+      pageTitleEl.textContent = currentProject.name || "小红书发布工作台";
+      pageSummaryEl.textContent = currentProject.description || currentProject.summary || "这里专门用来看队列、预览内容、登录和发布。";
+      projectLinkEl.href = `./project.html?id=${encodeURIComponent(projectId)}`;
+    }
+
+    async function loadOverview() {
+      const payload = await fetchJson(`${API_BASE_URL}/api/redbookauto/overview?id=${encodeURIComponent(projectId)}`, {
+        cache: "no-store"
+      });
+
+      currentOverview = payload;
+      const pendingItems = payload.pendingItems || [];
+      if (!selectedItemId || !pendingItems.some((item) => item.id === selectedItemId)) {
+        selectedItemId = pendingItems[0]?.id || "";
+      }
+
+      renderStatusCards(payload);
+      renderStatusNote(payload);
+      renderPendingList(payload);
+      renderPreview();
+      renderSimpleList(payload.recentPublished, publishedListEl, "最近还没有成功记录。", "published");
+      renderSimpleList(payload.recentFailed, failedListEl, "最近还没有失败记录。", "failed");
+    }
+
+    async function refreshWorkbench() {
+      await Promise.all([loadProjectInfo(), loadOverview()]);
+    }
+
+    async function runAction(actionName, requestUrl, options = {}) {
+      const waitingDetail = options.waitingDetail || "命令已经发出，正在等待结果。";
+      actionState = {
+        tone: "warning",
+        title: options.waitingTitle || "正在处理中",
+        detail: waitingDetail,
+        output: "",
+        nextStep: options.waitingNextStep || "等结果回来后，再决定下一步。",
+        at: formatTime(new Date().toISOString())
+      };
+      renderActionResult();
+      setButtonsDisabled(true);
+
+      try {
+        const response = await fetch(requestUrl, { method: "POST" });
+        const payload = await response.json().catch(() => ({ ok: false, error: "接口返回不是合法 JSON" }));
+
+        if (!response.ok || !payload.ok) {
+          throw new Error(payload.error || payload.message || `${actionName} 失败`);
+        }
+
+        actionState = {
+          tone: "success",
+          title: options.successTitle || "操作成功",
+          detail: payload.message || options.successDetail || "这次动作已经执行成功。",
+          output: payload.output || "",
+          nextStep: options.successNextStep || "看最新状态，再决定要不要继续。",
+          at: formatTime(new Date().toISOString())
+        };
+      } catch (error) {
+        actionState = {
+          tone: "danger",
+          title: options.failTitle || "这次操作失败了",
+          detail: error.message || "系统没有告诉我们为什么失败。",
+          output: "",
+          nextStep: options.failNextStep || "先看错误，再决定要不要重试。",
+          at: formatTime(new Date().toISOString())
+        };
+      } finally {
+        renderActionResult();
+        setButtonsDisabled(false);
+        try {
+          await loadOverview();
+        } catch (refreshError) {
+          statusNoteEl.textContent = refreshError.message || "刷新状态失败。";
+        }
+      }
+    }
+
+    refreshBtn.addEventListener("click", async () => {
+      setButtonsDisabled(true);
+      try {
+        await refreshWorkbench();
+      } catch (error) {
+        statusNoteEl.textContent = error.message || "刷新失败。";
+      } finally {
+        setButtonsDisabled(false);
+      }
+    });
+
+    checkBtn.addEventListener("click", () => {
+      runAction("check", `${API_BASE_URL}/api/test?id=${encodeURIComponent(projectId)}`, {
+        waitingTitle: "正在做环境检查",
+        waitingDetail: "我在看 Python、Node、登录状态和待发布队列是不是都准备好了。",
+        waitingNextStep: "等检查结束，再决定要不要登录或者发布。",
+        successTitle: "环境检查已完成",
+        successNextStep: "如果结果里说需要登录，就先登录。否则可以发布。",
+        failNextStep: "先解决检查报错，再继续。"
+      });
+    });
+
+    loginBtn.addEventListener("click", () => {
+      runAction("login", `${API_BASE_URL}/api/redbookauto/login?id=${encodeURIComponent(projectId)}`, {
+        waitingTitle: "正在等待你登录",
+        waitingDetail: "系统可能会拉起浏览器。你看到二维码后，扫码登录就行。",
+        waitingNextStep: "扫码完成后，等系统自己返回结果。",
+        successTitle: "登录流程已结束",
+        successNextStep: "刷新一下状态。如果已经显示“已登录”，就可以发布。",
+        failNextStep: "如果超时了，就重新点一次登录。"
+      });
+    });
+
+    publishBtn.addEventListener("click", () => {
+      runAction("publish", `${API_BASE_URL}/api/run?id=${encodeURIComponent(projectId)}`, {
+        waitingTitle: "正在开始发布",
+        waitingDetail: "系统会去拿队列里的下一条内容，然后尝试发到小红书。",
+        waitingNextStep: "先等它跑一会儿，不要连点。",
+        successTitle: "发布命令已经发出",
+        successNextStep: "看上面的状态卡和左边队列，确认这条内容有没有被移走。",
+        failNextStep: "一般先看是不是没登录，或者队列里没有内容。"
+      });
+    });
+
+    stopBtn.addEventListener("click", () => {
+      runAction("stop", `${API_BASE_URL}/api/stop?id=${encodeURIComponent(projectId)}`, {
+        waitingTitle: "正在停止任务",
+        waitingDetail: "我在尝试停掉当前发布进程。",
+        waitingNextStep: "等停止完成后，再决定要不要重试。",
+        successTitle: "停止命令已发出",
+        successNextStep: "确认状态变为空闲后，再继续别的操作。"
+      });
+    });
+
+    async function boot() {
+      renderActionResult();
+      setButtonsDisabled(true);
+
+      try {
+        await refreshWorkbench();
+      } catch (error) {
+        pageTitleEl.textContent = "工作台读取失败";
+        pageSummaryEl.textContent = error.message || "现在还没法读取工作台。";
+        statusGridEl.innerHTML = '<div class="error-box">请先确认 dashboard 控制服务已经启动。</div>';
+        pendingListEl.innerHTML = '<div class="empty">还没有拿到队列信息。</div>';
+        previewPaneEl.className = "empty";
+        previewPaneEl.innerHTML = "还没有拿到预览信息。";
+        publishedListEl.innerHTML = '<div class="empty">还没有拿到已发布信息。</div>';
+        failedListEl.innerHTML = '<div class="empty">还没有拿到失败信息。</div>';
+        statusNoteEl.textContent = error.message || "工作台读取失败。";
+      } finally {
+        setButtonsDisabled(false);
+      }
+    }
+
+    async function refreshOverviewQuietly() {
+      try {
+        await loadOverview();
+      } catch (error) {
+        statusNoteEl.textContent = error.message || "刷新状态失败。";
+      }
+    }
+
+    boot();
+    window.addEventListener("focus", refreshOverviewQuietly);
+    window.setInterval(refreshOverviewQuietly, 8000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]: TransPaper
+    - heading "论文翻译系统" [level=1] [ref=e6]
+    - paragraph [ref=e7]: 只留上传和预览，其他内容收进设置里，页面会简单很多。
+  - main [ref=e8]:
+    - generic [ref=e27]:
+      - heading "论文翻译系统" [level=1] [ref=e32]:
+        - link "论文翻译系统" [ref=e33] [cursor=pointer]:
+          - /url: https://pdf2zh-next.com
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - generic [ref=e36]:
+            - heading "上传附件" [level=2] [ref=e37]
+            - group [ref=e38]:
+              - generic [ref=e39]: Type
+              - generic [ref=e40]:
+                - generic [ref=e41] [cursor=pointer]:
+                  - radio "File(s)" [checked] [active] [ref=e42]
+                  - generic [ref=e43]: File(s)
+                - generic [ref=e44] [cursor=pointer]:
+                  - radio "Link" [ref=e45]
+                  - generic [ref=e46]: Link
+            - generic [ref=e47]:
+              - generic:
+                - generic:
+                  - img
+                - text: File(s)
+              - button "Click to upload or drop files" [ref=e48] [cursor=pointer]:
+                - generic [ref=e49]:
+                  - img [ref=e51]
+                  - text: 将文件拖放到此处
+                  - generic [ref=e54]: "- 或 -"
+                  - text: 点击上传
+          - generic [ref=e55]:
+            - button "开始翻译" [ref=e56] [cursor=pointer]
+            - button "停止" [ref=e57] [cursor=pointer]
+            - button "设置" [ref=e58] [cursor=pointer]
+          - text: + - + +
+        - generic [ref=e59]:
+          - heading "预览" [level=2] [ref=e64]
+          - generic [ref=e67]:
+            - generic [ref=e68]: Select File to Preview/Download
+            - generic [ref=e71]:
+              - listbox "Select File to Preview/Download" [ref=e72]
+              - generic:
+                - img
+          - generic [ref=e73]:
+            - generic:
+              - generic:
+                - img
+              - text: 文档预览
+            - generic "Empty value" [ref=e74]:
+              - img [ref=e76]

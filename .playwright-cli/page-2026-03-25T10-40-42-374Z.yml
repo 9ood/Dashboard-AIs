@@ -1,0 +1,149 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]: TransPaper
+    - heading "论文翻译系统" [level=1] [ref=e6]
+    - paragraph [ref=e7]: 只留上传和预览，其他内容收进设置里，页面会简单很多。
+  - main [ref=e8]:
+    - generic [ref=e25]:
+      - generic [ref=e27]:
+        - heading "上传附件" [level=2] [ref=e28]
+        - group [ref=e29]:
+          - generic [ref=e30]: Type
+          - generic [ref=e31]:
+            - generic [ref=e32] [cursor=pointer]:
+              - radio "File(s)" [checked] [ref=e33]
+              - generic [ref=e34]: File(s)
+            - generic [ref=e35] [cursor=pointer]:
+              - radio "Link" [ref=e36]
+              - generic [ref=e37]: Link
+        - generic [ref=e38]:
+          - generic:
+            - generic:
+              - img
+            - text: File(s)
+          - button "Click to upload or drop files" [ref=e39] [cursor=pointer]:
+            - generic [ref=e40]:
+              - img [ref=e42]
+              - text: 将文件拖放到此处
+              - generic [ref=e45]: "- 或 -"
+              - text: 点击上传
+      - generic [ref=e46]:
+        - button "开始翻译" [ref=e47] [cursor=pointer]
+        - button "停止" [ref=e48] [cursor=pointer]
+        - button "收起设置" [active] [ref=e50] [cursor=pointer]
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - group [ref=e53]:
+            - generic "界面语言 +" [ref=e54] [cursor=pointer]
+          - group [ref=e55]:
+            - generic "翻译设置 -" [ref=e56] [cursor=pointer]
+            - generic [ref=e57]:
+              - generic [ref=e58]:
+                - generic [ref=e59]: 翻译模型
+                - generic [ref=e60]: 默认使用最强翻译模型，QwenMT-Plus。
+                - paragraph [ref=e61]: 要更快，或者要更省，再在这里换。
+                - generic [ref=e63]:
+                  - button "QwenMT-Plus 质量最好，适合正式交付。" [ref=e64] [cursor=pointer]:
+                    - generic [ref=e65]: QwenMT-Plus
+                    - generic [ref=e66]: 质量最好，适合正式交付。
+                  - button "QwenMT-Turbo 速度更快，适合大批量处理。" [ref=e67] [cursor=pointer]:
+                    - generic [ref=e68]: QwenMT-Turbo
+                    - generic [ref=e69]: 速度更快，适合大批量处理。
+                  - button "QwenMT-Mini 更省成本，适合轻量任务。" [ref=e70] [cursor=pointer]:
+                    - generic [ref=e71]: QwenMT-Mini
+                    - generic [ref=e72]: 更省成本，适合轻量任务。
+                - generic [ref=e73]:
+                  - textbox "手动输入其他模型名" [ref=e74]
+                  - button "使用这个模型" [ref=e75] [cursor=pointer]
+              - generic [ref=e76]:
+                - generic [ref=e78]:
+                  - generic [ref=e79]: 从...翻译
+                  - generic [ref=e82]:
+                    - listbox "从...翻译" [ref=e83]: English
+                    - generic:
+                      - img
+                - generic [ref=e85]:
+                  - generic [ref=e86]: 翻译为
+                  - generic [ref=e89]:
+                    - listbox "翻译为" [ref=e90]: Simplified Chinese
+                    - generic:
+                      - img
+              - generic [ref=e91]:
+                - generic [ref=e92]: 服务
+                - generic [ref=e95]:
+                  - listbox "服务" [ref=e96]: QwenMt
+                  - generic:
+                    - img
+              - group [ref=e97]:
+                - generic [ref=e98]: Rate Limit Mode
+                - paragraph [ref=e101]: Select the rate limit mode that best suits your API provider, system will automatically convert the rate limiting values of RPM or Concurrent Requests to QPS and Pool Max Workers when you click the Translate button
+                - generic [ref=e102]:
+                  - generic [ref=e103] [cursor=pointer]:
+                    - radio "RPM (Requests Per Minute)" [ref=e104]
+                    - generic [ref=e105]: RPM (Requests Per Minute)
+                  - generic [ref=e106] [cursor=pointer]:
+                    - radio "Concurrent Requests" [ref=e107]
+                    - generic [ref=e108]: Concurrent Requests
+                  - generic [ref=e109] [cursor=pointer]:
+                    - radio "Custom" [checked] [ref=e110]
+                    - generic [ref=e111]: Custom
+              - generic [ref=e112]:
+                - button "自动术语提取 ▼" [ref=e113] [cursor=pointer]:
+                  - generic [ref=e114]: 自动术语提取
+                  - generic [ref=e115]: ▼
+                - generic [ref=e117]:
+                  - generic [ref=e120] [cursor=pointer]:
+                    - checkbox "启用自动术语提取" [checked] [ref=e121]
+                    - generic [ref=e122]: 启用自动术语提取
+                  - generic [ref=e124]:
+                    - generic [ref=e127]:
+                      - generic [ref=e128]: 术语提取引擎
+                      - generic [ref=e131]:
+                        - listbox "术语提取引擎" [ref=e132]: Follow main translation engine
+                        - generic:
+                          - img
+                    - generic [ref=e133]:
+                      - group [ref=e134]:
+                        - generic [ref=e135]: Term rate limit mode
+                        - generic [ref=e136]:
+                          - generic [ref=e137] [cursor=pointer]:
+                            - radio "RPM (Requests Per Minute)" [ref=e138]
+                            - generic [ref=e139]: RPM (Requests Per Minute)
+                          - generic [ref=e140] [cursor=pointer]:
+                            - radio "Concurrent Requests" [ref=e141]
+                            - generic [ref=e142]: Concurrent Requests
+                          - generic [ref=e143] [cursor=pointer]:
+                            - radio "Custom" [checked] [ref=e144]
+                            - generic [ref=e145]: Custom
+                      - generic [ref=e147]:
+                        - generic [ref=e148]: 术语 QPS（每秒查询数）
+                        - spinbutton "术语 QPS（每秒查询数）" [ref=e149]: "4"
+                      - generic [ref=e151]:
+                        - generic [ref=e152]: 术语池最大工作线程数
+                        - spinbutton "术语池最大工作线程数" [ref=e153]
+              - generic [ref=e154]:
+                - group [ref=e155]:
+                  - generic [ref=e156]: Pages
+                  - generic [ref=e157]:
+                    - generic [ref=e158] [cursor=pointer]:
+                      - radio "All" [checked] [ref=e159]
+                      - generic [ref=e160]: All
+                    - generic [ref=e161] [cursor=pointer]:
+                      - radio "First" [ref=e162]
+                      - generic [ref=e163]: First
+                    - generic [ref=e164] [cursor=pointer]:
+                      - radio "First 5 pages" [ref=e165]
+                      - generic [ref=e166]: First 5 pages
+                    - generic [ref=e167] [cursor=pointer]:
+                      - radio "Range" [ref=e168]
+                      - generic [ref=e169]: Range
+                - generic [ref=e170]:
+                  - paragraph [ref=e173]: 仅在指定页面范围时有效。
+                  - generic [ref=e174] [cursor=pointer]:
+                    - checkbox "仅在输出 PDF 中包含已翻译的页面。" [ref=e175]
+                    - generic [ref=e176]: 仅在输出 PDF 中包含已翻译的页面。
+          - group [ref=e177]:
+            - generic "输出方式 +" [ref=e178] [cursor=pointer]
+          - group [ref=e179]:
+            - generic "Technical details +" [ref=e180] [cursor=pointer]
+        - button "保存设置" [ref=e182] [cursor=pointer]

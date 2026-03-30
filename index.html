@@ -43,6 +43,8 @@
         linear-gradient(180deg, #fafbfc 0%, #f4f6f8 100%);
     }
 
+    a { color: inherit; }
+
     .app {
       max-width: 1240px;
       margin: 0 auto;
@@ -87,13 +89,13 @@
     }
 
     .topbar-note {
-      min-width: 220px;
+      min-width: 240px;
       padding: 10px 12px;
       border-radius: var(--radius-sm);
       background: var(--panel-soft);
       border: 1px solid var(--line);
       font-size: 13px;
-      line-height: 1.6;
+      line-height: 1.7;
       color: var(--muted);
     }
 
@@ -149,36 +151,42 @@
       letter-spacing: -0.03em;
     }
 
-    .table-head, .project-row {
+    .project-list {
       display: grid;
-      grid-template-columns: minmax(0, 1.8fr) 120px 120px 150px;
-      gap: 16px;
-      align-items: center;
-      padding: 16px 22px;
+      gap: 14px;
+      padding: 18px 22px 22px;
     }
-    .table-head {
-      background: #fafbfc;
-      border-bottom: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    .project-row {
-      cursor: pointer;
-      border-bottom: 1px solid var(--line);
-      transition: 140ms ease;
-    }
-    .project-row:last-child { border-bottom: 0; }
-    .project-row:hover { background: #fcfdff; }
 
-    .row-title strong {
+    .project-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--panel-soft);
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .project-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .project-title strong {
       display: block;
-      font-size: 17px;
+      font-size: 18px;
       margin-bottom: 6px;
     }
 
-    .status-badge, .category-tag {
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .status-badge, .category-tag, .mini-tag {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -197,12 +205,73 @@
     .status-badge.warning { color: var(--warning); background: var(--warning-soft); }
     .status-badge.stopped { color: var(--stopped); background: var(--stopped-soft); }
     .status-badge.draft { color: var(--draft); background: var(--draft-soft); }
+    .mini-tag {
+      color: var(--muted);
+      background: #f2f4f7;
+    }
 
-    .cell-label { display: none; }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .mini-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--panel);
+      padding: 12px;
+    }
+
+    .mini-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .mini-card b {
+      display: block;
+      line-height: 1.6;
+      font-size: 14px;
+      word-break: break-word;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      padding: 10px 14px;
+      background: var(--panel);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 140ms ease;
+    }
+
+    .action-btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .action-btn.disabled {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
     .empty, .error {
       padding: 22px;
       border-radius: var(--radius-md);
-      margin: 16px 22px 22px;
       text-align: center;
     }
     .empty {
@@ -217,23 +286,18 @@
     }
 
     @media (max-width: 900px) {
-      .metric-row { grid-template-columns: 1fr 1fr; }
-      .table-head { display: none; }
-      .project-row { grid-template-columns: 1fr; }
-      .cell-label {
-        display: block;
-        color: var(--muted);
-        font-size: 12px;
-        margin-bottom: 4px;
-      }
+      .metric-row,
+      .project-grid { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 640px) {
       .app { padding: 14px; }
       .topbar { padding: 18px; }
-      .board-head, .project-row { padding: 16px; }
-      .topbar-head { flex-direction: column; }
-      .metric-row { grid-template-columns: 1fr; }
+      .topbar-head,
+      .project-head { flex-direction: column; }
+      .metric-row,
+      .project-grid { grid-template-columns: 1fr; }
+      .project-list { padding: 16px; }
     }
   </style>
 </head>
@@ -245,7 +309,7 @@
           <div>
             <div class="eyebrow">AI Project Dashboard</div>
             <h1 class="title">AI 项目总台</h1>
-            <p class="copy">这里只展示真实项目，不再混入假的演示卡片。你先看整体，再点进单个项目做配置和控制。</p>
+            <p class="copy">这里不只是项目名单，还会告诉你下一步该做什么。先看整体，再进入单个项目页开始操作。</p>
           </div>
           <div class="topbar-note">
             根目录：<span class="mono" id="workspaceRoot">E:/Project/codex</span><br>
@@ -269,14 +333,7 @@
           <div class="muted" id="listSummary">正在读取真实项目...</div>
         </div>
 
-        <div class="table-head">
-          <div>项目</div>
-          <div>分类</div>
-          <div>状态</div>
-          <div>最近运行</div>
-        </div>
-
-        <div id="projectList"></div>
+        <div class="project-list" id="projectList"></div>
       </section>
     </div>
   </div>
@@ -314,6 +371,10 @@
         .replaceAll("'", "&#39;");
     }
 
+    function escapeAttribute(value) {
+      return escapeHtml(value).replaceAll("`", "&#96;");
+    }
+
     function getCategories() {
       return ["全部项目", ...new Set(appState.projects.map((project) => project.category))];
     }
@@ -329,12 +390,44 @@
       return appState.projects.filter((project) => project.status === status).length;
     }
 
+    function formatTime(value) {
+      if (!value) {
+        return "还没有记录";
+      }
+
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) {
+        return value;
+      }
+
+      return date.toLocaleString("zh-CN", { hour12: false });
+    }
+
+    function getNextStep(project) {
+      if (project.type === "service") {
+        if (project.status === "running" && project.entry) {
+          return "已经启动好了，点“打开系统”就能进入。";
+        }
+        return "先进入详情页，点“启动系统”，成功后再打开系统。";
+      }
+
+      if (project.type === "queue-worker") {
+        return "先进入详情页点“先检查”，确认没问题后再点“开始处理”。";
+      }
+
+      if (project.type === "batch") {
+        return "先进入详情页点“先检查”，通过后再点“开始处理”。";
+      }
+
+      return "先进入详情页，看清说明后再开始。";
+    }
+
     function renderMetrics() {
       const cards = [
-        { label: "项目总数", value: appState.projects.length, note: "已接入真实项目" },
-        { label: "运行中", value: countByStatus("running"), note: "当前可直接使用" },
-        { label: "需关注", value: countByStatus("warning"), note: "还有历史问题待处理" },
-        { label: "开发中", value: countByStatus("draft"), note: "已登记但未接控制" }
+        { label: "项目总数", value: appState.projects.length, note: "已接入的真实项目" },
+        { label: "运行中", value: countByStatus("running"), note: "现在可以直接打开或使用" },
+        { label: "需关注", value: countByStatus("warning"), note: "上一次执行出了问题" },
+        { label: "开发中", value: countByStatus("draft"), note: "还没准备成完整产品" }
       ];
 
       elements.metrics.innerHTML = cards.map((card) => `
@@ -355,7 +448,7 @@
 
         const isActive = category === appState.activeCategory ? "active" : "";
         return `
-          <button class="filter-button ${isActive}" data-category="${escapeHtml(category)}">
+          <button class="filter-button ${isActive}" data-category="${escapeAttribute(category)}">
             ${escapeHtml(category)} (${escapeHtml(count)})
           </button>
         `;
@@ -374,7 +467,7 @@
       const filteredProjects = getFilteredProjects();
       elements.listSummary.textContent = filteredProjects.length
         ? `当前显示 ${filteredProjects.length} 个真实项目`
-        : "当前分类下还没有项目";
+        : "这个分类下面还没有项目";
 
       if (!filteredProjects.length) {
         elements.list.innerHTML = '<div class="empty">这个分类下面暂时没有项目。</div>';
@@ -382,36 +475,54 @@
       }
 
       elements.list.innerHTML = filteredProjects.map((project) => {
-        const lastRunAt = project.runtime?.startedAt || project.lastRunAt || "还没有记录";
         const detailHref = `./project.html?id=${encodeURIComponent(project.id)}`;
+        const canOpen = Boolean(project.entry) && project.status === "running";
+        const lastRunAt = formatTime(project.runtime?.startedAt || project.lastRunAt || "");
+        const nextStep = getNextStep(project);
 
         return `
-          <article class="project-row" data-project-href="${escapeHtml(detailHref)}">
-            <div class="row-title">
-              <strong>${escapeHtml(project.name)}</strong>
-              <div class="row-summary">${escapeHtml(project.summary)}</div>
+          <article class="project-card">
+            <div class="project-head">
+              <div class="project-title">
+                <strong>${escapeHtml(project.name)}</strong>
+                <div class="row-summary">${escapeHtml(project.summary || "这个项目还没有摘要说明。")}</div>
+              </div>
+              <div class="meta-row">
+                <span class="category-tag">${escapeHtml(project.category)}</span>
+                <span class="status-badge ${escapeAttribute(project.status)}">${escapeHtml(stateLabels[project.status] || project.status)}</span>
+                <span class="mini-tag">${escapeHtml(project.type)}</span>
+              </div>
             </div>
-            <div>
-              <div class="cell-label">分类</div>
-              <span class="category-tag">${escapeHtml(project.category)}</span>
+
+            <div class="project-grid">
+              <div class="mini-card">
+                <span>推荐下一步</span>
+                <b>${escapeHtml(nextStep)}</b>
+              </div>
+              <div class="mini-card">
+                <span>最近一次动作</span>
+                <b>${escapeHtml(lastRunAt)}</b>
+              </div>
+              <div class="mini-card">
+                <span>入口地址</span>
+                <b>${escapeHtml(project.entry || "这个项目没有网页入口")}</b>
+              </div>
             </div>
-            <div>
-              <div class="cell-label">状态</div>
-              <span class="status-badge ${escapeHtml(project.status)}">${escapeHtml(stateLabels[project.status] || project.status)}</span>
-            </div>
-            <div>
-              <div class="cell-label">最近运行</div>
-              <span class="mono">${escapeHtml(lastRunAt)}</span>
+
+            <div class="card-actions">
+              <a class="action-btn primary" href="${escapeAttribute(detailHref)}">查看详情</a>
+              <a
+                class="action-btn ${canOpen ? "" : "disabled"}"
+                href="${canOpen ? escapeAttribute(project.entry) : "#"}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ${canOpen ? "打开系统" : "启动后可打开"}
+              </a>
             </div>
           </article>
         `;
       }).join("");
-
-      elements.list.querySelectorAll("[data-project-href]").forEach((card) => {
-        card.addEventListener("click", () => {
-          window.location.href = card.dataset.projectHref;
-        });
-      });
     }
 
     async function loadProjects() {

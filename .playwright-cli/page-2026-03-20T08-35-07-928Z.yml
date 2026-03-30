@@ -1,0 +1,91 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]: AI Project Dashboard
+        - heading "AI 项目总台" [level=1] [ref=e8]
+        - paragraph [ref=e9]: 这里只展示真实项目，不再混入假的演示卡片。你先看整体，再点进单个项目做配置和控制。
+      - generic [ref=e10]:
+        - text: 根目录：E:/Project/codex
+        - text: 启动入口：start-dashboard.cmd
+    - generic [ref=e18]:
+      - button "全部项目 (4)" [ref=e19] [cursor=pointer]
+      - button "工具类 (2)" [ref=e20] [cursor=pointer]
+      - button "资讯类 (1)" [ref=e21] [cursor=pointer]
+      - button "内容类 (1)" [ref=e22] [cursor=pointer]
+  - generic [ref=e23]:
+    - generic [ref=e24]:
+      - text: 项目总数
+      - generic [ref=e25]: "4"
+      - text: 已接入真实项目
+    - generic [ref=e26]:
+      - text: 运行中
+      - generic [ref=e27]: "2"
+      - text: 当前可直接使用
+    - generic [ref=e28]:
+      - text: 需关注
+      - generic [ref=e29]: "1"
+      - text: 还有历史问题待处理
+    - generic [ref=e30]:
+      - text: 开发中
+      - generic [ref=e31]: "0"
+      - text: 已登记但未接控制
+  - generic [ref=e12]:
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: Project List
+        - heading "真实项目列表" [level=2] [ref=e16]
+      - generic [ref=e17]: 当前显示 4 个真实项目
+    - generic [ref=e32]:
+      - article [ref=e33] [cursor=pointer]:
+        - generic [ref=e34]:
+          - strong [ref=e35]: 论文翻译服务
+          - generic [ref=e36]: 把 pdf2zh-next 包成可启动的论文翻译服务。
+        - generic [ref=e37]:
+          - generic [ref=e38]: 分类
+          - generic [ref=e39]: 工具类
+        - generic [ref=e40]:
+          - generic [ref=e41]: 状态
+          - generic [ref=e42]: 运行中
+        - generic [ref=e43]:
+          - generic [ref=e44]: 最近运行
+          - text: 2026-03-19T11:04:54.822Z
+      - article [ref=e45] [cursor=pointer]:
+        - generic [ref=e46]:
+          - strong [ref=e47]: 每日音乐选题
+          - generic [ref=e48]: 自动抓热点、做音乐选题、输出邮件内容。
+        - generic [ref=e49]:
+          - generic [ref=e50]: 分类
+          - generic [ref=e51]: 资讯类
+        - generic [ref=e52]:
+          - generic [ref=e53]: 状态
+          - generic [ref=e54]: 已停止
+        - generic [ref=e55]:
+          - generic [ref=e56]: 最近运行
+          - text: 2026-03-20T07:25:20.615Z
+      - article [ref=e57] [cursor=pointer]:
+        - generic [ref=e58]:
+          - strong [ref=e59]: 小红书自动发布
+          - generic [ref=e60]: 从待发布队列里取一条内容，自动调用小红书发布工具，并归档结果。
+        - generic [ref=e61]:
+          - generic [ref=e62]: 分类
+          - generic [ref=e63]: 内容类
+        - generic [ref=e64]:
+          - generic [ref=e65]: 状态
+          - generic [ref=e66]: 需关注
+        - generic [ref=e67]:
+          - generic [ref=e68]: 最近运行
+          - text: 2026-03-20T07:25:38.020Z
+      - article [ref=e69] [cursor=pointer]:
+        - generic [ref=e70]:
+          - strong [ref=e71]: AI 视频翻拍系统
+          - generic [ref=e72]: 上传视频后，自动拆镜头、分析画面、生成脚本和 Excel 结果包。
+        - generic [ref=e73]:
+          - generic [ref=e74]: 分类
+          - generic [ref=e75]: 工具类
+        - generic [ref=e76]:
+          - generic [ref=e77]: 状态
+          - generic [ref=e78]: 运行中
+        - generic [ref=e79]:
+          - generic [ref=e80]: 最近运行
+          - text: 还没有记录

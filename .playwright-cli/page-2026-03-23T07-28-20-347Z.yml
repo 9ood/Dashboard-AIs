@@ -1,0 +1,15 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - heading "🎬 视频翻拍系统" [level=1] [ref=e4]
+    - paragraph [ref=e5]: AI 驱动的视频分析与脚本生成
+    - link "📊 查看 Token 用量" [ref=e6] [cursor=pointer]:
+      - /url: /token_usage_page
+  - main [ref=e7]:
+    - generic [ref=e9]:
+      - generic [ref=e10]: 📹
+      - heading "上传视频" [level=2] [ref=e11]
+      - paragraph [ref=e12]: 支持 MP4, MOV, AVI, MKV 格式
+      - button "选择视频文件" [ref=e13] [cursor=pointer]
+      - paragraph [ref=e14]
+  - contentinfo [ref=e15]:
+    - paragraph [ref=e16]: Powered by OpenRouter + Gemini 3 Flash

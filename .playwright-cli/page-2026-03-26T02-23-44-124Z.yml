@@ -1,0 +1,44 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]: TransPaper
+    - heading "论文翻译系统" [level=1] [ref=e6]
+    - paragraph [ref=e7]: 只留上传和预览，其他内容收进设置里，页面会简单很多。
+  - main [ref=e8]:
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - heading "上传附件" [level=2] [ref=e29]
+        - group [ref=e30]:
+          - generic [ref=e31]: Type
+          - generic [ref=e32]:
+            - generic [ref=e33] [cursor=pointer]:
+              - radio "File(s)" [checked] [ref=e34]
+              - generic [ref=e35]: File(s)
+            - generic [ref=e36] [cursor=pointer]:
+              - radio "Link" [ref=e37]
+              - generic [ref=e38]: Link
+        - generic [ref=e39]:
+          - generic:
+            - generic:
+              - img
+            - text: File(s)
+          - generic [ref=e51]:
+            - button "common.upload" [ref=e52] [cursor=pointer]:
+              - generic [ref=e53]:
+                - img [ref=e54]
+                - button "Click to upload or drop files" [ref=e57]
+            - button "清除" [ref=e58] [cursor=pointer]:
+              - img [ref=e60]
+          - table [ref=e65]:
+            - rowgroup [ref=e66]:
+              - row "2603.24591v1.pdf 4.0 MB ⇣" [ref=e67]:
+                - cell "2603.24591v1.pdf" [ref=e68]:
+                  - generic [ref=e69]: 2603.24591v1
+                  - generic [ref=e70]: .pdf
+                - cell "4.0 MB ⇣" [ref=e71]:
+                  - link "4.0 MB ⇣" [ref=e72] [cursor=pointer]:
+                    - /url: http://127.0.0.1:7862/gradio_api/file=C:\Users\Qin\AppData\Local\Temp\gradio\bb005641a409e1c8d34bf77560af4173cd3d35763038c713357c7b6244d19b21\2603.24591v1.pdf
+      - generic [ref=e47]:
+        - button "开始翻译" [ref=e48] [cursor=pointer]
+        - button "停止" [ref=e49] [cursor=pointer]
+        - button "设置" [ref=e50] [cursor=pointer]
+      - text: + - + +

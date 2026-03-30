@@ -1,0 +1,303 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: Project Detail
+      - generic [ref=e6]: 项目操作页
+    - link "返回总台" [ref=e7] [cursor=pointer]:
+      - /url: ./index.html
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: Selected Project
+        - heading "每日音乐选题" [level=1] [ref=e12]
+        - paragraph [ref=e13]: 这是一个批处理项目。它会抓新闻、做 AI 选题分析，再把结果发到邮件里。现在已经接成 dashboard 上可测试、可运行、可停止的真实项目。
+      - generic [ref=e14]: 已停止
+    - generic [ref=e15]: 系统已连接。第一次使用时，建议先点“先检查”。
+    - generic [ref=e16]:
+      - button "先检查" [ref=e17] [cursor=pointer]
+      - button "启动系统" [ref=e18] [cursor=pointer]
+      - button "停止" [ref=e19] [cursor=pointer]
+  - generic [ref=e20]:
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - strong [ref=e23]: 怎么用
+        - generic [ref=e24]:
+          - strong [ref=e26]:
+            - generic [ref=e27]: "1"
+            - text: 先点“先检查”，确认环境和数据都正常。
+          - strong [ref=e29]:
+            - generic [ref=e30]: "2"
+            - text: 再点“开始处理”，让它真正生成选题内容。
+          - strong [ref=e32]:
+            - generic [ref=e33]: "3"
+            - text: 处理结束后，到输出目录里看结果。
+          - strong [ref=e35]:
+            - generic [ref=e36]: "4"
+            - text: 如果这次只是试试看，先不要直接正式发送。
+      - generic [ref=e37]:
+        - strong [ref=e38]: 这次动作发生了什么
+        - generic [ref=e40]:
+          - strong [ref=e41]: 你还没开始操作
+          - generic [ref=e42]: 先看“怎么用”，再按顺序点按钮。
+          - generic [ref=e43]: 下一步：如果这是第一次使用，先点“先检查”。
+      - generic [ref=e44]:
+        - strong [ref=e45]: 最近动态
+        - generic [ref=e47]:
+          - generic [ref=e48]: 今天
+          - strong [ref=e49]: 接入真实控制链
+          - generic [ref=e50]: dashboard 已经可以真实触发测试、运行和停止。
+      - generic [ref=e51]:
+        - strong [ref=e52]: 运行日志
+        - generic [ref=e53]:
+          - group [ref=e54]:
+            - 'generic "2026/3/20 17:27:41 Music Topics 2026-03-20 172741 预览完成 预览模式 Hotspots: 60 | Topics: 5 | Mode: preview | Sent: No" [ref=e55] [cursor=pointer]':
+              - generic [ref=e56]: 2026/3/20 17:27:41
+              - strong [ref=e57]: Music Topics 2026-03-20 172741
+              - generic [ref=e58]:
+                - generic [ref=e59]: 预览完成
+                - generic [ref=e60]: 预览模式
+              - generic [ref=e61]: "Hotspots: 60 | Topics: 5 | Mode: preview | Sent: No"
+            - generic [ref=e62]:
+              - generic [ref=e63]:
+                - generic [ref=e64]: 当日发送内容
+                - iframe [ref=e65]:
+                  - generic [ref=f2e2]:
+                    - generic [ref=f2e3]:
+                      - heading "MusicNews 选题推荐" [level=1] [ref=f2e4]
+                      - paragraph [ref=f2e5]: 2026-03-20 | 基于 60 条热点分析
+                    - generic [ref=f2e6]:
+                      - generic [ref=f2e7]: "[选题1] 生物地理“不算分”后，音乐会更被忽视吗？给学琴家长的3个冷静建议"
+                      - generic [ref=f2e8]:
+                        - generic [ref=f2e9]:
+                          - generic [ref=f2e10]: 热点来源：
+                          - generic [ref=f2e11]: "[知乎热榜] 吉林、安徽、江西、湖南等十余省市宣布生物地理不再计入中考总分，为什么是这两个科目？家长们怎么看？"
+                        - generic [ref=f2e12]:
+                          - generic [ref=f2e13]: 切入角度：
+                          - generic [ref=f2e14]: 借中考科目调整的焦虑，讨论“什么不计入分数就不重要”的功利教育观，延伸到音乐/钢琴学习的长期价值，帮助家长重新审视孩子学琴的真正目标。
+                        - generic [ref=f2e15]:
+                          - generic [ref=f2e16]: 爆款指数：
+                          - generic [ref=f2e17]: ★★★★★
+                      - generic [ref=f2e19]: 家长教育指导类
+                      - generic [ref=f2e20]:
+                        - strong [ref=f2e21]: 内容方向：
+                        - list [ref=f2e22]:
+                          - listitem [ref=f2e23]: 梳理：生物地理“不计分”引发的家长真实反应，与“学钢琴要不要走考级”焦虑高度相似之处
+                          - listitem [ref=f2e24]: 拆解：只盯分数/证书的功利思维，如何悄悄毁掉孩子的音乐兴趣和审美能力
+                          - listitem [ref=f2e25]: 对比：国外音乐教育如何在“非升学科目”中，依然培养出世界级音乐家与高审美人群
+                          - listitem [ref=f2e26]: 落地建议：当音乐不是升学“硬通货”时，家长可以如何设定学琴目标（情绪调节、专注力、审美、意志力等）
+                          - listitem [ref=f2e27]: 工具清单：3个在家可执行的小习惯，让“非应试”的音乐学习也有看得见的成长曲线
+                      - generic [ref=f2e28]:
+                        - strong [ref=f2e29]: 推荐理由：
+                        - text: 紧扣教育政策类大热点，契合家长对“学科价值”和“兴趣特长是否要坚持”的焦虑，容易引发广泛讨论和高转发。
+                    - generic [ref=f2e30]:
+                      - generic [ref=f2e31]: "[选题2] 中考减负、科目调整，都挡不住这件事：为什么真正聪明的家长反而更重视学琴？"
+                      - generic [ref=f2e32]:
+                        - generic [ref=f2e33]:
+                          - generic [ref=f2e34]: 热点来源：
+                          - generic [ref=f2e35]: "[知乎热榜] 吉林、安徽、江西、湖南等十余省市宣布生物地理不再计入中考总分，为什么是这两个科目？家长们怎么看？"
+                        - generic [ref=f2e36]:
+                          - generic [ref=f2e37]: 切入角度：
+                          - generic [ref=f2e38]: 借“中考科目变动、减负”大背景，讨论在总分压力减轻的情况下，如何用音乐学习提升孩子的综合素质与竞争力，帮助家长从“刷分思维”转向“能力思维”。
+                        - generic [ref=f2e39]:
+                          - generic [ref=f2e40]: 爆款指数：
+                          - generic [ref=f2e41]: ★★★★
+                      - generic [ref=f2e43]: 家长教育指导类
+                      - generic [ref=f2e44]:
+                        - strong [ref=f2e45]: 内容方向：
+                        - list [ref=f2e46]:
+                          - listitem [ref=f2e47]: 盘点：最近几年教育大趋势——“双减”、中考科目调整，对“鸡娃路线”的真实影响
+                          - listitem [ref=f2e48]: 提醒：语数英压力下降后，新一轮竞争会悄然转向哪些维度（自律、专注力、抗压、表达、审美）
+                          - listitem [ref=f2e49]: 解析：系统学琴，对上述关键能力的长期影响（用具体、易懂的生活案例说明）
+                          - listitem [ref=f2e50]: 案例：1-2个“没有走专业路，却因为坚持学琴受益”的真实故事
+                          - listitem [ref=f2e51]: 给家长的路线图：在减负背景下，如何科学规划“学习+学琴”时间比例，避免两头都搞不好
+                      - generic [ref=f2e52]:
+                        - strong [ref=f2e53]: 推荐理由：
+                        - text: 教育政策+家庭教育双重热门话题，既顺热点又能自然植入“坚持学琴”的价值观，利于私域转化和品牌认同。
+                    - generic [ref=f2e54]:
+                      - generic [ref=f2e55]: "[选题3] AI太顺着孩子？那谁来在练琴这件事上“跟他较劲”"
+                      - generic [ref=f2e56]:
+                        - generic [ref=f2e57]:
+                          - generic [ref=f2e58]: 热点来源：
+                          - generic [ref=f2e59]: "[知乎热榜] 家长吐槽 AI 太顺着孩子，导致孩子在现实不接受反驳，AI 创造的「没有摩擦」的世界有利于孩子成长吗？"
+                        - generic [ref=f2e60]:
+                          - generic [ref=f2e61]: 切入角度：
+                          - generic [ref=f2e62]: 从“AI太顺从”的争议切入，对比现实中练琴的“阻力感”，阐述音乐学习中“适度摩擦”的教育价值，同时澄清智能陪练如何做到既不“硬压”也不“无底线顺从”。
+                        - generic [ref=f2e63]:
+                          - generic [ref=f2e64]: 爆款指数：
+                          - generic [ref=f2e65]: ★★★★★
+                      - generic [ref=f2e67]: 家长教育指导类
+                      - generic [ref=f2e68]:
+                        - strong [ref=f2e69]: 内容方向：
+                        - list [ref=f2e70]:
+                          - listitem [ref=f2e71]: 解释：为什么越来越多家长觉得“AI太好说话，孩子不耐烦现实中的反对和要求”
+                          - listitem [ref=f2e72]: 对比：现实练琴中的“摩擦”（枯燥反复、技术难点、老师的要求），其实正是意志力和挫折耐受的训练场
+                          - listitem [ref=f2e73]: 边界：什么是“有底线的温柔陪练”，什么是“放任式顺从”，两者对孩子性格的长期影响
+                          - listitem [ref=f2e74]: 拆解小叶子智能陪练：如何通过节奏、错音、时长等客观数据，给出明确反馈，而不是一味夸奖
+                          - listitem [ref=f2e75]: 给家长的行动建议：3个在家“既不吼也不惯着”的练琴沟通话术，让孩子在安全感中学会承受不同意见
+                      - generic [ref=f2e76]:
+                        - strong [ref=f2e77]: 推荐理由：
+                        - text: 直接对标热门争议“AI是否会养出玻璃心”，与品牌“智能陪练”高度相关，容易激发家长共鸣和讨论，兼具话题性与产品教育。
+                    - generic [ref=f2e78]:
+                      - generic [ref=f2e79]: "[选题4] 当AI比你还耐心，家长在孩子学琴这件事上到底该做什么？"
+                      - generic [ref=f2e80]:
+                        - generic [ref=f2e81]:
+                          - generic [ref=f2e82]: 热点来源：
+                          - generic [ref=f2e83]: "[知乎热榜] 家长吐槽 AI 太顺着孩子，导致孩子在现实不接受反驳，AI 创造的「没有摩擦」的世界有利于孩子成长吗？"
+                        - generic [ref=f2e84]:
+                          - generic [ref=f2e85]: 切入角度：
+                          - generic [ref=f2e86]: 利用家长对AI教育角色的困惑，重新界定“AI陪练负责技术，家长负责价值观和边界”的分工，给出学琴家庭的清晰角色定位。
+                        - generic [ref=f2e87]:
+                          - generic [ref=f2e88]: 爆款指数：
+                          - generic [ref=f2e89]: ★★★★
+                      - generic [ref=f2e91]: 家长教育指导类
+                      - generic [ref=f2e92]:
+                        - strong [ref=f2e93]: 内容方向：
+                        - list [ref=f2e94]:
+                          - listitem [ref=f2e95]: 梳理现状：越来越多家庭把“情绪安抚、陪练纠错”都交给AI或老师，家长角色正在“隐身”
+                          - listitem [ref=f2e96]: 划清分工：AI在练琴中的优势（耐心、稳定、客观反馈）和局限（价值判断、情绪教养）
+                          - listitem [ref=f2e97]: 核心观点：在学琴这件事上，真正不可替代的是家长的3件事——边界感、价值观、长期陪伴
+                          - listitem [ref=f2e98]: 实操建议：如何设计“一天30分钟”的家庭音乐仪式感，让AI陪练和家长角色形成良性配合
+                          - listitem [ref=f2e99]: 避坑提示：3种把责任完全甩给AI或老师的常见育儿误区，以及可能的后果
+                      - generic [ref=f2e100]:
+                        - strong [ref=f2e101]: 推荐理由：
+                        - text: 紧贴“AI育儿”新焦虑，回答家长最关心的“我还需要做什么”，既能突出小叶子产品价值，又能强化陪伴理念。
+                    - generic [ref=f2e102]:
+                      - generic [ref=f2e103]: "[选题5] 没有摩擦的世界养不出会弹琴的孩子：练琴的“痛”其实是宝贵资源"
+                      - generic [ref=f2e104]:
+                        - generic [ref=f2e105]:
+                          - generic [ref=f2e106]: 热点来源：
+                          - generic [ref=f2e107]: "[知乎热榜] 家长吐槽 AI 太顺着孩子，导致孩子在现实不接受反驳，AI 创造的「没有摩擦」的世界有利于孩子成长吗？"
+                        - generic [ref=f2e108]:
+                          - generic [ref=f2e109]: 切入角度：
+                          - generic [ref=f2e110]: 从“没有摩擦的AI世界”引出“练琴一定会有摩擦”的现实，帮家长辨别哪种痛苦是该保护、哪种是应该陪孩子一起穿越的，转化为成长动力。
+                        - generic [ref=f2e111]:
+                          - generic [ref=f2e112]: 爆款指数：
+                          - generic [ref=f2e113]: ★★★★★
+                      - generic [ref=f2e115]: 钢琴学习技巧类
+                      - generic [ref=f2e116]:
+                        - strong [ref=f2e117]: 内容方向：
+                        - list [ref=f2e118]:
+                          - listitem [ref=f2e119]: 拆分“摩擦”：练琴中常见的5种“痛”（手指酸、枯燥、被要求、被纠正、和家长冲突），哪种该避免，哪种反而有利成长
+                          - listitem [ref=f2e120]: 心理角度：孩子在反复练习和被指出错误时，大脑和心理正在发生什么变化
+                          - listitem [ref=f2e121]: 案例：一位坚持学琴多年的琴童，自述“最痛苦的几年，反而是现在最感谢的”，用故事打动家长
+                          - listitem [ref=f2e122]: 方法论：如何通过小目标拆解和可视化进步，让“痛”变成“我正在变厉害”的证明
+                          - listitem [ref=f2e123]: 给父母的底线：什么样的批评和压力，会真正伤害孩子对音乐的热爱，需要立刻刹车
+                      - generic [ref=f2e124]:
+                        - strong [ref=f2e125]: 推荐理由：
+                        - text: 结合热点的“无摩擦世界”话题，把学琴中的痛点重新定义为成长契机，容易引发练琴家庭的强烈共鸣和自发转发。
+                    - generic [ref=f2e126]:
+                      - paragraph [ref=f2e127]:
+                        - text: 本期选题由
+                        - strong [ref=f2e128]: MusicNews
+                        - text: 自动生成
+                      - paragraph [ref=f2e129]: 生成时间：2026-03-20 17:27:41
+              - generic [ref=e66]:
+                - generic [ref=e67]: 原文链接
+                - generic [ref=e68]:
+                  - link "[知乎热榜] 椰树集团招标剥椰子机器人，要求每小时至少处理 360 个，完全去壳且损伤率≤ 1%，这标准能实现吗？" [ref=e69] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2017994120187097771
+                  - link "[知乎热榜] 如何看待内存条价格崩了？" [ref=e70] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2017860793417356112
+                  - link "[知乎热榜] 为什么微软 Office 有几个 GB，而 WPS Office 只有 1GB 多？" [ref=e71] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2011123880824182141
+                  - link "[知乎热榜] 男子养了只「双头小青龟」，两个头还会争抢食物，双头动物在生物学上是怎么形成的？到底哪个脑袋在做主？" [ref=e72] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2014727832371234515
+                  - link "[知乎热榜] 小米新一代 SU7 发布，王传福、李想、何小鹏纷纷到场助阵，怎样解读？小米汽车在行业内有怎样的影响力？" [ref=e73] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2018050979702989965
+                  - link "[知乎热榜] 美以袭击伊朗进入第 21 天，当前局势如何？哪些信息值得关注？" [ref=e74] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2018125516700426373
+                  - link "[知乎热榜] 网友发现汤碗里搅拌完的葱花自动排成了一列，为什么会这样？能用科学来解释吗？" [ref=e75] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2015097628501779896
+                  - link "[知乎热榜] 1 号 24 点 00 分 00 秒，和 2 号 00 点 00 分 00 秒，是同一天吗？" [ref=e76] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2009978699357906227
+                  - link "[知乎热榜] 新一代小米 SU7 发布，售价 21.99-30.39 万，怎样看待这一定价？预计销量会如何？" [ref=e77] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2018060318748664695
+                  - link "[知乎热榜] 有句话说「女性的一生是被激素控制的一生」，这句话是真的吗？" [ref=e78] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2011878161814615909
+                  - link "[知乎热榜] 伊朗伊斯兰革命卫队发言人遇袭身亡，具体情况如何？高层接连遇袭对伊朗的影响有多大？" [ref=e79] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2018353752168506862
+                  - link "[知乎热榜] 六国发表联合声明，准备采取措施保障霍尔木兹海峡安全，哪些信息值得关注？" [ref=e80] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2018114384203924458
+                  - link "[知乎热榜] 如何看业主举报小区违建反被「开盒」，被举报人一字不差读出工单并说出母亲活动轨迹？这种「开盒」有多可怕？" [ref=e81] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2018004158406502131
+                  - link "[知乎热榜] 小米 SU7 应网友呼声官宣舒淇为代言人，从品牌营销角度如何评价这一做法？会给品牌带来哪些变化？" [ref=e82] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2017891290054943068
+                  - link "[知乎热榜] 为什么短剧明明剧情也不咋地，观众却那么宽容？" [ref=e83] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/1908833817701095067
+                  - link "[知乎热榜] 京东外卖宣布为全体全职骑手免费换新装，有专属工号金标牌，如何看待此举？配送体验会变好吗？" [ref=e84] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2018036563829879334
+                  - link "[知乎热榜] 预测下周一油价进入 9 元时代，现阶段是否将油车换电车？如何更经济一些？" [ref=e85] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2017885857223288599
+                  - link "[知乎热榜] 外交部称「中方将继续为停火止战奔走斡旋，早日还中东和平与稳定」，当前推动局势降温的最大难点在哪？" [ref=e86] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2018348051773829658
+                  - link "[知乎热榜] 吉林、安徽、江西、湖南等十余省市宣布生物地理不再计入中考总分，为什么是这两个科目？家长们怎么看？" [ref=e87] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2017546749061898708
+                  - link "[知乎热榜] 3 月 20 日沪指失守 4000 点，两市成交额 2.29 万亿，电力板块活跃，如何看待今日行情？" [ref=e88] [cursor=pointer]:
+                    - /url: https://www.zhihu.com/question/2018230164002185495
+              - generic [ref=e89]:
+                - generic [ref=e90]: Topic Summary
+                - generic [ref=e91]: "1. 生物地理“不算分”后，音乐会更被忽视吗？给学琴家长的3个冷静建议 Angle: 借中考科目调整的焦虑，讨论“什么不计入分数就不重要”的功利教育观，延伸到音乐/钢琴学习的长期价值，帮助家长重新审视孩子学琴的真正目标。 Category: 家长教育指导类 Reason: 紧扣教育政策类大热点，契合家长对“学科价值”和“兴趣特长是否要坚持”的焦虑，容易引发广泛讨论和高转发。 Content Points: - 梳理：生物地理“不计分”引发的家长真实反应，与“学钢琴要不要走考级”焦虑高度相似之处 - 拆解：只盯分数/证书的功利思维，如何悄悄毁掉孩子的音乐兴趣和审美能力 - 对比：国外音乐教育如何在“非升学科目”中，依然培养出世界级音乐家与高审美人群 - 落地建议：当音乐不是升学“硬通货”时，家长可以如何设定学琴目标（情绪调节、专注力、审美、意志力等） - 工具清单：3个在家可执行的小习惯，让“非应试”的音乐学习也有看得见的成长曲线 2. 中考减负、科目调整，都挡不住这件事：为什么真正聪明的家长反而更重视学琴？ Angle: 借“中考科目变动、减负”大背景，讨论在总分压力减轻的情况下，如何用音乐学习提升孩子的综合素质与竞争力，帮助家长从“刷分思维”转向“能力思维”。 Category: 家长教育指导类 Reason: 教育政策+家庭教育双重热门话题，既顺热点又能自然植入“坚持学琴”的价值观，利于私域转化和品牌认同。 Content Points: - 盘点：最近几年教育大趋势——“双减”、中考科目调整，对“鸡娃路线”的真实影响 - 提醒：语数英压力下降后，新一轮竞争会悄然转向哪些维度（自律、专注力、抗压、表达、审美） - 解析：系统学琴，对上述关键能力的长期影响（用具体、易懂的生活案例说明） - 案例：1-2个“没有走专业路，却因为坚持学琴受益”的真实故事 - 给家长的路线图：在减负背景下，如何科学规划“学习+学琴”时间比例，避免两头都搞不好 3. AI太顺着孩子？那谁来在练琴这件事上“跟他较劲” Angle: 从“AI太顺从”的争议切入，对比现实中练琴的“阻力感”，阐述音乐学习中“适度摩擦”的教育价值，同时澄清智能陪练如何做到既不“硬压”也不“无底线顺从”。 Category: 家长教育指导类 Reason: 直接对标热门争议“AI是否会养出玻璃心”，与品牌“智能陪练”高度相关，容易激发家长共鸣和讨论，兼具话题性与产品教育。 Content Points: - 解释：为什么越来越多家长觉得“AI太好说话，孩子不耐烦现实中的反对和要求” - 对比：现实练琴中的“摩擦”（枯燥反复、技术难点、老师的要求），其实正是意志力和挫折耐受的训练场 - 边界：什么是“有底线的温柔陪练”，什么是“放任式顺从”，两者对孩子性格的长期影响 - 拆解小叶子智能陪练：如何通过节奏、错音、时长等客观数据，给出明确反馈，而不是一味夸奖 - 给家长的行动建议：3个在家“既不吼也不惯着”的练琴沟通话术，让孩子在安全感中学会承受不同意见 4. 当AI比你还耐心，家长在孩子学琴这件事上到底该做什么？ Angle: 利用家长对AI教育角色的困惑，重新界定“AI陪练负责技术，家长负责价值观和边界”的分工，给出学琴家庭的清晰角色定位。 Category: 家长教育指导类 Reason: 紧贴“AI育儿”新焦虑，回答家长最关心的“我还需要做什么”，既能突出小叶子产品价值，又能强化陪伴理念。 Content Points: - 梳理现状：越来越多家庭把“情绪安抚、陪练纠错”都交给AI或老师，家长角色正在“隐身” - 划清分工：AI在练琴中的优势（耐心、稳定、客观反馈）和局限（价值判断、情绪教养） - 核心观点：在学琴这件事上，真正不可替代的是家长的3件事——边界感、价值观、长期陪伴 - 实操建议：如何设计“一天30分钟”的家庭音乐仪式感，让AI陪练和家长角色形成良性配合 - 避坑提示：3种把责任完全甩给AI或老师的常见育儿误区，以及可能的后果 5. 没有摩擦的世界养不出会弹琴的孩子：练琴的“痛”其实是宝贵资源 Angle: 从“没有摩擦的AI世界”引出“练琴一定会有摩擦”的现实，帮家长辨别哪种痛苦是该保护、哪种是应该陪孩子一起穿越的，转化为成长动力。 Category: 钢琴学习技巧类 Reason: 结合热点的“无摩擦世界”话题，把学琴中的痛点重新定义为成长契机，容易引发练琴家庭的强烈共鸣和自发转发。 Content Points: - 拆分“摩擦”：练琴中常见的5种“痛”（手指酸、枯燥、被要求、被纠正、和家长冲突），哪种该避免，哪种反而有利成长 - 心理角度：孩子在反复练习和被指出错误时，大脑和心理正在发生什么变化 - 案例：一位坚持学琴多年的琴童，自述“最痛苦的几年，反而是现在最感谢的”，用故事打动家长 - 方法论：如何通过小目标拆解和可视化进步，让“痛”变成“我正在变厉害”的证明 - 给父母的底线：什么样的批评和压力，会真正伤害孩子对音乐的热爱，需要立刻刹车"
+              - generic [ref=e92]:
+                - generic [ref=e93]: Run Summary
+                - generic [ref=e94]: "{ \"hotspots_count\": 60, \"topics_count\": 5, \"preview_path\": \"output\\\\2026-03-20\\\\172741\\\\email_preview.html\", \"sent\": false, \"mode\": \"preview\", \"finished_at\": \"2026-03-20T17:27:41\" }"
+              - generic [ref=e95]:
+                - generic [ref=e96]: Validation
+                - generic [ref=e97]: "{ \"ok\": true, \"errors\": [] }"
+          - group [ref=e98]:
+            - 'generic "2026/3/20 15:26:03 Music Topics 2026-03-20 152603 预览完成 预览模式 Hotspots: 60 | Topics: 5 | Mode: preview | Sent: No" [ref=e99] [cursor=pointer]':
+              - generic [ref=e100]: 2026/3/20 15:26:03
+              - strong [ref=e101]: Music Topics 2026-03-20 152603
+              - generic [ref=e102]:
+                - generic [ref=e103]: 预览完成
+                - generic [ref=e104]: 预览模式
+              - generic [ref=e105]: "Hotspots: 60 | Topics: 5 | Mode: preview | Sent: No"
+          - group [ref=e106]:
+            - 'generic "2026/3/19 17:03:58 Music Topics 2026-03-19 170358 预览完成 预览模式 Hotspots: 60 | Topics: 5 | Mode: preview | Sent: No" [ref=e107] [cursor=pointer]':
+              - generic [ref=e108]: 2026/3/19 17:03:58
+              - strong [ref=e109]: Music Topics 2026-03-19 170358
+              - generic [ref=e110]:
+                - generic [ref=e111]: 预览完成
+                - generic [ref=e112]: 预览模式
+              - generic [ref=e113]: "Hotspots: 60 | Topics: 5 | Mode: preview | Sent: No"
+          - group [ref=e114]:
+            - 'generic "2026/3/19 17:02:03 Music Topics 2026-03-19 170203 预览完成 预览模式 Hotspots: 60 | Topics: 5 | Mode: preview | Sent: No" [ref=e115] [cursor=pointer]':
+              - generic [ref=e116]: 2026/3/19 17:02:03
+              - strong [ref=e117]: Music Topics 2026-03-19 170203
+              - generic [ref=e118]:
+                - generic [ref=e119]: 预览完成
+                - generic [ref=e120]: 预览模式
+              - generic [ref=e121]: "Hotspots: 60 | Topics: 5 | Mode: preview | Sent: No"
+    - generic [ref=e122]:
+      - generic [ref=e123]:
+        - strong [ref=e124]: 当前状态
+        - generic [ref=e125]:
+          - generic [ref=e126]:
+            - generic [ref=e127]: 项目分类
+            - generic [ref=e128]: 资讯类
+          - generic [ref=e129]:
+            - generic [ref=e130]: 当前状态
+            - generic [ref=e131]: 已停止
+          - generic [ref=e132]:
+            - generic [ref=e133]: 入口地址
+            - generic [ref=e134]: 这个项目没有网页入口
+          - generic [ref=e135]:
+            - generic [ref=e136]: 项目路径
+            - generic [ref=e137]: E:/Project/codex/MusicNews
+          - generic [ref=e138]:
+            - generic [ref=e139]: 开始时间
+            - generic [ref=e140]: 还没有记录
+          - generic [ref=e141]:
+            - generic [ref=e142]: 结束时间
+            - generic [ref=e143]: 还没有记录
+          - generic [ref=e144]:
+            - generic [ref=e145]: 最后退出码
+            - generic [ref=e146]: 还没有记录
+          - generic [ref=e147]:
+            - generic [ref=e148]: 当前进程
+            - generic [ref=e149]: 没有运行中的进程
+      - generic [ref=e150]:
+        - strong [ref=e151]: 下一步建议
+        - generic [ref=e152]:
+          - generic [ref=e153]: 这个项目没有网页入口，重点是看执行结果和输出。
+          - generic [ref=e154]: 这是批处理项目，重点不是打开网页，而是看输出结果。
+          - generic [ref=e155]: 如果检查失败，先看下面的动作结果，不要重复硬点。

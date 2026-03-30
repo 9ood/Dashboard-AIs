@@ -1,0 +1,23 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: Project Detail
+      - generic [ref=e6]: 项目详情页
+    - link "返回主面板" [ref=e7] [cursor=pointer]:
+      - /url: ./index.html
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: Selected Project
+        - heading "正在加载" [level=1] [ref=e12]
+        - paragraph [ref=e13]: 正在读取项目信息。
+        - generic [ref=e15]: 控制服务未连接
+      - generic [ref=e16]: 开发中
+    - generic [ref=e17]:
+      - strong [ref=e19]: 基础信息
+      - generic [ref=e20]:
+        - strong [ref=e21]: 接入规则
+        - generic [ref=e22]: 1. 新项目要放在 E:/Project/codex 下面
+        - generic [ref=e23]: 2. 每个项目都带 project.config.json
+        - generic [ref=e24]: 3. 先接展示，再接控制，再做统一视觉和日志
+  - strong [ref=e26]: 最近动态

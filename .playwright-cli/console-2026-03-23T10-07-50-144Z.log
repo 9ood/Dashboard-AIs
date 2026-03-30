@@ -1,0 +1,13 @@
+[     122ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/ui-sans-serif/ui-sans-serif-Regular.woff2:0
+[     125ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/system-ui/system-ui-Regular.woff2:0
+[   10053ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.contentWindow.min.js:0
+[   10120ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap:0
+[   10120ms] [ERROR] Unable to preload CSS for https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap @ http://127.0.0.1:7862/assets/index-Dm-5BDMo.js:7
+[   10134ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://huggingface.co') does not match the recipient window's origin ('http://127.0.0.1:7862'). @ http://127.0.0.1:7862/assets/Index-Bzw9c0cY.js:1
+[  186252ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://127.0.0.1:7862/gradio_api/heartbeat/bb5p4dtyiqd:0
+[166783049ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/ui-sans-serif/ui-sans-serif-Regular.woff2:0
+[166783053ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/system-ui/system-ui-Regular.woff2:0
+[166783446ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://huggingface.co') does not match the recipient window's origin ('http://127.0.0.1:7862'). @ http://127.0.0.1:7862/assets/Index-Bzw9c0cY.js:1
+[173437716ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/ui-sans-serif/ui-sans-serif-Regular.woff2:0
+[173437717ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://huggingface.co') does not match the recipient window's origin ('http://127.0.0.1:7862'). @ http://127.0.0.1:7862/assets/Index-Bzw9c0cY.js:1
+[173778001ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://127.0.0.1:7862/gradio_api/heartbeat/4fsr3cw6m3r:0

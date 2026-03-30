@@ -1,0 +1,172 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: Project Detail
+      - generic [ref=e6]: 项目操作页
+    - link "返回总台" [ref=e7] [cursor=pointer]:
+      - /url: ./index.html
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: Selected Project
+        - heading "每日AI简报" [level=1] [ref=e12]
+        - paragraph [ref=e13]: 这是一个批处理项目。它会抓取 AI 新闻，生成当天简报，按配置发送邮件，并把每次发送的内容、人数、送达率记录下来，方便后续复用到翻译、改写和平台草稿流程。
+      - generic [ref=e14]: 已停止
+    - generic [ref=e15]: 系统已连接。第一次使用时，建议先点“先检查”。
+    - generic [ref=e16]:
+      - button "先检查" [ref=e17] [cursor=pointer]
+      - button "启动系统" [ref=e18] [cursor=pointer]
+      - button "停止" [ref=e19] [cursor=pointer]
+  - generic [ref=e20]:
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - strong [ref=e23]: 怎么用
+        - generic [ref=e24]:
+          - strong [ref=e26]:
+            - generic [ref=e27]: "1"
+            - text: 先点“先检查”，看看系统有没有准备好。
+          - strong [ref=e29]:
+            - generic [ref=e30]: "2"
+            - text: 再点“启动系统”或“开始处理”。
+          - strong [ref=e32]:
+            - generic [ref=e33]: "3"
+            - text: 如果有“打开系统”按钮，就点进去继续使用。
+          - strong [ref=e35]:
+            - generic [ref=e36]: "4"
+            - text: 如果失败，就先看下面的动作结果。
+      - generic [ref=e37]:
+        - strong [ref=e38]: 这次动作发生了什么
+        - generic [ref=e40]:
+          - strong [ref=e41]: 你还没开始操作
+          - generic [ref=e42]: 先看“怎么用”，再按顺序点按钮。
+          - generic [ref=e43]: 下一步：如果这是第一次使用，先点“先检查”。
+      - generic [ref=e44]:
+        - strong [ref=e45]: 最近动态
+        - generic [ref=e47]:
+          - generic [ref=e48]: 今天
+          - strong [ref=e49]: 接入 dashboard
+          - generic [ref=e50]: 已经补上标准门牌、控制脚本和发送历史日志。
+      - generic [ref=e51]:
+        - strong [ref=e52]: 历史发送日志
+        - group [ref=e54]:
+          - 'generic "2026/3/25 18:27:58 每日 AI 简报 2026-03-25 测试预演 测试运行 Recipients: 0/1 | Delivery Rate: N/A | Source News: 7 | Admin: 1 | Feishu: 1" [ref=e55] [cursor=pointer]':
+            - generic [ref=e56]: 2026/3/25 18:27:58
+            - strong [ref=e57]: 每日 AI 简报 2026-03-25
+            - generic [ref=e58]:
+              - generic [ref=e59]: 测试预演
+              - generic [ref=e60]: 测试运行
+            - generic [ref=e61]: "Recipients: 0/1 | Delivery Rate: N/A | Source News: 7 | Admin: 1 | Feishu: 1"
+          - generic [ref=e62]:
+            - generic [ref=e63]:
+              - generic [ref=e64]: 当日发送内容
+              - iframe [ref=e65]:
+                - generic [ref=f1e2]:
+                  - generic [ref=f1e3]:
+                    - generic [ref=f1e4]: 一手 AI 信源
+                    - generic [ref=f1e5]: 2026-03-25
+                  - generic [ref=f1e6]:
+                    - generic [ref=f1e7]: 🔥 今日要闻
+                    - generic [ref=f1e8]:
+                      - text: 热力指数 10
+                      - link "OpenAI 融资规模扩大至 1200 亿美元，IPO 预期升温" [ref=f1e9] [cursor=pointer]:
+                        - /url: https://the-decoder.com/openai-expands-its-record-funding-round-to-over-120-billion-as-it-eyes-a-potential-ipo-later-this-year/
+                      - generic [ref=f1e10]: OpenAI 在已创纪录的融资基础上再增 100 亿美元，总估值融资规模突破 1200 亿美元，并被曝正为今年晚些时候可能的 IPO 做准备。
+                    - generic [ref=f1e11]:
+                      - text: 热力指数 9
+                      - link "Arm 史上重大转型：从授权 IP 到自研自卖 CPU" [ref=f1e12] [cursor=pointer]:
+                        - /url: https://stratechery.com/2026/arm-launches-own-cpu-arms-motivation-constraints-and-systems/
+                      - generic [ref=f1e13]: Arm 开始直接销售自家 CPU 芯片，而不仅仅授权架构 IP，标志其在算力产业链中从“隐形基础设施”向更高价值环节上移。
+                    - generic [ref=f1e14]:
+                      - text: 热力指数 8
+                      - link "OpenAI 推出面向青少年的安全策略与 gpt-oss-safeguard 工具" [ref=f1e15] [cursor=pointer]:
+                        - /url: https://openai.com/index/teen-safety-policies-gpt-oss-safeguard
+                      - generic [ref=f1e16]: OpenAI 公布一套基于提示工程的青少年安全策略和 gpt-oss-safeguard 工具，帮助开发者在产品中更好处理未成年用户的年龄分级与风险内容。
+                    - generic [ref=f1e17]:
+                      - text: 热力指数 8
+                      - link "Sora App 和 API 下线，视频大模型或将隐身并入 ChatGPT" [ref=f1e18] [cursor=pointer]:
+                        - /url: https://the-decoder.com/soras-app-and-api-are-dead-but-openai-hints-the-video-model-lives-on-inside-chatgpt/
+                      - generic [ref=f1e19]: OpenAI 宣布关闭 Sora 独立应用和 API，并暗示其视频生成能力将融入 ChatGPT 体系，伴随包括迪士尼在内的合作方逐步抽身。
+                    - generic [ref=f1e20]:
+                      - text: 热力指数 8
+                      - link "Google DeepMind 发布 Gemini 3.1 Flash-Lite，接近实时生成网站" [ref=f1e21] [cursor=pointer]:
+                        - /url: https://the-decoder.com/google-deepminds-gemini-3-1-flash-lite-generates-websites-almost-in-real-time/
+                      - generic [ref=f1e22]: Google 展示 Gemini 3.1 Flash-Lite，可在演示中几乎实时生成网站界面，显示前端开发和网页原型设计进一步被大模型自动化的潜力。
+                  - generic [ref=f1e23]:
+                    - generic [ref=f1e24]: 📖 推荐阅读
+                    - generic [ref=f1e25]:
+                      - link "Arm 为什么终于自己下场做 CPU：动机、掣肘与系统性博弈" [ref=f1e26] [cursor=pointer]:
+                        - /url: https://stratechery.com/2026/arm-launches-own-cpu-arms-motivation-constraints-and-systems/
+                      - generic [ref=f1e27]: 💡 Stratechery 一贯从产业结构和商业模型入手，这篇长文不仅分析 Arm 改变商业模式的直接原因，还放到“算力是新石油”的大背景下，拆解与台积电、苹果、NVIDIA 以及云厂商之间的新利益格局，适合理解未来 5–10 年芯片和 AI 基础设施版图。
+                    - generic [ref=f1e28]:
+                      - link "Sora 之死与视频大模型的下一站：从明星产品到基础能力" [ref=f1e29] [cursor=pointer]:
+                        - /url: https://the-decoder.com/soras-app-and-api-are-dead-but-openai-hints-the-video-model-lives-on-inside-chatgpt/
+                      - generic [ref=f1e30]: 💡 文章通过 Sora App 与 API 的下线，折射出 OpenAI 产品线收缩与整合的逻辑：从“单点爆款”回收为 ChatGPT 的底层模块，并涉及内容合作方撤退、商业模式调整与监管压力，是观察 AI 视频赛道从泡沫走向基础设施化的重要样本。
+                  - generic [ref=f1e31]:
+                    - generic [ref=f1e32]: 🤖 AI 锐评
+                    - generic [ref=f1e33]: 今天的 AI 圈像一出高预算黑色喜剧：OpenAI 一边烧出 1200 亿美元、悄悄准备上市，一边把 Sora 做成“只在内部使用的传说生物”；Arm 终于发现，给别人打工卖 IP 不如自己下场抢利润；Google 用 Gemini 实时写网站，让前端工程师集体开始思考职业规划；与此同时，大家忙着做青少年安全策略和安全模式，结果最危险的却是被植入木马的开源代理。资本热到沸点，安全依旧靠祈祷。
+            - generic [ref=e66]:
+              - generic [ref=e67]: 原文链接
+              - generic [ref=e68]:
+                - link "OpenAI 融资规模扩大至 1200 亿美元，IPO 预期升温" [ref=e69] [cursor=pointer]:
+                  - /url: https://the-decoder.com/openai-expands-its-record-funding-round-to-over-120-billion-as-it-eyes-a-potential-ipo-later-this-year/
+                - link "Arm 史上重大转型：从授权 IP 到自研自卖 CPU" [ref=e70] [cursor=pointer]:
+                  - /url: https://stratechery.com/2026/arm-launches-own-cpu-arms-motivation-constraints-and-systems/
+                - link "OpenAI 推出面向青少年的安全策略与 gpt-oss-safeguard 工具" [ref=e71] [cursor=pointer]:
+                  - /url: https://openai.com/index/teen-safety-policies-gpt-oss-safeguard
+                - link "Sora App 和 API 下线，视频大模型或将隐身并入 ChatGPT" [ref=e72] [cursor=pointer]:
+                  - /url: https://the-decoder.com/soras-app-and-api-are-dead-but-openai-hints-the-video-model-lives-on-inside-chatgpt/
+                - link "Google DeepMind 发布 Gemini 3.1 Flash-Lite，接近实时生成网站" [ref=e73] [cursor=pointer]:
+                  - /url: https://the-decoder.com/google-deepminds-gemini-3-1-flash-lite-generates-websites-almost-in-real-time/
+                - link "Arm 为什么终于自己下场做 CPU：动机、掣肘与系统性博弈" [ref=e74] [cursor=pointer]:
+                  - /url: https://stratechery.com/2026/arm-launches-own-cpu-arms-motivation-constraints-and-systems/
+                - link "Sora 之死与视频大模型的下一站：从明星产品到基础能力" [ref=e75] [cursor=pointer]:
+                  - /url: https://the-decoder.com/soras-app-and-api-are-dead-but-openai-hints-the-video-model-lives-on-inside-chatgpt/
+            - generic [ref=e76]:
+              - generic [ref=e77]: Run Result
+              - generic [ref=e78]: Dry run completed. Email content rendered, but nothing was sent.
+            - generic [ref=e79]:
+              - generic [ref=e80]: Top Stories
+              - generic [ref=e81]: 1. OpenAI 融资规模扩大至 1200 亿美元，IPO 预期升温 2. Arm 史上重大转型：从授权 IP 到自研自卖 CPU 3. OpenAI 推出面向青少年的安全策略与 gpt-oss-safeguard 工具 4. Sora App 和 API 下线，视频大模型或将隐身并入 ChatGPT 5. Google DeepMind 发布 Gemini 3.1 Flash-Lite，接近实时生成网站
+            - generic [ref=e82]:
+              - generic [ref=e83]: Commentary
+              - generic [ref=e84]: 今天的 AI 圈像一出高预算黑色喜剧：OpenAI 一边烧出 1200 亿美元、悄悄准备上市，一边把 Sora 做成“只在内部使用的传说生物”；Arm 终于发现，给别人打工卖 IP 不如自己下场抢利润；Google 用 Gemini 实时写网站，让前端工程师集体开始思考职业规划；与此同时，大家忙着做青少年安全策略和安全模式，结果最危险的却是被植入木马的开源代理。资本热到沸点，安全依旧靠祈祷。
+            - generic [ref=e85]:
+              - generic [ref=e86]: Failures
+              - generic [ref=e87]: No failures.
+            - generic [ref=e88]:
+              - generic [ref=e89]: Raw Log
+              - generic [ref=e90]: "{ \"sendEnabled\": false, \"status\": \"dry-run\", \"message\": \"Dry run completed. Email content rendered, but nothing was sent.\", \"subject\": \"每日 AI 简报 2026-03-25\", \"htmlBody\": \"<!DOCTYPE html>\\n<html lang=\\\"zh-Hans\\\">\\n<head>\\n <meta charset=\\\"UTF-8\\\" />\\n <title>每日 AI 极简简报</title>\\n <style>\\n body { font-family: \\\"Helvetica Neue\\\", Arial, sans-serif; background: #f6f8fb; color: #1f2933; margin: 0; padding: 32px; }\\n .wrapper { max-width: 760px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 6px 32px rgba(0,0,0,0.06); padding: 28px; }\\n .header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #e5e9f0; padding-bottom: 12px; margin-bottom: 18px; }\\n .title { font-size: 22px; font-weight: 700; letter-spacing: 0.3px; }\\n .date { font-size: 14px; color: #52606d; }\\n .section { margin-top: 20px; padding: 14px 16px; border-radius: 10px; background: linear-gradient(90deg, #eef2f7, #f8fafc); }\\n .section-title { margin: 0 0 10px 0; font-size: 16px; font-weight: 700; color: #0f172a; }\\n .item { margin-bottom: 10px; line-height: 1.6; }\\n .item a { color: #0f62fe; text-decoration: none; }\\n .item a:hover { text-decoration: underline; }\\n .summary { font-size: 15px; display: block; margin-top: 2px; }\\n .score { background: #0f62fe; color: #fff; border-radius: 6px; padding: 2px 6px; font-size: 12px; margin-right: 6px; }\\n .insight { margin-top: 20px; padding: 16px; border-left: 4px solid #0f62fe; background: #f0f4ff; color: #1f2933; line-height: 1.6; border-radius: 8px; }\\n </style>\\n</head>\\n<body>\\n <div class=\\\"wrapper\\\">\\n <div class=\\\"header\\\">\\n <div class=\\\"title\\\">一手 AI 信源</div>\\n <div class=\\\"date\\\">2026-03-25</div>\\n </div>\\n\\n <div class=\\\"section\\\">\\n <div class=\\\"section-title\\\">🔥 今日要闻</div>\\n \\n <div class=\\\"item\\\">\\n <span class=\\\"score\\\">热力指数 10</span>\\n <a href=\\\"https://the-decoder.com/openai-expands-its-record-funding-round-to-over-120-billion-as-it-eyes-a-potential-ipo-later-this-year/\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">OpenAI 融资规模扩大至 1200 亿美元，IPO 预期升温</a>\\n <span class=\\\"summary\\\">OpenAI 在已创纪录的融资基础上再增 100 亿美元，总估值融资规模突破 1200 亿美元，并被曝正为今年晚些时候可能的 IPO 做准备。</span>\\n </div>\\n \\n <div class=\\\"item\\\">\\n <span class=\\\"score\\\">热力指数 9</span>\\n <a href=\\\"https://stratechery.com/2026/arm-launches-own-cpu-arms-motivation-constraints-and-systems/\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Arm 史上重大转型：从授权 IP 到自研自卖 CPU</a>\\n <span class=\\\"summary\\\">Arm 开始直接销售自家 CPU 芯片，而不仅仅授权架构 IP，标志其在算力产业链中从“隐形基础设施”向更高价值环节上移。</span>\\n </div>\\n \\n <div class=\\\"item\\\">\\n <span class=\\\"score\\\">热力指数 8</span>\\n <a href=\\\"https://openai.com/index/teen-safety-policies-gpt-oss-safeguard\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">OpenAI 推出面向青少年的安全策略与 gpt-oss-safeguard 工具</a>\\n <span class=\\\"summary\\\">OpenAI 公布一套基于提示工程的青少年安全策略和 gpt-oss-safeguard 工具，帮助开发者在产品中更好处理未成年用户的年龄分级与风险内容。</span>\\n </div>\\n \\n <div class=\\\"item\\\">\\n <span class=\\\"score\\\">热力指数 8</span>\\n <a href=\\\"https://the-decoder.com/soras-app-and-api-are-dead-but-openai-hints-the-video-model-lives-on-inside-chatgpt/\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Sora App 和 API 下线，视频大模型或将隐身并入 ChatGPT</a>\\n <span class=\\\"summary\\\">OpenAI 宣布关闭 Sora 独立应用和 API，并暗示其视频生成能力将融入 ChatGPT 体系，伴随包括迪士尼在内的合作方逐步抽身。</span>\\n </div>\\n \\n <div class=\\\"item\\\">\\n <span class=\\\"score\\\">热力指数 8</span>\\n <a href=\\\"https://the-decoder.com/google-deepminds-gemini-3-1-flash-lite-generates-websites-almost-in-real-time/\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Google DeepMind 发布 Gemini 3.1 Flash-Lite，接近实时生成网站</a>\\n <span class=\\\"summary\\\">Google 展示 Gemini 3.1 Flash-Lite，可在演示中几乎实时生成网站界面，显示前端开发和网页原型设计进一步被大模型自动化的潜力。</span>\\n </div>\\n \\n </div>\\n\\n <div class=\\\"section\\\">\\n <div class=\\\"section-title\\\">📖 推荐阅读</div>\\n \\n <div class=\\\"item\\\">\\n <a href=\\\"https://stratechery.com/2026/arm-launches-own-cpu-arms-motivation-constraints-and-systems/\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Arm 为什么终于自己下场做 CPU：动机、掣肘与系统性博弈</a>\\n <span class=\\\"summary\\\">💡 Stratechery 一贯从产业结构和商业模型入手，这篇长文不仅分析 Arm 改变商业模式的直接原因，还放到“算力是新石油”的大背景下，拆解与台积电、苹果、NVIDIA 以及云厂商之间的新利益格局，适合理解未来 5–10 年芯片和 AI 基础设施版图。</span>\\n </div>\\n \\n <div class=\\\"item\\\">\\n <a href=\\\"https://the-decoder.com/soras-app-and-api-are-dead-but-openai-hints-the-video-model-lives-on-inside-chatgpt/\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">Sora 之死与视频大模型的下一站：从明星产品到基础能力</a>\\n <span class=\\\"summary\\\">💡 文章通过 Sora App 与 API 的下线，折射出 OpenAI 产品线收缩与整合的逻辑：从“单点爆款”回收为 ChatGPT 的底层模块，并涉及内容合作方撤退、商业模式调整与监管压力，是观察 AI 视频赛道从泡沫走向基础设施化的重要样本。</span>\\n </div>\\n \\n </div>\\n\\n <div class=\\\"section\\\">\\n <div class=\\\"section-title\\\">🤖 AI 锐评</div>\\n <div class=\\\"insight\\\">今天的 AI 圈像一出高预算黑色喜剧：OpenAI 一边烧出 1200 亿美元、悄悄准备上市，一边把 Sora 做成“只在内部使用的传说生物”；Arm 终于发现，给别人打工卖 IP 不如自己下场抢利润；Google 用 Gemini 实时写网站，让前端工程师集体开始思考职业规划；与此同时，大家忙着做青少年安全策略和安全模式，结果最危险的却是被植入木马的开源代理。资本热到沸点，安全依旧靠祈祷。</div>\\n </div>\\n </div>\\n</body>\\n</html>\", \"recipients\": { \"adminCount\": 1, \"feishuCount\": 1, \"total\": 1, \"success\": 0, \"failed\": 0, \"deliveryRate\": null }, \"results\": [] }"
+    - generic [ref=e91]:
+      - generic [ref=e92]:
+        - strong [ref=e93]: 当前状态
+        - generic [ref=e94]:
+          - generic [ref=e95]:
+            - generic [ref=e96]: 项目分类
+            - generic [ref=e97]: 资讯类
+          - generic [ref=e98]:
+            - generic [ref=e99]: 当前状态
+            - generic [ref=e100]: 已停止
+          - generic [ref=e101]:
+            - generic [ref=e102]: 入口地址
+            - generic [ref=e103]: 这个项目没有网页入口
+          - generic [ref=e104]:
+            - generic [ref=e105]: 项目路径
+            - generic [ref=e106]: E:/Project/codex/AIDaily
+          - generic [ref=e107]:
+            - generic [ref=e108]: 开始时间
+            - generic [ref=e109]: 还没有记录
+          - generic [ref=e110]:
+            - generic [ref=e111]: 结束时间
+            - generic [ref=e112]: 还没有记录
+          - generic [ref=e113]:
+            - generic [ref=e114]: 最后退出码
+            - generic [ref=e115]: 还没有记录
+          - generic [ref=e116]:
+            - generic [ref=e117]: 当前进程
+            - generic [ref=e118]: 没有运行中的进程
+      - generic [ref=e119]:
+        - strong [ref=e120]: 下一步建议
+        - generic [ref=e121]:
+          - generic [ref=e122]: 这个项目没有网页入口，重点是看执行结果和输出。
+          - generic [ref=e123]: 第一次使用时，先按顺序来，不要连续乱点。
+          - generic [ref=e124]: 点完按钮后，先看结果，再决定下一步。

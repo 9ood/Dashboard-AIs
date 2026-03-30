@@ -1,0 +1,51 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]: AI Project Dashboard
+        - heading "AI 项目总台" [level=1] [ref=e8]
+        - paragraph [ref=e9]: 这里只展示真实项目，不再混入假的演示卡片。你先看整体，再点进单个项目做配置和控制。
+      - generic [ref=e10]:
+        - text: 根目录：E:/Project/codex
+        - text: 启动入口：start-dashboard.cmd
+    - generic [ref=e18]:
+      - button "全部项目 (4)" [ref=e81] [cursor=pointer]
+      - button "工具类 (2)" [ref=e82] [cursor=pointer]
+      - button "资讯类 (1)" [ref=e83] [cursor=pointer]
+      - button "内容类 (1)" [ref=e84] [cursor=pointer]
+  - generic [ref=e23]:
+    - generic [ref=e24]:
+      - text: 项目总数
+      - generic [ref=e25]: "4"
+      - text: 已接入真实项目
+    - generic [ref=e26]:
+      - text: 运行中
+      - generic [ref=e27]: "2"
+      - text: 当前可直接使用
+    - generic [ref=e28]:
+      - text: 需关注
+      - generic [ref=e29]: "1"
+      - text: 还有历史问题待处理
+    - generic [ref=e30]:
+      - text: 开发中
+      - generic [ref=e31]: "0"
+      - text: 已登记但未接控制
+  - generic [ref=e12]:
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: Project List
+        - heading "真实项目列表" [level=2] [ref=e16]
+      - generic [ref=e17]: 当前显示 1 个真实项目
+    - article [ref=e85] [cursor=pointer]:
+      - generic [ref=e86]:
+        - strong [ref=e87]: 小红书自动发布
+        - generic [ref=e88]: 从待发布队列里取一条内容，自动调用小红书发布工具，并归档结果。
+      - generic [ref=e89]:
+        - generic [ref=e90]: 分类
+        - generic [ref=e91]: 内容类
+      - generic [ref=e92]:
+        - generic [ref=e93]: 状态
+        - generic [ref=e94]: 需关注
+      - generic [ref=e95]:
+        - generic [ref=e96]: 最近运行
+        - text: 2026-03-20T07:25:38.020Z

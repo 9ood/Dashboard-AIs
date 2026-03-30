@@ -1,0 +1,6 @@
+[     185ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/ui-sans-serif/ui-sans-serif-Regular.woff2:0
+[     189ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/system-ui/system-ui-Regular.woff2:0
+[     318ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://huggingface.co') does not match the recipient window's origin ('http://127.0.0.1:7862'). @ http://127.0.0.1:7862/assets/Index-Bzw9c0cY.js:1
+[  201994ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/ui-sans-serif/ui-sans-serif-Regular.woff2:0
+[  201994ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://huggingface.co') does not match the recipient window's origin ('http://127.0.0.1:7862'). @ http://127.0.0.1:7862/assets/Index-Bzw9c0cY.js:1
+[  203388ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://127.0.0.1:7862/gradio_api/heartbeat/ak4s9zlabdk:0

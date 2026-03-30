@@ -1,0 +1,95 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: Project Detail
+      - generic [ref=e6]: 项目操作页
+    - link "返回总台" [ref=e7] [cursor=pointer]:
+      - /url: ./index.html
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: Selected Project
+        - heading "论文翻译服务" [level=1] [ref=e38]
+        - paragraph [ref=e13]: 这是一个工具服务项目。现在已经接入 dashboard，可以做配置检查、启动和停止。默认推荐 Google 翻译引擎，开箱就能用；如果你想用 QwenMT，再去 setup.bat 里填 API Key。
+      - generic [ref=e14]: 运行中
+    - generic [ref=e15]: 系统正在运行，进程号 17936。
+    - generic [ref=e39]:
+      - button "先检查" [ref=e40] [cursor=pointer]
+      - button "启动系统" [ref=e41] [cursor=pointer]
+      - button "停止" [ref=e42] [cursor=pointer]
+      - link "在本页打开" [ref=e43] [cursor=pointer]:
+        - /url: http://127.0.0.1:7862/
+  - generic [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - strong [ref=e19]: 怎么用
+        - generic [ref=e44]:
+          - strong [ref=e46]:
+            - generic [ref=e47]: "1"
+            - text: 先点“启动系统”，等翻译服务起来。
+          - strong [ref=e49]:
+            - generic [ref=e50]: "2"
+            - text: 点“打开系统”，进入论文翻译网页。
+          - strong [ref=e52]:
+            - generic [ref=e53]: "3"
+            - text: 上传 PDF，等它生成翻译后的文件。
+          - strong [ref=e55]:
+            - generic [ref=e56]: "4"
+            - text: 如果失败，先看下面的动作结果。
+      - generic [ref=e20]:
+        - strong [ref=e21]: 这次动作发生了什么
+        - generic [ref=e58]:
+          - strong [ref=e59]: 你还没开始操作
+          - generic [ref=e60]: 先看“怎么用”，再按顺序点按钮。
+          - generic [ref=e61]: 下一步：如果这是第一次使用，先点“先检查”。
+      - generic [ref=e22]:
+        - strong [ref=e23]: 最近动态
+        - generic [ref=e63]:
+          - generic [ref=e64]: 今天
+          - strong [ref=e65]: 接入真实控制层
+          - generic [ref=e66]: dashboard 现在可以检查配置、启动和停止这个项目。
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - strong [ref=e26]: 当前状态
+        - generic [ref=e67]:
+          - generic [ref=e68]:
+            - generic [ref=e69]: 项目分类
+            - generic [ref=e70]: 工具类
+          - generic [ref=e71]:
+            - generic [ref=e72]: 当前状态
+            - generic [ref=e73]: 运行中
+          - generic [ref=e74]:
+            - generic [ref=e75]: 入口地址
+            - generic [ref=e76]: http://127.0.0.1:7862/
+          - generic [ref=e77]:
+            - generic [ref=e78]: 项目路径
+            - generic [ref=e79]: E:/Project/codex/TransPaper
+          - generic [ref=e80]:
+            - generic [ref=e81]: 开始时间
+            - generic [ref=e82]: 还没有记录
+          - generic [ref=e83]:
+            - generic [ref=e84]: 结束时间
+            - generic [ref=e85]: 还没有记录
+          - generic [ref=e86]:
+            - generic [ref=e87]: 最后退出码
+            - generic [ref=e88]: 还没有记录
+          - generic [ref=e89]:
+            - generic [ref=e90]: 当前进程
+            - generic [ref=e91]: "17936"
+      - generic [ref=e27]:
+        - strong [ref=e28]: 下一步建议
+        - generic [ref=e92]:
+          - generic [ref=e93]: 系统现在已经在运行，你可以直接点“打开系统”。
+          - generic [ref=e94]: 这是网页服务，启动成功后最重要的下一步就是打开系统。
+          - generic [ref=e95]: 如果打开失败，先看入口地址和错误输出。
+  - generic [ref=e29]:
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - strong [ref=e32]: 项目内预览
+        - paragraph [ref=e33]: 这里会直接显示项目页面，不再新开网页。
+      - generic [ref=e34]:
+        - link "新窗口打开" [ref=e35] [cursor=pointer]:
+          - /url: "#"
+        - button "重新加载" [ref=e36] [cursor=pointer]
+    - iframe [ref=e37]:
+      

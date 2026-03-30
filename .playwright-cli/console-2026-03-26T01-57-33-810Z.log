@@ -1,0 +1,3 @@
+[     761ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:9333/favicon.ico:0
+[  202294ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4321/api/status?id=trans-paper:0
+[  347262ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4321/api/status?id=trans-paper:0

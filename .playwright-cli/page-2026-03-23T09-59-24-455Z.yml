@@ -1,0 +1,22 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]: TransPaper
+    - heading "论文翻译系统" [level=1] [ref=e6]
+    - paragraph [ref=e7]: 你只需要上传 PDF，确认语言，再点开始翻译。复杂参数还在，但常用流程我已经放到前面了。
+    - generic [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]: "1"
+        - generic [ref=e11]: 上传论文
+        - paragraph [ref=e12]: 把 PDF 拖进来，或者点上传按钮。
+      - generic [ref=e13]:
+        - generic [ref=e14]: "2"
+        - generic [ref=e15]: 确认语言
+        - paragraph [ref=e16]: 检查原文语言和目标语言，一般不用改太多。
+      - generic [ref=e17]:
+        - generic [ref=e18]: "3"
+        - generic [ref=e19]: 开始翻译
+        - paragraph [ref=e20]: 点开始翻译，完成后在右边预览和下载结果。
+  - main [ref=e21]:
+    - generic [ref=e22]:
+      - img [ref=e26]
+      - paragraph [ref=e37]: 加载中...

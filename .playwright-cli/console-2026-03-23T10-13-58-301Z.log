@@ -1,0 +1,12 @@
+[     135ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/ui-sans-serif/ui-sans-serif-Regular.woff2:0
+[     137ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/system-ui/system-ui-Regular.woff2:0
+[    4271ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap:0
+[    4271ms] [ERROR] Unable to preload CSS for https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap @ http://127.0.0.1:7862/assets/index-Dm-5BDMo.js:7
+[    4285ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://huggingface.co') does not match the recipient window's origin ('http://127.0.0.1:7862'). @ http://127.0.0.1:7862/assets/Index-Bzw9c0cY.js:1
+[    7112ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.contentWindow.min.js:0
+[  311995ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/ui-sans-serif/ui-sans-serif-Regular.woff2:0
+[  311996ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/system-ui/system-ui-Regular.woff2:0
+[  316097ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.contentWindow.min.js:0
+[  319099ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap:0
+[  319099ms] [ERROR] Unable to preload CSS for https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap @ http://127.0.0.1:7862/assets/index-Dm-5BDMo.js:7
+[  319110ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://huggingface.co') does not match the recipient window's origin ('http://127.0.0.1:7862'). @ http://127.0.0.1:7862/assets/Index-Bzw9c0cY.js:1

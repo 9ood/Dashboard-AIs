@@ -1,0 +1,6 @@
+[     164ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/ui-sans-serif/ui-sans-serif-Regular.woff2:0
+[     166ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/system-ui/system-ui-Regular.woff2:0
+[     226ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://huggingface.co') does not match the recipient window's origin ('http://127.0.0.1:7862'). @ http://127.0.0.1:7862/assets/Index-Bzw9c0cY.js:1
+[52365716ms] [WARNING] Failed to execute 'postMessage' on 'DOMWindow': The target origin provided ('https://huggingface.co') does not match the recipient window's origin ('http://127.0.0.1:7862'). @ http://127.0.0.1:7862/assets/Index-Bzw9c0cY.js:1
+[52365734ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/ui-sans-serif/ui-sans-serif-Regular.woff2:0
+[52365745ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:7862/static/fonts/system-ui/system-ui-Regular.woff2:0

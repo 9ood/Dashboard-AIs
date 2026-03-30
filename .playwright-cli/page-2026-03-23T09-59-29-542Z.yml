@@ -1,0 +1,223 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]: TransPaper
+    - heading "论文翻译系统" [level=1] [ref=e6]
+    - paragraph [ref=e7]: 你只需要上传 PDF，确认语言，再点开始翻译。复杂参数还在，但常用流程我已经放到前面了。
+    - generic [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]: "1"
+        - generic [ref=e11]: 上传论文
+        - paragraph [ref=e12]: 把 PDF 拖进来，或者点上传按钮。
+      - generic [ref=e13]:
+        - generic [ref=e14]: "2"
+        - generic [ref=e15]: 确认语言
+        - paragraph [ref=e16]: 检查原文语言和目标语言，一般不用改太多。
+      - generic [ref=e17]:
+        - generic [ref=e18]: "3"
+        - generic [ref=e19]: 开始翻译
+        - paragraph [ref=e20]: 点开始翻译，完成后在右边预览和下载结果。
+  - main [ref=e21]:
+    - generic [ref=e40]:
+      - heading "论文翻译系统" [level=1] [ref=e45]:
+        - link "论文翻译系统" [ref=e46] [cursor=pointer]:
+          - /url: https://pdf2zh-next.com
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - generic [ref=e51]:
+            - generic [ref=e52]: UI Language
+            - generic [ref=e55]:
+              - listbox "UI Language" [ref=e56]: English
+              - generic:
+                - img
+          - heading "上传文件" [level=2] [ref=e61]
+          - group [ref=e63]:
+            - generic [ref=e64]: Type
+            - generic [ref=e65]:
+              - generic [ref=e66] [cursor=pointer]:
+                - radio "File(s)" [checked] [ref=e67]
+                - generic [ref=e68]: File(s)
+              - generic [ref=e69] [cursor=pointer]:
+                - radio "Link" [ref=e70]
+                - generic [ref=e71]: Link
+          - generic [ref=e72]:
+            - generic:
+              - generic:
+                - img
+              - text: File(s)
+            - button "Click to upload or drop files" [ref=e73] [cursor=pointer]:
+              - generic [ref=e74]:
+                - img [ref=e76]
+                - text: 将文件拖放到此处
+                - generic [ref=e79]: "- 或 -"
+                - text: 点击上传
+          - heading "翻译设置" [level=2] [ref=e84]
+          - generic [ref=e86]:
+            - generic [ref=e88]:
+              - generic [ref=e89]: Translate from
+              - generic [ref=e92]:
+                - listbox "Translate from" [ref=e93]: English
+                - generic:
+                  - img
+            - generic [ref=e95]:
+              - generic [ref=e96]: Translate to
+              - generic [ref=e99]:
+                - listbox "Translate to" [ref=e100]: Simplified Chinese
+                - generic:
+                  - img
+          - generic [ref=e102]:
+            - generic [ref=e105]:
+              - generic [ref=e106]: Service
+              - generic [ref=e109]:
+                - listbox "Service" [ref=e110]: Google
+                - generic:
+                  - img
+            - generic [ref=e113]:
+              - group [ref=e114]:
+                - generic [ref=e115]: Rate Limit Mode
+                - paragraph [ref=e118]: Select the rate limit mode that best suits your API provider, system will automatically convert the rate limiting values of RPM or Concurrent Requests to QPS and Pool Max Workers when you click the Translate button
+                - generic [ref=e119]:
+                  - generic [ref=e120] [cursor=pointer]:
+                    - radio "RPM (Requests Per Minute)" [ref=e121]
+                    - generic [ref=e122]: RPM (Requests Per Minute)
+                  - generic [ref=e123] [cursor=pointer]:
+                    - radio "Concurrent Requests" [ref=e124]
+                    - generic [ref=e125]: Concurrent Requests
+                  - generic [ref=e126] [cursor=pointer]:
+                    - radio "Custom" [checked] [ref=e127]
+                    - generic [ref=e128]: Custom
+              - generic [ref=e130]:
+                - generic [ref=e131]: QPS (Queries Per Second)
+                - paragraph [ref=e134]: Number of requests sent per second
+                - spinbutton "QPS (Queries Per Second)" [ref=e135]: "4"
+              - generic [ref=e137]:
+                - generic [ref=e138]: Pool Max Workers
+                - paragraph [ref=e141]: If not set or set to 0, QPS will be used as the number of workers
+                - spinbutton "Pool Max Workers" [ref=e142]
+          - generic [ref=e143]:
+            - button "Auto Term Extraction ▼" [ref=e144] [cursor=pointer]:
+              - generic [ref=e145]: Auto Term Extraction
+              - generic [ref=e146]: ▼
+            - generic [ref=e148]:
+              - generic [ref=e151] [cursor=pointer]:
+                - checkbox "Enable auto term extraction" [checked] [ref=e152]
+                - generic [ref=e153]: Enable auto term extraction
+              - generic [ref=e155]:
+                - generic [ref=e158]:
+                  - generic [ref=e159]: Term extraction engine
+                  - generic [ref=e162]:
+                    - listbox "Term extraction engine" [ref=e163]: Follow main translation engine
+                    - generic:
+                      - img
+                - generic [ref=e164]:
+                  - group [ref=e165]:
+                    - generic [ref=e166]: Term rate limit mode
+                    - generic [ref=e167]:
+                      - generic [ref=e168] [cursor=pointer]:
+                        - radio "RPM (Requests Per Minute)" [ref=e169]
+                        - generic [ref=e170]: RPM (Requests Per Minute)
+                      - generic [ref=e171] [cursor=pointer]:
+                        - radio "Concurrent Requests" [ref=e172]
+                        - generic [ref=e173]: Concurrent Requests
+                      - generic [ref=e174] [cursor=pointer]:
+                        - radio "Custom" [checked] [ref=e175]
+                        - generic [ref=e176]: Custom
+                  - generic [ref=e178]:
+                    - generic [ref=e179]: Term QPS (Queries Per Second)
+                    - spinbutton "Term QPS (Queries Per Second)" [ref=e180]: "4"
+                  - generic [ref=e182]:
+                    - generic [ref=e183]: Term pool max workers
+                    - spinbutton "Term pool max workers" [ref=e184]
+          - generic [ref=e185]:
+            - group [ref=e186]:
+              - generic [ref=e187]: Pages
+              - generic [ref=e188]:
+                - generic [ref=e189] [cursor=pointer]:
+                  - radio "All" [checked] [ref=e190]
+                  - generic [ref=e191]: All
+                - generic [ref=e192] [cursor=pointer]:
+                  - radio "First" [ref=e193]
+                  - generic [ref=e194]: First
+                - generic [ref=e195] [cursor=pointer]:
+                  - radio "First 5 pages" [ref=e196]
+                  - generic [ref=e197]: First 5 pages
+                - generic [ref=e198] [cursor=pointer]:
+                  - radio "Range" [ref=e199]
+                  - generic [ref=e200]: Range
+            - generic [ref=e201]:
+              - paragraph [ref=e204]: Effective only when a page range is specified.
+              - generic [ref=e205] [cursor=pointer]:
+                - checkbox "Only include translated pages in the output PDF." [ref=e206]
+                - generic [ref=e207]: Only include translated pages in the output PDF.
+          - heading "输出方式" [level=2] [ref=e212]
+          - generic [ref=e214]:
+            - generic [ref=e216] [cursor=pointer]:
+              - checkbox "Disable monolingual output" [ref=e217]
+              - generic [ref=e218]: Disable monolingual output
+            - generic [ref=e220] [cursor=pointer]:
+              - checkbox "Disable bilingual output" [ref=e221]
+              - generic [ref=e222]: Disable bilingual output
+          - generic [ref=e224]:
+            - generic [ref=e226] [cursor=pointer]:
+              - checkbox "Put translated pages first in dual mode" [ref=e227]
+              - generic [ref=e228]: Put translated pages first in dual mode
+            - generic [ref=e230] [cursor=pointer]:
+              - checkbox "Use alternating pages for dual PDF" [ref=e231]
+              - generic [ref=e232]: Use alternating pages for dual PDF
+          - group [ref=e234]:
+            - generic [ref=e235]: Watermark mode
+            - generic [ref=e236]:
+              - generic [ref=e237] [cursor=pointer]:
+                - radio "Watermarked" [checked] [ref=e238]
+                - generic [ref=e239]: Watermarked
+              - generic [ref=e240] [cursor=pointer]:
+                - radio "No Watermark" [ref=e241]
+                - generic [ref=e242]: No Watermark
+          - button "Advanced Options ▼" [ref=e244] [cursor=pointer]:
+            - generic [ref=e245]: Advanced Options
+            - generic [ref=e246]: ▼
+          - button "开始翻译" [ref=e247] [cursor=pointer]
+          - button "停止" [ref=e248] [cursor=pointer]
+          - button "保存设置" [ref=e249] [cursor=pointer]
+          - generic [ref=e253]:
+            - generic "Technical details" [ref=e254]
+            - text: "- ⭐ Star at GitHub:"
+            - link "PDFMathTranslate-next/PDFMathTranslate-next" [ref=e255] [cursor=pointer]:
+              - /url: https://github.com/PDFMathTranslate-next/PDFMathTranslate-next
+            - text: "- BabelDOC:"
+            - link "funstory-ai/BabelDOC" [ref=e256] [cursor=pointer]:
+              - /url: https://github.com/funstory-ai/BabelDOC
+            - text: "- GUI by:"
+            - link "Rongxin" [ref=e257] [cursor=pointer]:
+              - /url: https://github.com/reycn
+            - text: "&"
+            - link "hellofinch" [ref=e258] [cursor=pointer]:
+              - /url: https://github.com/hellofinch
+            - text: "&"
+            - link "awwaawwa" [ref=e259] [cursor=pointer]:
+              - /url: https://github.com/awwaawwa
+            - text: "&"
+            - link "zfb132" [ref=e260] [cursor=pointer]:
+              - /url: https://github.com/zfb132
+            - text: "- pdf2zh Version: 2.8.2"
+            - text: "- BabelDOC Version: 0.5.23"
+            - text: "- Free translation service provided by"
+            - link "SiliconFlow" [ref=e261] [cursor=pointer]:
+              - /url: https://siliconflow.cn/
+            - link "Powered By SiliconFlow" [ref=e262] [cursor=pointer]:
+              - /url: https://siliconflow.cn/
+              - img "Powered By SiliconFlow" [ref=e263]
+        - generic [ref=e264]:
+          - heading "结果预览" [level=2] [ref=e269]
+          - generic [ref=e272]:
+            - generic [ref=e273]: Select File to Preview/Download
+            - generic [ref=e276]:
+              - listbox "Select File to Preview/Download" [ref=e277]
+              - generic:
+                - img
+          - generic [ref=e278]:
+            - generic:
+              - generic:
+                - img
+              - text: Document Preview
+            - generic "Empty value" [ref=e279]:
+              - img [ref=e281]
