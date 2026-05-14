@@ -2,7 +2,7 @@ $ErrorActionPreference = "Stop"
 
 $DashboardRoot = $PSScriptRoot
 $ControlStartScript = Join-Path $DashboardRoot "start-control-server.ps1"
-$DashboardPage = Join-Path $DashboardRoot "index.html"
+$DashboardUrl = "http://127.0.0.1:4321/"
 $HealthUrl = "http://127.0.0.1:4321/health"
 
 & $ControlStartScript | Out-Null
@@ -24,4 +24,4 @@ if (-not $ready) {
     throw "Dashboard control server failed to start: $HealthUrl"
 }
 
-Start-Process $DashboardPage | Out-Null
+Start-Process $DashboardUrl | Out-Null

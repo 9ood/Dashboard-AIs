@@ -344,6 +344,60 @@
       text-decoration: underline;
     }
 
+    .download-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .download-item {
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .download-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .download-head strong {
+      font-size: 15px;
+    }
+
+    .download-files {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .download-file {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: #ffffff;
+      padding: 12px 14px;
+    }
+
+    .download-file strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .download-meta {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
     .empty, .error {
       padding: 22px;
       border-radius: var(--radius-md);
@@ -459,6 +513,11 @@
           <strong class="section-title" id="reportTitle">历史记录</strong>
           <div class="steps" id="reportContent"></div>
         </section>
+
+        <section class="panel panel-body" id="downloadSection" hidden>
+          <strong class="section-title">结果下载</strong>
+          <div class="steps" id="downloadContent"></div>
+        </section>
       </div>
 
       <div class="stack">
@@ -512,6 +571,8 @@
     const reportSectionEl = document.getElementById("reportSection");
     const reportTitleEl = document.getElementById("reportTitle");
     const reportContentEl = document.getElementById("reportContent");
+    const downloadSectionEl = document.getElementById("downloadSection");
+    const downloadContentEl = document.getElementById("downloadContent");
     const guideStepsEl = document.getElementById("guideSteps");
     const resultEl = document.getElementById("actionResult");
     const nextAdviceEl = document.getElementById("nextAdvice");
@@ -550,6 +611,18 @@
 
     function escapeAttribute(value) {
       return escapeHtml(value).replaceAll("`", "&#96;");
+    }
+
+    function buildApiUrl(relativePath) {
+      if (!relativePath) {
+        return "#";
+      }
+
+      try {
+        return new URL(relativePath, `${API_BASE_URL.replace(/\/$/, "")}/`).toString();
+      } catch (error) {
+        return relativePath;
+      }
     }
 
     function formatTime(value) {
@@ -611,6 +684,18 @@
           advice: [
             "这次它不再只是跑一次，而是会变成后台长期运行的生产模式。",
             "如果检查失败，先看下面的动作结果，不要重复硬点。"
+          ]
+        },
+        "ai-daily-brief": {
+          steps: [
+            "先点“先检查”，确认脚本和依赖都正常。",
+            "再点“启动系统”，把每日AI简报的后台守护程序挂到 Windows 里。",
+            "启动成功后，它会在后台一直守着，每天早上 8 点自动抓取资讯并发送邮件。",
+            "如果当天没有抓到可发布内容，它会自动跳过，不会再发空邮件。"
+          ],
+          advice: [
+            "这次它不再只是跑一次，而是会变成后台长期运行的生产模式。",
+            "如果今天外部新闻源临时连不上，它会记日志并稍后重试，不会直接发空内容。"
           ]
         },
         "redbook-auto": {
@@ -947,6 +1032,42 @@
       }).join("");
     }
 
+    function renderDownloadItems(items) {
+      if (!Array.isArray(items) || !items.length) {
+        downloadContentEl.innerHTML = '<div class="empty">还没有可下载的 Excel 或完整包。</div>';
+        return;
+      }
+
+      downloadContentEl.innerHTML = `
+        <div class="download-list">
+          ${items.map((item) => `
+            <div class="download-item">
+              <div class="download-head">
+                <div>
+                  <strong>${escapeHtml(item.title || "未命名结果")}</strong>
+                  <div class="download-meta">最近更新时间：${escapeHtml(formatTime(item.updatedAt))}</div>
+                </div>
+                <span class="mini-tag">${escapeHtml((item.files || []).length)} 个文件</span>
+              </div>
+              <div class="download-files">
+                ${(item.files || []).map((file) => `
+                  <div class="download-file">
+                    <div>
+                      <strong>${escapeHtml(file.kind || "文件")} - ${escapeHtml(file.name || "未命名文件")}</strong>
+                      <div class="download-meta">
+                        大小：${escapeHtml(file.sizeLabel || "")} | 更新时间：${escapeHtml(formatTime(file.updatedAt))}
+                      </div>
+                    </div>
+                    <a class="control-btn secondary" href="${escapeAttribute(buildApiUrl(file.url || "#"))}">下载到本地</a>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
     async function loadProjectReport(project) {
       const reports = project?.reports || {};
       const reportEntries = Object.entries(reports);
@@ -978,6 +1099,35 @@
         renderReportEntries(payload.data);
       } catch (error) {
         reportContentEl.innerHTML = `<div class="error">${escapeHtml(error.message || "读取日志失败")}</div>`;
+      }
+    }
+
+    async function loadProjectDownloads(project) {
+      if (!project?.paths?.output) {
+        downloadSectionEl.hidden = true;
+        downloadContentEl.innerHTML = "";
+        return;
+      }
+
+      downloadSectionEl.hidden = false;
+      downloadContentEl.innerHTML = '<div class="empty">正在读取可下载文件...</div>';
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/downloads?id=${encodeURIComponent(project.id)}`, {
+          cache: "no-store"
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const payload = await response.json();
+        if (!payload.ok) {
+          throw new Error(payload.error || "读取下载文件失败");
+        }
+
+        renderDownloadItems(payload.items || []);
+      } catch (error) {
+        downloadContentEl.innerHTML = `<div class="error">${escapeHtml(error.message || "读取下载文件失败")}</div>`;
       }
     }
 
@@ -1040,6 +1190,7 @@
       renderMeta(project);
       renderTimeline(project);
       await loadProjectReport(project);
+      await loadProjectDownloads(project);
       applyActionVisibility(project);
       syncOpenButton(project, runtime);
       renderActionResult();
@@ -1150,7 +1301,7 @@
             test: "等检查完成后，再决定要不要正式开始。",
             run: currentProject.entry
               ? "现在可以点“打开系统”，去真正的页面继续。"
-              : (currentProject.id === "daily-music-topic"
+              : (currentProject.id === "daily-music-topic" || currentProject.id === "ai-daily-brief"
                 ? "现在它已经进入 Windows 后台守护模式。你可以留着它运行，之后回来看状态。"
                 : "现在去看输出结果和日志。"),
             stop: "如果你还要继续，再重新开始。"
@@ -1161,7 +1312,7 @@
             title: titleMap[action] || "命令执行成功",
             detail: action === "run" && currentProject.entry
               ? "服务已经准备好，接下来最重要的是进入真正的系统页面。"
-              : (payload.message || (currentProject.id === "daily-music-topic"
+              : (payload.message || (currentProject.id === "daily-music-topic" || currentProject.id === "ai-daily-brief"
                 ? "后台守护程序已经上线，现在会在 Windows 后台守着每天的发送时间。"
                 : "动作已经发出，请看最新状态。")),
             output: payload.output || "",

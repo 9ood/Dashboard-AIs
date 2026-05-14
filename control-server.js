@@ -10,6 +10,9 @@ const WORKSPACE_ROOT = "E:/Project/codex";
 const PROJECT_CONFIG_NAME = "project.config.json";
 const EXCLUDED_DIRS = new Set(["dashboard"]);
 const states = new Map();
+const actionLocks = new Map();
+const DASHBOARD_STATIC_FILES = new Set(["index.html", "project.html", "projects.js", "redbookauto.html"]);
+const DOWNLOADABLE_ARTIFACT_SUFFIXES = new Set([".xlsx", ".xls", ".zip"]);
 
 function withCors(res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -17,27 +20,54 @@ function withCors(res) {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 }
 
-function sendJson(res, statusCode, payload) {
+function sendJson(res, statusCode, payload, extraHeaders = {}) {
   withCors(res);
-  res.writeHead(statusCode, { "Content-Type": "application/json; charset=utf-8" });
+  res.writeHead(statusCode, {
+    "Content-Type": "application/json; charset=utf-8",
+    ...extraHeaders
+  });
   res.end(JSON.stringify(payload));
 }
 
-function sendFile(res, filePath) {
+function buildContentDisposition(downloadName) {
+  const fallbackName = String(downloadName || "download")
+    .replace(/[^\x20-\x7E]+/g, "_")
+    .replace(/["\\]/g, "_");
+  const encodedName = encodeURIComponent(downloadName || fallbackName);
+  return `attachment; filename="${fallbackName}"; filename*=UTF-8''${encodedName}`;
+}
+
+function sendFile(res, filePath, options = {}) {
   const ext = path.extname(filePath).toLowerCase();
   const contentTypes = {
+    ".html": "text/html; charset=utf-8",
+    ".js": "application/javascript; charset=utf-8",
+    ".json": "application/json; charset=utf-8",
+    ".css": "text/css; charset=utf-8",
+    ".txt": "text/plain; charset=utf-8",
+    ".svg": "image/svg+xml",
+    ".ico": "image/x-icon",
     ".png": "image/png",
     ".jpg": "image/jpeg",
     ".jpeg": "image/jpeg",
     ".gif": "image/gif",
-    ".webp": "image/webp"
+    ".webp": "image/webp",
+    ".zip": "application/zip",
+    ".xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    ".xls": "application/vnd.ms-excel",
+    ".pdf": "application/pdf"
   };
 
   withCors(res);
-  res.writeHead(200, {
+  const headers = {
     "Content-Type": contentTypes[ext] || "application/octet-stream",
     "Cache-Control": "no-store"
-  });
+  };
+  if (options.downloadName) {
+    headers["Content-Disposition"] = buildContentDisposition(options.downloadName);
+  }
+
+  res.writeHead(200, headers);
   fs.createReadStream(filePath).pipe(res);
 }
 
@@ -61,6 +91,14 @@ function safeReadText(filePath) {
   }
 }
 
+function safeReadDir(dirPath) {
+  try {
+    return fs.readdirSync(dirPath, { withFileTypes: true });
+  } catch (error) {
+    return [];
+  }
+}
+
 function getState(projectId) {
   if (!states.has(projectId)) {
     states.set(projectId, {
@@ -76,6 +114,27 @@ function getState(projectId) {
   }
 
   return states.get(projectId);
+}
+
+async function withProjectActionLock(projectId, mode, runner) {
+  const existing = actionLocks.get(projectId);
+  if (existing) {
+    return {
+      ok: false,
+      error: `项目正在${existing.mode === "run" ? "启动" : existing.mode === "stop" ? "停止" : "执行"}中，请不要重复点击。`
+    };
+  }
+
+  const token = { mode };
+  actionLocks.set(projectId, token);
+
+  try {
+    return await runner();
+  } finally {
+    if (actionLocks.get(projectId) === token) {
+      actionLocks.delete(projectId);
+    }
+  }
 }
 
 function resolveProjectPath(projectDir, relativePath) {
@@ -338,7 +397,30 @@ async function getProjectRuntimeState(project) {
   };
 }
 
-async function getProjectView(project) {
+function adaptProjectUrl(rawUrl, req) {
+  if (!rawUrl || !req) {
+    return rawUrl;
+  }
+
+  try {
+    const parsed = new URL(rawUrl);
+    if (parsed.hostname !== "127.0.0.1" && parsed.hostname !== "localhost") {
+      return rawUrl;
+    }
+
+    const requestHost = String(req.headers?.host || "").split(":")[0].trim();
+    if (!requestHost) {
+      return rawUrl;
+    }
+
+    parsed.hostname = requestHost;
+    return parsed.toString();
+  } catch (error) {
+    return rawUrl;
+  }
+}
+
+async function getProjectView(project, req) {
   const runtime = project.control.enabled
     ? await getProjectRuntimeState(project)
     : getState(project.id);
@@ -359,8 +441,8 @@ async function getProjectView(project) {
     summary: project.summary,
     description: project.description,
     path: project.path,
-    entry: project.entry,
-    health: project.health,
+    entry: adaptProjectUrl(project.entry, req),
+    health: adaptProjectUrl(project.health, req),
     integration: project.integration,
     control: {
       enabled: project.control.enabled,
@@ -609,7 +691,7 @@ function listFilesDeep(dirPath) {
   }
 
   const results = [];
-  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+  const entries = safeReadDir(dirPath);
   for (const entry of entries) {
     const fullPath = path.join(dirPath, entry.name);
     if (entry.isDirectory()) {
@@ -639,6 +721,124 @@ function collectRedbookAutoImages(itemDir, meta) {
     .filter((filePath) => REDBOOK_IMAGE_SUFFIXES.has(path.extname(filePath).toLowerCase()))
     .map((filePath) => filePath.replace(/\\/g, "/"))
     .sort((a, b) => a.localeCompare(b, "zh-CN"));
+}
+
+function getProjectOutputRoot(project) {
+  return resolveProjectPath(project.cwd, project.paths?.output || "outputs");
+}
+
+function formatFileSize(size) {
+  const numericSize = Number(size || 0);
+  if (!Number.isFinite(numericSize) || numericSize <= 0) {
+    return "0 B";
+  }
+
+  if (numericSize < 1024) {
+    return `${numericSize} B`;
+  }
+
+  if (numericSize < 1024 * 1024) {
+    return `${(numericSize / 1024).toFixed(1)} KB`;
+  }
+
+  if (numericSize < 1024 * 1024 * 1024) {
+    return `${(numericSize / 1024 / 1024).toFixed(1)} MB`;
+  }
+
+  return `${(numericSize / 1024 / 1024 / 1024).toFixed(1)} GB`;
+}
+
+function listProjectDownloads(project) {
+  const outputRoot = getProjectOutputRoot(project);
+  if (!outputRoot || !fs.existsSync(outputRoot)) {
+    return [];
+  }
+
+  const taskDirs = safeReadDir(outputRoot)
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name);
+  const items = [];
+
+  for (const taskDirName of taskDirs) {
+    const taskDir = path.join(outputRoot, taskDirName);
+    const originalName = safeReadText(path.join(taskDir, "original_name.txt")).trim();
+    const files = safeReadDir(taskDir)
+      .filter((entry) => entry.isFile())
+      .map((entry) => {
+        const fullPath = path.join(taskDir, entry.name);
+        const ext = path.extname(entry.name).toLowerCase();
+        if (!DOWNLOADABLE_ARTIFACT_SUFFIXES.has(ext)) {
+          return null;
+        }
+
+        let stats = null;
+        try {
+          stats = fs.statSync(fullPath);
+        } catch (error) {
+          return null;
+        }
+
+        const relativePath = path.relative(outputRoot, fullPath).replace(/\\/g, "/");
+        return {
+          name: entry.name,
+          kind: ext === ".zip" ? "完整包" : "Excel",
+          size: stats.size,
+          sizeLabel: formatFileSize(stats.size),
+          updatedAt: stats.mtime.toISOString(),
+          relativePath,
+          url: `/api/download?id=${encodeURIComponent(project.id)}&path=${encodeURIComponent(relativePath)}`
+        };
+      })
+      .filter(Boolean)
+      .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+
+    if (!files.length) {
+      continue;
+    }
+
+    items.push({
+      id: taskDirName,
+      title: originalName || taskDirName,
+      updatedAt: files[0].updatedAt,
+      files
+    });
+  }
+
+  return items
+    .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+    .slice(0, 20);
+}
+
+function resolveProjectDownloadFile(project, rawPath) {
+  if (!rawPath) {
+    return null;
+  }
+
+  const outputRoot = path.resolve(getProjectOutputRoot(project));
+  const candidatePath = path.resolve(outputRoot, rawPath);
+  if (!isPathInside(outputRoot, candidatePath)) {
+    return null;
+  }
+
+  if (!fs.existsSync(candidatePath) || !fs.statSync(candidatePath).isFile()) {
+    return null;
+  }
+
+  if (!DOWNLOADABLE_ARTIFACT_SUFFIXES.has(path.extname(candidatePath).toLowerCase())) {
+    return null;
+  }
+
+  return candidatePath;
+}
+
+function resolveDashboardStaticFile(urlPath) {
+  const cleanPath = urlPath === "/" ? "/index.html" : urlPath;
+  const fileName = cleanPath.replace(/^\/+/, "");
+  if (!DASHBOARD_STATIC_FILES.has(fileName)) {
+    return null;
+  }
+
+  return path.join(__dirname, fileName);
 }
 
 function summarizeRedbookAutoError(errorData) {
@@ -1036,12 +1236,20 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  if (req.method === "GET") {
+    const staticFile = resolveDashboardStaticFile(url.pathname);
+    if (staticFile) {
+      sendFile(res, staticFile);
+      return;
+    }
+  }
+
   const projectMap = getProjectMap();
 
   if (req.method === "GET" && url.pathname === "/api/projects") {
     const projects = [];
     for (const project of projectMap.values()) {
-      projects.push(await getProjectView(project));
+      projects.push(await getProjectView(project, req));
     }
     sendJson(res, 200, {
       ok: true,
@@ -1066,8 +1274,28 @@ const server = http.createServer(async (req, res) => {
   if (req.method === "GET" && url.pathname === "/api/project") {
     sendJson(res, 200, {
       ok: true,
-      project: await getProjectView(project)
+      project: await getProjectView(project, req)
     });
+    return;
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/downloads") {
+    sendJson(res, 200, {
+      ok: true,
+      items: listProjectDownloads(project)
+    });
+    return;
+  }
+
+  if (req.method === "GET" && url.pathname === "/api/download") {
+    const rawPath = url.searchParams.get("path");
+    const filePath = resolveProjectDownloadFile(project, rawPath || "");
+    if (!filePath) {
+      sendJson(res, 404, { ok: false, error: "下载文件不存在，或者路径不合法" });
+      return;
+    }
+
+    sendFile(res, filePath, { downloadName: path.basename(filePath) });
     return;
   }
 
@@ -1136,19 +1364,19 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (req.method === "POST" && url.pathname === "/api/test") {
-    const result = await runProject(project, "test");
+    const result = await withProjectActionLock(project.id, "test", () => runProject(project, "test"));
     sendJson(res, result.ok ? 200 : 409, result);
     return;
   }
 
   if (req.method === "POST" && url.pathname === "/api/run") {
-    const result = await runProject(project, "run");
+    const result = await withProjectActionLock(project.id, "run", () => runProject(project, "run"));
     sendJson(res, result.ok ? 200 : 409, result);
     return;
   }
 
   if (req.method === "POST" && url.pathname === "/api/stop") {
-    const result = await stopProject(project);
+    const result = await withProjectActionLock(project.id, "stop", () => stopProject(project));
     sendJson(res, result.ok ? 200 : 409, result);
     return;
   }
@@ -1156,6 +1384,6 @@ const server = http.createServer(async (req, res) => {
   sendJson(res, 404, { ok: false, error: "接口不存在" });
 });
 
-server.listen(PORT, "127.0.0.1", () => {
-  console.log(`Control server running at http://127.0.0.1:${PORT}`);
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`Control server running at http://0.0.0.0:${PORT}`);
 });
